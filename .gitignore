@@ -1,1 +1,4 @@
 /OptiMix-service/target/
+/OptiMix-service/optimix.db.log
+/OptiMix-service/optimix.db.properties
+/OptiMix-service/optimix.db.script

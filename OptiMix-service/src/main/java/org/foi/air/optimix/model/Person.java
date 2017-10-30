@@ -5,10 +5,13 @@
  */
 package org.foi.air.optimix.model;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Gloria Babić
  */
-public class Person {
+public class Person implements Serializable{
+    
     
 }

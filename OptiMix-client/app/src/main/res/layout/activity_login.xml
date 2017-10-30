@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="@dimen/activity_margin"
-    tools:context="hr.foi.air.optimix.optimix.MainActivity"
+    tools:context="hr.foi.air.optimix.optimix.LoginActivity"
     android:background="@color/white">
 
     <ScrollView
@@ -74,7 +74,9 @@
                 android:id="@+id/ButtonLogin"
                 android:background="@drawable/buttonstyle"
                 android:textColor="@color/white"
-                android:text="@string/button_login" />
+                android:text="@string/button_login"
+                android:onClick="mainButtonClick"
+                />
 
         </LinearLayout>
     </ScrollView>

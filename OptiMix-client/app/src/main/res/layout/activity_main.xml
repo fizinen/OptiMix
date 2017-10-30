@@ -6,17 +6,32 @@
     android:layout_height="match_parent"
     tools:context="hr.foi.air.optimix.optimix.LoginActivity">
 
-    <Button
-        android:id="@+id/button"
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:text="@string/button_login"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="16dp" />
+        android:padding="@dimen/activity_margin"
+        tools:context="hr.foi.air.optimix.optimix.LoginActivity"
+        android:background="@color/white"
+        tools:layout_editor_absoluteY="8dp"
+        tools:layout_editor_absoluteX="8dp">
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/floatingSettingsButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:scaleType="center"
+            app:backgroundTint="@color/colorPrimary"
+            app:elevation="8dp"
+            app:fabSize="normal"
+            app:rippleColor="@color/white"
+            app:srcCompat="@android:drawable/ic_menu_add"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:onClick="settingsButtonClicked"/>
+
+    </RelativeLayout>
 
 </android.support.constraint.ConstraintLayout>

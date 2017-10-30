@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Default screen margins. -->
+    <dimen name="activity_margin">16dp</dimen>
+
+    <!-- image_logo -->
+    <dimen name="image_logo_width">200dp</dimen>
+    <dimen name="image_logo_height">200dp</dimen>
+    <dimen name="image_logo_margin_top">16dp</dimen>
+    <dimen name="image_logo_margin_bottom">20dp</dimen>
+
+    <dimen name="layout_space">50dp</dimen>
+
+    <integer name="ems_registration">10</integer>
+</resources>

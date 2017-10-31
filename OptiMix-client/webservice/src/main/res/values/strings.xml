@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">webservice</string>
+
+    <string name="person_path">/person/</string>
+    <string name="person_login_path">/person/login</string>
+
+
 </resources>

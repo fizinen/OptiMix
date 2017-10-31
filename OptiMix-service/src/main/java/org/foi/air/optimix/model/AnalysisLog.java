@@ -6,6 +6,7 @@
 package org.foi.air.optimix.model;
 
 import java.io.Serializable;
+import java.util.Date;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
@@ -18,35 +19,38 @@ import javax.persistence.ManyToOne;
  *
  * @author Gloria Babić
  */
-public class ActivityLog implements Serializable{
+public class AnalysisLog implements Serializable{
     
     @Id 
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    @Column(name = "id_activity_log")
-    long idActivityLog;
-    
-    @Column(name = "activity")
-    private String activity;
+    @Column(name = "id_analysis_log")
+    long idAnalysisLog;
     
     @ManyToOne(cascade = {CascadeType.MERGE})
     @JoinColumn(name = "id_user")
     private Person userId;
     
+    @ManyToOne(cascade = {CascadeType.MERGE})
+    @JoinColumn(name = "id_analysis")
+    private Analysis analysisId;
+    
+    @Column(name = "input_date")
+    private Date inputDate;
 
-    public long getIdActivityLog() {
-        return idActivityLog;
+    public Analysis getAnalysis() {
+        return analysisId;
     }
 
-    public void setIdActivityLog(long idActivityLog) {
-        this.idActivityLog = idActivityLog;
+    public void setAnalysis(Analysis analysis) {
+        this.analysisId = analysis;
     }
 
-    public String getActivity() {
-        return activity;
+    public long getIdAnalysisLog() {
+        return idAnalysisLog;
     }
 
-    public void setActivity(String activity) {
-        this.activity = activity;
+    public void setIdAnalysisLog(long idAnalysisLog) {
+        this.idAnalysisLog = idAnalysisLog;
     }
 
     public Person getUser() {
@@ -57,6 +61,15 @@ public class ActivityLog implements Serializable{
         this.userId = user;
     }
 
+    public Date getInputDate() {
+        return inputDate;
+    }
+
+    public void setInputDate(Date inputDate) {
+        this.inputDate = inputDate;
+    }
+
     
+
     
 }

@@ -6,6 +6,7 @@
 package org.foi.air.optimix.model;
 
 import java.io.Serializable;
+import java.util.Date;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
@@ -18,35 +19,38 @@ import javax.persistence.ManyToOne;
  *
  * @author Gloria Babić
  */
-public class ActivityLog implements Serializable{
+public class RecipeLog implements Serializable{
     
     @Id 
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    @Column(name = "id_activity_log")
-    long idActivityLog;
+    @Column(name = "id_recipe_log")
+    long idRecipeLog;
     
-    @Column(name = "activity")
-    private String activity;
+    @ManyToOne(cascade = {CascadeType.MERGE})
+    @JoinColumn(name = "id_recipe")
+    private Recipe recipeId;
     
     @ManyToOne(cascade = {CascadeType.MERGE})
     @JoinColumn(name = "id_user")
     private Person userId;
     
+    @Column(name = "input_date")
+    private Date inputDate;
 
-    public long getIdActivityLog() {
-        return idActivityLog;
+    public long getIdRecipeLog() {
+        return idRecipeLog;
     }
 
-    public void setIdActivityLog(long idActivityLog) {
-        this.idActivityLog = idActivityLog;
+    public void setIdRecipeLog(long idRecipeLog) {
+        this.idRecipeLog = idRecipeLog;
     }
 
-    public String getActivity() {
-        return activity;
+    public Recipe getRecipe() {
+        return recipeId;
     }
 
-    public void setActivity(String activity) {
-        this.activity = activity;
+    public void setRecipe(Recipe recipe) {
+        this.recipeId = recipe;
     }
 
     public Person getUser() {
@@ -57,6 +61,16 @@ public class ActivityLog implements Serializable{
         this.userId = user;
     }
 
+    
+
+    public Date getInputDate() {
+        return inputDate;
+    }
+
+    public void setInputDate(Date inputDate) {
+        this.inputDate = inputDate;
+    }
+    
     
     
 }

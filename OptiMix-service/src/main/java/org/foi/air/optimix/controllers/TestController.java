@@ -6,8 +6,6 @@
 package org.foi.air.optimix.controllers;
 
 import java.util.List;
-import org.foi.air.optimix.model.Credentials;
-import org.foi.air.optimix.repositories.CredentialsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,7 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class TestController {
     
-    private CredentialsRepository credentialsRepository;
+    /*private CredentialsRepository credentialsRepository;
 
     @Autowired
     public TestController(CredentialsRepository credentialsRepository) {
@@ -52,5 +50,5 @@ public class TestController {
         return c != null
                 ? new ResponseEntity<>(c, HttpStatus.OK)
                 : new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
-    }
+    }*/
 }

@@ -6,7 +6,7 @@
 package org.foi.air.optimix.repositories;
 
 import javax.persistence.Table;
-import org.foi.air.optimix.model.Credentials;
+import org.foi.air.optimix.model.Person;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -15,9 +15,11 @@ import org.springframework.stereotype.Repository;
  * @author Gloria Babić
  */
 @Repository
-@Table(name = "credentials")
-public interface CredentialsRepository extends JpaRepository<Credentials, Long> {
-    
-    // SELECT * FROM credentials WHERE username = :username
-    Credentials findByUsername(String username);
+@Table(name = "person")
+public interface PersonRepository extends JpaRepository<Person, String> {
+
+    public Person findByIdPerson(long id);
+
+    public Person findByCredentialsUsername(String username);
+
 }

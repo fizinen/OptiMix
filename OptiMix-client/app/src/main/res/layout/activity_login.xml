@@ -75,6 +75,7 @@
                 android:background="@drawable/buttonstyle"
                 android:textColor="@color/white"
                 android:text="@string/button_login"
+                android:clickable="true"
                 android:onClick="mainButtonClick"
                 />
 

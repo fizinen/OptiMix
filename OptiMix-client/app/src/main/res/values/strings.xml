@@ -9,5 +9,11 @@
     <string name="username_input">geegee</string>
     <string name="password">Lozinka</string>
     <string name="password_input">oioi</string>
+    <!-- Create user -->
+    <string name="person_name">Ime</string>
+    <string name="person_surname">Prezime</string>
+    <string name="person_desc">Opis</string>
+    <string name="person_radius">Radius</string>
+    <string name="create_user">Dodaj</string>
 
 </resources>

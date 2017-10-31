@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/activity_margin"
+    tools:context="hr.foi.air.optimix.optimix.SettingsActivity">
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:id="@+id/registrationScrollView" >
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <!-- User name-->
+            <android.support.design.widget.TextInputLayout
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:id="@+id/personNameLayout">
+
+                <EditText
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/personName"
+                    android:hint="@string/person_name"
+                    android:inputType="text" />
+            </android.support.design.widget.TextInputLayout>
+
+            <!-- User surname -->
+            <android.support.design.widget.TextInputLayout
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:id="@+id/personSurnameLayout">
+
+                <EditText
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/personSurname"
+                    android:hint="@string/person_surname"
+                    android:inputType="textMultiLine" />
+            </android.support.design.widget.TextInputLayout>
+
+            <!-- Username -->
+            <android.support.design.widget.TextInputLayout
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:id="@+id/userNameLayout">
+
+                <EditText
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/userName"
+                    android:hint="@string/username"
+                    android:inputType="text"
+                    android:enabled="false" />
+            </android.support.design.widget.TextInputLayout>
+
+            <!-- Username -->
+            <android.support.design.widget.TextInputLayout
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:id="@+id/passwordLayout"
+                android:layout_marginBottom="@dimen/layout_space">
+
+                <EditText
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/password"
+                    android:hint="@string/password"
+                    android:inputType="text"
+                    android:enabled="false" />
+            </android.support.design.widget.TextInputLayout>
+
+            <!-- Submit -->
+            <Button
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/buttonstyle"
+                android:textColor="@color/white"
+                android:text="@string/create_user"
+                android:layout_gravity="bottom"
+                android:id="@+id/submitButton" />
+        </LinearLayout>
+
+    </ScrollView>
+
+</android.support.design.widget.CoordinatorLayout>

@@ -10,16 +10,24 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.util.Arrays;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import hr.foi.air.optimix.core.Input;
+import hr.foi.air.optimix.core.SessionManager;
+import hr.foi.air.optimix.model.Person;
+import hr.foi.air.optimix.optimix.handlers.LoginHandler;
+import hr.foi.air.optimix.webservice.ServiceAsyncTask;
+import hr.foi.air.optimix.webservice.ServiceCaller;
+import hr.foi.air.optimix.webservice.ServiceParams;
 
 public class LoginActivity extends AppCompatActivity {
 
 
-    List<ScriptGroup.Input> inputs;
+    List<Input> inputs;
 
     @BindView(R.id.TextUsername) EditText username;
     @BindView(R.id.TextPassword) EditText password;
@@ -34,12 +42,43 @@ public class LoginActivity extends AppCompatActivity {
 
         //binding
         ButterKnife.bind(this);
+
+        inputs = Arrays.asList(
+                new Input(username, Input.TEXT_MAIN_PATTERN, getString(R.string.username_error)),
+                new Input(password, Input.PASSWORD_PATTERN, getString(R.string.password_error))
+        );
+
+        if(SessionManager.getInstance(this)
+                .retrieveSession(SessionManager.PERSON_INFO_KEY, Person.class) != null) {
+            startActivity(new Intent(this, MainActivity.class));
+        }
         
     }
-    @OnClick(R.id.ButtonLogin)
-    public void mainButtonClick(View view){
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
-    }
+    View.OnClickListener onSignIn = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            // upisati u log
+
+            String usernameValue = username.getText().toString();
+            String passwordValue = password.getText().toString();
+
+            if(Input.validate(inputs)) {
+
+                Person credentials = new Person(usernameValue, passwordValue);
+
+
+                LoginHandler loginHandler = new LoginHandler(LoginActivity.this);
+                ServiceParams params = new ServiceParams(
+                        getString(hr.foi.air.optimix.webservice.R.string.person_login_path),
+                        ServiceCaller.HTTP_POST, credentials);
+                try {
+                    new ServiceAsyncTask(loginHandler).execute(params);
+                } catch(Exception e) {
+                    Toast.makeText(getApplicationContext(),
+                            getString(R.string.internet_error), Toast.LENGTH_LONG).show();
+                }
+            }
+        }
+    };
 
 }

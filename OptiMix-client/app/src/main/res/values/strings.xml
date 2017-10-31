@@ -15,5 +15,9 @@
     <string name="person_desc">Opis</string>
     <string name="person_radius">Radius</string>
     <string name="create_user">Dodaj</string>
+    <string name="username_error">Wrong username!</string>
+    <string name="password_error">Wrong password!</string>
+
+    <string name="internet_error">Cannot connect to server, please check your internet connection</string>
 
 </resources>

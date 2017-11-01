@@ -5,6 +5,7 @@ import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
+import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,7 +29,7 @@ import hr.foi.air.optimix.webservice.ServiceParams;
  * Created by Bogdan Erdelji on 31/10/2017.
  */
 
-public class CreateUserActivity extends Fragment {
+public class CreateUserActivity extends AppCompatActivity{
 
 
     @BindView(R.id.userName)
@@ -50,14 +51,14 @@ public class CreateUserActivity extends Fragment {
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-
+        setContentView(R.layout.activity_create_user);
     }
 
+/*
     @Override
+<<<<<<< Updated upstream
     public View onCreateView(LayoutInflater inflater, final ViewGroup container, Bundle savedInstanceState) {
 
         final View view = inflater.inflate(R.layout.activity_create_user, container, false);
@@ -94,8 +95,12 @@ public class CreateUserActivity extends Fragment {
             }
         };
 
-        submitButton.setOnClickListener(onSubmit); */
+        submitButton.setOnClickListener(onSubmit);
 
         return view;
+    }
+=======*/
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
+        return inflater.inflate(R.layout.activity_create_user, container, false);
     }
 }

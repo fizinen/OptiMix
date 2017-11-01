@@ -2,6 +2,7 @@ package hr.foi.air.optimix.optimix.handlers;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
@@ -27,7 +28,9 @@ public class LoginHandler  extends ResponseHandler {
     @Override
     public boolean handleResponse(ServiceResponse response) {
 
-
+if(response == null){
+    Log.d("dhwsjdj", "response is null");
+}
         if(response.getHttpCode() == 200) {
 
             Person person = new Gson().fromJson(response.getJsonResponse(), Person.class);

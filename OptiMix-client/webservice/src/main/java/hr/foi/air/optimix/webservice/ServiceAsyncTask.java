@@ -1,6 +1,7 @@
 package hr.foi.air.optimix.webservice;
 
 import android.os.AsyncTask;
+import android.util.Log;
 
 import java.io.IOException;
 import java.io.Serializable;
@@ -12,6 +13,8 @@ import java.net.URL;
  */
 
 public class ServiceAsyncTask extends AsyncTask<ServiceParams, Void, ServiceResponse> {
+
+
 
     ServiceParams sp;
 
@@ -41,9 +44,11 @@ public class ServiceAsyncTask extends AsyncTask<ServiceParams, Void, ServiceResp
             Serializable object = sp.getObject();
             jsonResponse = ServiceCaller.call(url, method, object, sp.getType(), sp.getUrlEncoded());
         } catch (MalformedURLException e) {
+            Log.d("asdf", "url");
+
 
         } catch (IOException e) {
-
+            Log.d("asdf", "asdf");
         }
 
         return jsonResponse;
@@ -51,6 +56,7 @@ public class ServiceAsyncTask extends AsyncTask<ServiceParams, Void, ServiceResp
 
     @Override
     protected void onPostExecute(ServiceResponse s) {
+
         if(sp != null && handler != null) {
 
             handler.handleResponse(s);

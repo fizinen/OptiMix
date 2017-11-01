@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -41,10 +42,13 @@ public class LoginActivity extends AppCompatActivity {
         //binding
         ButterKnife.bind(this);
 
-        inputs = Arrays.asList(
+        Log.d("","username" + username.getText().toString());
+        Log.d("","pass" + password.getText().toString());
+
+      /*  inputs = Arrays.asList(
                 new Input(username, Input.TEXT_MAIN_PATTERN, getString(R.string.username_error)),
                 new Input(password, Input.PASSWORD_PATTERN, getString(R.string.password_error))
-        );
+        ); */
 
         if(SessionManager.getInstance(this)
                 .retrieveSession(SessionManager.PERSON_INFO_KEY, Person.class) != null) {
@@ -61,22 +65,23 @@ public class LoginActivity extends AppCompatActivity {
             String usernameValue = username.getText().toString();
             String passwordValue = password.getText().toString();
 
-            if(Input.validate(inputs)) {
+          // if(Input.validate(inputs)) {
 
                 Person credentials = new Person(usernameValue, passwordValue);
 
-
+            Log.d("","person jajaja" + credentials.toString());
                 LoginHandler loginHandler = new LoginHandler(LoginActivity.this);
-                ServiceParams params = new ServiceParams(
-                        getString(hr.foi.air.optimix.webservice.R.string.person_login_path),
-                        ServiceCaller.HTTP_POST, credentials);
+            Log.d("","loginhandlerhah jajaja" + loginHandler.toString());
+                ServiceParams params = new ServiceParams(getString(hr.foi.air.optimix.webservice.R.string.person_login_path), ServiceCaller.HTTP_POST, credentials);
                 try {
+                    Log.d("hh", "GGevo meeeeeeeeeeeeeee");
                     new ServiceAsyncTask(loginHandler).execute(params);
                 } catch(Exception e) {
+                    Log.d("hh", "evo meeeeeeeeeeeeeee");
                     Toast.makeText(getApplicationContext(),
                             getString(R.string.internet_error), Toast.LENGTH_LONG).show();
                 }
-            }
+          //  }
         }
     };
 

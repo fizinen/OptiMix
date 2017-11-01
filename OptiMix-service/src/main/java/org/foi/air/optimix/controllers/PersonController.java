@@ -50,6 +50,10 @@ public class PersonController {
         String password = person.getPassword();
 
         Person found = this.personRepository.findByUsername(username);
+        
+       Logger.getLogger("ima li te? Personnn?").log(Level.INFO,
+                "đes " + found.toString());
+        
         return (found != null && found.getPassword().equals(password))
                 ? new ResponseEntity(found, HttpStatus.OK)
                 : new ResponseEntity(HttpStatus.NOT_FOUND);

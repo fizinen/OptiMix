@@ -1,9 +1,12 @@
 package hr.foi.air.optimix.optimix.handlers;
 
 import android.app.Activity;
+import android.app.Fragment;
 
 import java.io.Serializable;
 
+import hr.foi.air.optimix.model.Person;
+import hr.foi.air.optimix.optimix.CreateUserActivity;
 import hr.foi.air.optimix.webservice.ServiceResponseHandler;
 
 /**
@@ -12,12 +15,18 @@ import hr.foi.air.optimix.webservice.ServiceResponseHandler;
 
 public abstract class ResponseHandler  implements ServiceResponseHandler {
 
+    private Fragment fragment;
+    private Serializable[] args;
     private Activity activity;
-    private Object[] args;
 
 
     public ResponseHandler(Activity activity, Serializable... args) {
         this.activity = activity;
+        this.args = args;
+
+    }
+    public ResponseHandler(Fragment fragment, Serializable... args) {
+        this.fragment = fragment;
         this.args = args;
 
     }
@@ -30,6 +39,10 @@ public abstract class ResponseHandler  implements ServiceResponseHandler {
     @Override
     public void onPostSend() {
 
+    }
+
+    public Fragment getFragment() {
+        return fragment;
     }
 
     public Activity getActivity() {

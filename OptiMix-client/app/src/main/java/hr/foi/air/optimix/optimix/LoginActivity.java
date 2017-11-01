@@ -1,7 +1,6 @@
 package hr.foi.air.optimix.optimix;
 
 import android.content.Intent;
-import android.renderscript.ScriptGroup;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -15,7 +14,6 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 import hr.foi.air.optimix.core.Input;
 import hr.foi.air.optimix.core.SessionManager;
 import hr.foi.air.optimix.model.Person;
@@ -52,12 +50,13 @@ public class LoginActivity extends AppCompatActivity {
                 .retrieveSession(SessionManager.PERSON_INFO_KEY, Person.class) != null) {
             startActivity(new Intent(this, MainActivity.class));
         }
+        logIn.setOnClickListener(onlogin);
         
     }
-    View.OnClickListener onSignIn = new View.OnClickListener() {
+    View.OnClickListener onlogin = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            // upisati u log
+            // TODO: upisati u log
 
             String usernameValue = username.getText().toString();
             String passwordValue = password.getText().toString();
@@ -80,5 +79,7 @@ public class LoginActivity extends AppCompatActivity {
             }
         }
     };
+
+
 
 }

@@ -20,6 +20,6 @@ public interface PersonRepository extends JpaRepository<Person, String> {
 
     public Person findByIdPerson(long id);
 
-    public Person findByCredentialsUsername(String username);
+    public Person findByUsername(String username);
 
 }

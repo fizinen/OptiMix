@@ -9,16 +9,20 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 /**
  *
  * @author Gloria Babić
  */
+@Entity
+@Table(name="person")
 public class Person implements Serializable {
 
     @Id
@@ -34,17 +38,65 @@ public class Person implements Serializable {
 
     @Column(name = "authority_level")
     long authority;
+    
+    @Column(name = "name")
+    private String name;
+    
+    @Column(name = "surname")
+    private String surname;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getSurname() {
+        return surname;
+    }
+
+    public void setSurname(String surname) {
+        this.surname = surname;
+    }
+
+    public List<ActivityLog> getActivityLog() {
+        return activityLog;
+    }
+
+    public void setActivityLog(List<ActivityLog> activityLog) {
+        this.activityLog = activityLog;
+    }
+
+    public List<AnalysisLog> getAnalysisLog() {
+        return analysisLog;
+    }
+
+    public void setAnalysisLog(List<AnalysisLog> analysisLog) {
+        this.analysisLog = analysisLog;
+    }
+
+    public List<RecipeLog> getRecipeLog() {
+        return recipeLog;
+    }
+
+    public void setRecipeLog(List<RecipeLog> recipeLog) {
+        this.recipeLog = recipeLog;
+    }
+    
+    
 
     @JsonIgnore
-    @OneToMany(mappedBy = "activity_log", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "userId", fetch = FetchType.LAZY)
     private List<ActivityLog> activityLog;
     
     @JsonIgnore
-    @OneToMany(mappedBy = "analysis_log", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "userId", fetch = FetchType.LAZY)
     private List<AnalysisLog> analysisLog;
     
     @JsonIgnore
-    @OneToMany(mappedBy = "recipe_log", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "userId", fetch = FetchType.LAZY)
     private List<RecipeLog> recipeLog;
 
     public List<ActivityLog> getUserActivity() {

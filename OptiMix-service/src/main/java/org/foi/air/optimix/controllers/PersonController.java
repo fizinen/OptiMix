@@ -49,7 +49,7 @@ public class PersonController {
         String username = person.getUsername();
         String password = person.getPassword();
 
-        Person found = this.personRepository.findByCredentialsUsername(username);
+        Person found = this.personRepository.findByUsername(username);
         return (found != null && found.getPassword().equals(password))
                 ? new ResponseEntity(found, HttpStatus.OK)
                 : new ResponseEntity(HttpStatus.NOT_FOUND);

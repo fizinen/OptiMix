@@ -10,16 +10,20 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 /**
  *
  * @author Gloria Babić
  */
+@Entity
+@Table(name="raw")
 public class Raw implements Serializable{
     
     @Id
@@ -46,11 +50,11 @@ public class Raw implements Serializable{
     private long materialMass;
     
     @JsonIgnore
-    @OneToMany(mappedBy = "recipe", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "raw", fetch = FetchType.LAZY)
     private List<Recipe> recipe;
     
     @JsonIgnore
-    @OneToMany(mappedBy = "analysis", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "rawId", fetch = FetchType.LAZY)
     private List<Analysis> analysis;
     
 

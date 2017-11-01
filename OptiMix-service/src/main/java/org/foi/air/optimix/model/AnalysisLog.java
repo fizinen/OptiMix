@@ -9,16 +9,20 @@ import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 /**
  *
  * @author Gloria Babić
  */
+@Entity
+@Table(name="analysis_log")
 public class AnalysisLog implements Serializable{
     
     @Id 
@@ -27,7 +31,7 @@ public class AnalysisLog implements Serializable{
     long idAnalysisLog;
     
     @ManyToOne(cascade = {CascadeType.MERGE})
-    @JoinColumn(name = "id_user")
+    @JoinColumn(name = "id_person")
     private Person userId;
     
     @ManyToOne(cascade = {CascadeType.MERGE})

@@ -9,31 +9,35 @@ import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 /**
  *
  * @author Gloria Babić
  */
-public class RecipeLog implements Serializable{
-    
-    @Id 
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
+@Entity
+@Table(name = "recipe_log")
+public class RecipeLog implements Serializable {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_recipe_log")
     long idRecipeLog;
-    
+
     @ManyToOne(cascade = {CascadeType.MERGE})
     @JoinColumn(name = "id_recipe")
     private Recipe recipeId;
-    
+
     @ManyToOne(cascade = {CascadeType.MERGE})
-    @JoinColumn(name = "id_user")
+    @JoinColumn(name = "id_person")
     private Person userId;
-    
+
     @Column(name = "input_date")
     private Date inputDate;
 
@@ -61,8 +65,6 @@ public class RecipeLog implements Serializable{
         this.userId = user;
     }
 
-    
-
     public Date getInputDate() {
         return inputDate;
     }
@@ -70,7 +72,5 @@ public class RecipeLog implements Serializable{
     public void setInputDate(Date inputDate) {
         this.inputDate = inputDate;
     }
-    
-    
-    
+
 }

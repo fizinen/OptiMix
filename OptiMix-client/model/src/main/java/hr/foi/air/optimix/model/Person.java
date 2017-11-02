@@ -9,6 +9,8 @@ import java.io.Serializable;
 public class Person implements Serializable {
 
     long idPerson;
+    String name;
+    String surname;
     String username;
     String password;
 
@@ -16,6 +18,13 @@ public class Person implements Serializable {
     }
 
     public Person(String username, String password) {
+        this.username = username;
+        this.password = password;
+    }
+
+    public Person(String name, String surname, String username, String password) {
+        this.name = name;
+        this.surname =surname;
         this.username = username;
         this.password = password;
     }

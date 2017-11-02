@@ -23,21 +23,16 @@ public class CreateUserHandler extends ResponseHandler {
         super(activity, args);
     }
 
-    public CreateUserHandler(Fragment fragment, Serializable... args) {
-        super(fragment, args);
-    }
-
-
     @Override
     public boolean handleResponse(ServiceResponse response) {
-        Person credentials = (Person) getArgs()[0];
+        Person person = (Person) getArgs()[0];
 
         if(response.getHttpCode() == 200) {
 
             LoginHandler loginHandler = new LoginHandler(getActivity());
             ServiceParams params = new ServiceParams(
                     getActivity().getString(hr.foi.air.optimix.webservice.R.string.person_login_path),
-                    ServiceCaller.HTTP_POST, credentials);
+                    ServiceCaller.HTTP_POST, person);
             new ServiceAsyncTask(loginHandler).execute(params);
             return true;
         } else {

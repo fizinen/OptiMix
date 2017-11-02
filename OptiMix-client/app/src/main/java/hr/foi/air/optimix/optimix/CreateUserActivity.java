@@ -40,6 +40,14 @@ public class CreateUserActivity extends AppCompatActivity{
     TextInputLayout usernameLayout;
     @BindView(R.id.passwordLayout)
     TextInputLayout passwordLayout;
+    @BindView(R.id.personName)
+    EditText personName;
+    @BindView(R.id.personSurname)
+    EditText personSurname;
+    @BindView(R.id.personNameLayout)
+    TextInputLayout personNameLayout;
+    @BindView(R.id.personSurnameLayout)
+    TextInputLayout personSurnameLayout;
     @BindView(R.id.submitButton)
     Button submitButton;
     Input passwordInput;
@@ -54,17 +62,8 @@ public class CreateUserActivity extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_user);
-    }
 
-/*
-    @Override
-<<<<<<< Updated upstream
-    public View onCreateView(LayoutInflater inflater, final ViewGroup container, Bundle savedInstanceState) {
-
-        final View view = inflater.inflate(R.layout.activity_create_user, container, false);
-
-        ButterKnife.bind(this, view); /*
-
+        ButterKnife.bind(this);
 
         passwordInput = new Input(password, Input.PASSWORD_PATTERN, getString(R.string.password_error));
 
@@ -72,35 +71,39 @@ public class CreateUserActivity extends AppCompatActivity{
                 new Input(username, Input.TEXT_MAIN_PATTERN, getString(R.string.username_error)),
                 passwordInput
         );
-
-        View.OnClickListener onSubmit = new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                String usernameValue = username.getText().toString();
-                String passwordValue = password.getText().toString();
-
-                if(Input.validate(inputs)){
-
-                    Person person = new Person(usernameValue,passwordValue);
-                    CreateUserActivity instanceFragment =
-                            (CreateUserActivity)getFragmentManager().findFragmentById(R.id.activity_create_user);
-
-                    CreateUserHandler createUserHandler = new CreateUserHandler(  , person);
-
-                    new ServiceAsyncTask(createUserHandler).execute(new ServiceParams(
-                            getString(hr.foi.air.optimix.webservice.R.string.person_createuser_path),
-                            ServiceCaller.HTTP_POST, person));
-                }
-            }
-        };
-
         submitButton.setOnClickListener(onSubmit);
 
-        return view;
+
+
+
+
+
     }
-=======*/
+    View.OnClickListener onSubmit = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+
+            String nameValue = personName.getText().toString();
+            String surnameValue = personSurname.getText().toString();
+            String usernameValue = username.getText().toString();
+            String passwordValue = password.getText().toString();
+
+            if(Input.validate(inputs)){
+
+                Person person = new Person(nameValue, surnameValue, usernameValue,passwordValue);
+
+                CreateUserHandler createUserHandler = new CreateUserHandler( CreateUserActivity.this , person);
+
+                new ServiceAsyncTask(createUserHandler).execute(new ServiceParams(
+                        getString(hr.foi.air.optimix.webservice.R.string.person_createuser_path),
+                        ServiceCaller.HTTP_POST, person));
+            }
+        }
+    };
+
+/*
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
         return inflater.inflate(R.layout.activity_create_user, container, false);
-    }
+
+    }*/
 }

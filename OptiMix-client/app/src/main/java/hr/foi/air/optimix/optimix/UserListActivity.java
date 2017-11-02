@@ -3,7 +3,9 @@ package hr.foi.air.optimix.optimix;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +21,8 @@ import butterknife.OnClick;
 
 public class UserListActivity extends Fragment implements View.OnClickListener{
 
+    FloatingActionButton buttonAddNewUsers;
+
     public UserListActivity() {
     }
 
@@ -29,11 +33,15 @@ public class UserListActivity extends Fragment implements View.OnClickListener{
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
-        return inflater.inflate(R.layout.tab_user_list, container, false);
+        View view = inflater.inflate(R.layout.tab_user_list, container, false);
+        buttonAddNewUsers = (FloatingActionButton) view.findViewById(R.id.floatingActionButtonAddNewUsers);
+        buttonAddNewUsers.setOnClickListener(this);
+        return view;
     }
 
     @OnClick(R.id.floatingActionButtonAddNewUsers)
     public void openNewUserCreationActivity() {
+        Log.d("klik", "kliknuo si me");
         Activity parentActivity = getActivity();
         Intent intent = new Intent(parentActivity, CreateUserActivity.class);
         ((FragmentIntentInterface)parentActivity).startIntentFromFragment(intent);
@@ -41,6 +49,7 @@ public class UserListActivity extends Fragment implements View.OnClickListener{
 
     @Override
     public void onClick(View v) {
+        Log.d("klik2", "kliknuo si me2");
         switch (v.getId()){
             case R.id.floatingActionButtonAddNewUsers: openNewUserCreationActivity();
                 break;

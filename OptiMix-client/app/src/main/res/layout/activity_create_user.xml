@@ -54,11 +54,11 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/userName"
                     android:hint="@string/username"
-                    android:inputType="text"
-                    android:enabled="false" />
-            </android.support.design.widget.TextInputLayout>
+                    android:inputType="text"/>
+            <!-- android:enabled="false" -->
+     </android.support.design.widget.TextInputLayout>
 
-            <!-- Password -->
+     <!-- Password -->
             <android.support.design.widget.TextInputLayout
                 android:layout_height="match_parent"
                 android:layout_width="match_parent"
@@ -70,8 +70,8 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/password"
                     android:hint="@string/password"
-                    android:inputType="text"
-                    android:enabled="false" />
+                    android:inputType="text"/>
+                <!--android:enabled="false" -->
             </android.support.design.widget.TextInputLayout>
 
             <!-- Submit -->

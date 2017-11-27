@@ -6,7 +6,7 @@
     <ScrollView
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:id="@+id/recipe_creation_scrollView" >
+        android:id="@+id/recipe_creation_scrollView">
 
         <LinearLayout
             android:orientation="vertical"
@@ -26,7 +26,8 @@
                     android:hint="@string/recipe_name"
                     android:inputType="text" />
             </android.support.design.widget.TextInputLayout>
-            <!-- Recipe components-->
+            <!-- Recipe components; element (layout) should be added when
+            button "add_new_material_button" is pressed -->
             <LinearLayout
                 android:id="@+id/material_addition_layout"
                 android:layout_width="match_parent"
@@ -59,7 +60,8 @@
                 android:layout_height="wrap_content"
                 android:padding="15dp"
                 android:text="@string/material_addition" />
-
+            <!-- The % could be added to the text or the field could be
+             thinner; not match parent-->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -82,7 +84,9 @@
         </LinearLayout>
 
     </ScrollView>
+    <!-- Submit button -->
     <Button
+
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/buttonstyle"
@@ -91,5 +95,5 @@
         android:layout_gravity="bottom"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:id="@+id/submitButton" />
+        android:id="@+id/submitRecipeButton" />
 </RelativeLayout>

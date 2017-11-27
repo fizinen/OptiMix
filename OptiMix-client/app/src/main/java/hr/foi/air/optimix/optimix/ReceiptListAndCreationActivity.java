@@ -37,14 +37,11 @@ public class ReceiptListAndCreationActivity extends Fragment implements View.OnC
         return view;
     }
 
-
-
-
     @OnClick(R.id.floatingActionButtonAddNewRecipe)
-    public void openNewUserCreationActivity() {
+    public void openNewRecipeCreationActivity() {
         Log.d("klik", "kliknuo si me");
         Activity parentActivity = getActivity();
-        Intent intent = new Intent(parentActivity, CreateUserActivity.class);
+        Intent intent = new Intent(parentActivity, CreateRecipeActivity.class);
         ((FragmentIntentInterface)parentActivity).startIntentFromFragment(intent);
     }
 
@@ -52,7 +49,7 @@ public class ReceiptListAndCreationActivity extends Fragment implements View.OnC
     public void onClick(View v) {
         Log.d("klik2", "kliknuo si me2");
         switch (v.getId()){
-            case R.id.floatingActionButtonAddNewRecipe: openNewUserCreationActivity();
+            case R.id.floatingActionButtonAddNewRecipe: openNewRecipeCreationActivity();
                 break;
         }
     }

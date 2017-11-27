@@ -31,7 +31,7 @@ public class ReceiptListAndCreationActivity extends Fragment implements View.OnC
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_create_recepture, container, false);
+        View view = inflater.inflate(R.layout.fragment_recipes_overview, container, false);
         buttonAddNewRecipes = (FloatingActionButton) view.findViewById(R.id.floatingActionButtonAddNewRecipe);
         buttonAddNewRecipes.setOnClickListener(this);
         return view;

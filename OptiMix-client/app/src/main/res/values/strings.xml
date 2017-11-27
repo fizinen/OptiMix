@@ -17,6 +17,11 @@
     <string name="create_user">Dodaj</string>
     <string name="username_error">Wrong username!</string>
     <string name="password_error">Wrong password!</string>
+    <!--Create recipe-->
+    <string name="material_amount">Količina</string>
+    <string name="recipe_name">Ime recepture</string>
+    <string name="shrinkage_coefficient_name">Koeficijent sušenja</string>
+    <string name="material_addition">Dodaj sirovinu</string>
 
     <string name="internet_error">Cannot connect to server, please check your internet connection</string>
 

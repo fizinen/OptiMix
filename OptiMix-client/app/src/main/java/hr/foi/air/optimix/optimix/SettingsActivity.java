@@ -18,12 +18,13 @@ public class SettingsActivity extends AppCompatActivity implements FragmentInten
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
 
         adapter.addFragment(new UserListActivity());
+        adapter.addFragment(new ReceiptListAndCreationActivity());
         viewPager.setAdapter(adapter);
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_layout);
         tabLayout.setupWithViewPager(viewPager);
         tabLayout.getTabAt(0).setIcon(R.drawable.ic_account_circle_white_36dp);
-        //tabLayout.getTabAt(1).setIcon(R.drawable.ic_toc_white_36dp);
+        tabLayout.getTabAt(1).setIcon(R.drawable.ic_toc_white_36dp);
     }
 
     @Override

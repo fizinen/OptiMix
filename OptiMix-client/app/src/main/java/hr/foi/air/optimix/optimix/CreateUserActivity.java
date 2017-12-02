@@ -20,6 +20,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import hr.foi.air.optimix.core.Input;
 import hr.foi.air.optimix.model.Person;
+import hr.foi.air.optimix.optimix.generators.PasswordGenerator;
+import hr.foi.air.optimix.optimix.generators.UserNameGenerator;
 import hr.foi.air.optimix.optimix.handlers.CreateUserHandler;
 import hr.foi.air.optimix.webservice.ServiceAsyncTask;
 import hr.foi.air.optimix.webservice.ServiceCaller;
@@ -74,19 +76,27 @@ public class CreateUserActivity extends AppCompatActivity{
         submitButton.setOnClickListener(onSubmit);
 
 
-
-
-
-
     }
     View.OnClickListener onSubmit = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
 
+            long authorityLevel;
+
             String nameValue = personName.getText().toString();
             String surnameValue = personSurname.getText().toString();
-            String usernameValue = username.getText().toString();
-            String passwordValue = password.getText().toString();
+            UserNameGenerator userNameGenerator = new UserNameGenerator(nameValue, surnameValue);
+            //String usernameValue = username.getText().toString();
+            String usernameValue = userNameGenerator.generateUsername();
+            //String passwordValue = password.getText().toString();
+            String passwordValue = PasswordGenerator.generate(8);
+
+
+
+            username.setText(usernameValue);
+            password.setText(passwordValue);
+
+
 
             if(Input.validate(inputs)){
 

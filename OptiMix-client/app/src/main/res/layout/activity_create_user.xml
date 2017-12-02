@@ -26,7 +26,8 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/personName"
                     android:hint="@string/person_name"
-                    android:inputType="text" />
+                    android:inputType="textCapSentences"
+                    />
             </android.support.design.widget.TextInputLayout>
 
             <!-- Person surname -->
@@ -35,13 +36,43 @@
                 android:layout_width="match_parent"
                 android:id="@+id/personSurnameLayout">
 
+
                 <EditText
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/personSurname"
                     android:hint="@string/person_surname"
-                    android:inputType="textMultiLine" />
+                    android:inputType="textCapSentences" />
             </android.support.design.widget.TextInputLayout>
+
+
+
+                <RadioGroup
+                    android:id="@+id/radioAuthorityLevel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" >
+
+                    <RadioButton
+                        android:id="@+id/radioTechnician"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/radio_technician"
+                        android:tag="teh"
+                        android:checked="true"
+                        />
+
+                    <RadioButton
+                        android:id="@+id/radioChemist"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/radio_chemist"
+                        android:tag="kem"/>
+
+                </RadioGroup>
+
+
+
+
 
             <!-- Username -->
             <android.support.design.widget.TextInputLayout
@@ -54,8 +85,8 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/userName"
                     android:hint="@string/username"
-                    android:inputType="text"/>
-            <!-- android:enabled="false" -->
+                    android:inputType="text"
+                    android:enabled="false" />
      </android.support.design.widget.TextInputLayout>
 
      <!-- Password -->
@@ -70,8 +101,8 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/password"
                     android:hint="@string/password"
-                    android:inputType="text"/>
-                <!--android:enabled="false" -->
+                    android:inputType="text"
+                    android:enabled="false" />
             </android.support.design.widget.TextInputLayout>
 
             <!-- Submit -->

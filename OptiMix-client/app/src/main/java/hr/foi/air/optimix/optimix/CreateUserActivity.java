@@ -12,6 +12,8 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 
 import java.util.Arrays;
 import java.util.List;
@@ -52,8 +54,12 @@ public class CreateUserActivity extends AppCompatActivity{
     TextInputLayout personSurnameLayout;
     @BindView(R.id.submitButton)
     Button submitButton;
+    @BindView(R.id.radioAuthorityLevel)
+    RadioGroup radioAuthorityLevel;
     Input passwordInput;
     List<Input> inputs;
+    RadioButton checkedButton;
+
 
 
 
@@ -91,6 +97,15 @@ public class CreateUserActivity extends AppCompatActivity{
             //String passwordValue = password.getText().toString();
             String passwordValue = PasswordGenerator.generate(8);
 
+            checkedButton = (RadioButton) findViewById(radioAuthorityLevel.getCheckedRadioButtonId());
+
+            if(checkedButton.getTag() == "teh"){
+                authorityLevel = 1;
+            }
+
+            else {
+                authorityLevel = 2;
+            }
 
 
             username.setText(usernameValue);
@@ -100,7 +115,7 @@ public class CreateUserActivity extends AppCompatActivity{
 
             if(Input.validate(inputs)){
 
-                Person person = new Person(nameValue, surnameValue, usernameValue,passwordValue);
+                Person person = new Person(nameValue, surnameValue, usernameValue  ,passwordValue, authorityLevel);
 
                 CreateUserHandler createUserHandler = new CreateUserHandler( CreateUserActivity.this , person);
 

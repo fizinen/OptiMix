@@ -13,6 +13,7 @@ public class Person implements Serializable {
     String surname;
     String username;
     String password;
+    long authority;
 
     public Person() {
     }
@@ -27,6 +28,21 @@ public class Person implements Serializable {
         this.surname =surname;
         this.username = username;
         this.password = password;
+    }
+    public Person(String name, String surname, String username, String password, long authority) {
+        this.name = name;
+        this.surname =surname;
+        this.username = username;
+        this.password = password;
+        this.authority = authority;
+    }
+
+    public long getAuthority() {
+        return authority;
+    }
+
+    public void setAuthority(long authority) {
+        this.authority = authority;
     }
 
     public Person(long idPerson) {
@@ -51,6 +67,26 @@ public class Person implements Serializable {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public void setIdPerson(long idPerson) {
+        this.idPerson = idPerson;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getSurname() {
+        return surname;
+    }
+
+    public void setSurname(String surname) {
+        this.surname = surname;
     }
 
     @Override

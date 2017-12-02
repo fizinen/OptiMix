@@ -6,9 +6,9 @@
     <string name="input_text_password">Password</string>
     <string name="input_text_username">Username</string>
     <string name="username">Korisničko ime</string>
-    <string name="username_input">geegee</string>
+    <string name="username_input">ja</string>
     <string name="password">Lozinka</string>
-    <string name="password_input">oioi</string>
+    <string name="password_input">ti</string>
     <!-- Create user -->
     <string name="person_name">Ime</string>
     <string name="person_surname">Prezime</string>
@@ -19,5 +19,7 @@
     <string name="password_error">Wrong password!</string>
 
     <string name="internet_error">Cannot connect to server, please check your internet connection</string>
+    <string name="radio_technician">Tehničar</string>
+    <string name="radio_chemist">Kemičar</string>
 
 </resources>

@@ -19,6 +19,9 @@
                 android:hint="@string/material_amount"
                 android:inputType="numberDecimal"
                 android:textColorHint="@android:color/darker_gray"
-                android:textColor="@android:color/darker_gray" />
+                android:textColor="@android:color/black"
+                android:textColorHighlight="@android:color/darker_gray"
+                android:backgroundTint="@android:color/darker_gray"
+                />
 
 </LinearLayout>

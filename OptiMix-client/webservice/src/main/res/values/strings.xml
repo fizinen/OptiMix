@@ -4,6 +4,7 @@
     <string name="person_path">/person/</string>
     <string name="person_login_path">/person/login</string>
     <string name="person_createuser_path">/person/adduser</string>
+    <string name="all_persons_path">/person/all</string>
 
 
 </resources>

@@ -41,6 +41,21 @@ public class Person implements Serializable {
         return authority;
     }
 
+    public String getAuthorityString(){
+        if (authority == 0){
+            return "Admin";
+        }
+        if (authority == 1){
+            return "Tehničar";
+        }
+        if (authority == 2){
+            return "Kemičar";
+        }
+        else {
+            return "Greška.";
+        }
+    }
+
     public void setAuthority(long authority) {
         this.authority = authority;
     }

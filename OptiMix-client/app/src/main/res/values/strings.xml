@@ -9,6 +9,7 @@
     <string name="username_input">ja</string>
     <string name="password">Lozinka</string>
     <string name="password_input">ti</string>
+
     <!-- Create user -->
     <string name="person_name">Ime</string>
     <string name="person_surname">Prezime</string>
@@ -21,5 +22,6 @@
     <string name="internet_error">Cannot connect to server, please check your internet connection</string>
     <string name="radio_technician">Tehničar</string>
     <string name="radio_chemist">Kemičar</string>
+    <string name="list_authority">Ovlast:</string>
 
 </resources>

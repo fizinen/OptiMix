@@ -41,6 +41,14 @@ public class PersonController {
                 "GET on /person -- retrieving full list of users");
         return new ResponseEntity(this.personRepository.findAll(), HttpStatus.OK);
     }
+    
+    @RequestMapping(value = "/all", method = RequestMethod.POST)
+    public ResponseEntity<List<Person>> retrieveUsers() {
+        Logger.getLogger("PersonController.java").log(Level.INFO,
+                "POST on /person/all -- retrieving full list of users");
+        return new ResponseEntity(this.personRepository.findAll(), HttpStatus.OK);
+    }
+    
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public ResponseEntity<Person> login(@RequestBody Person person) {

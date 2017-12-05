@@ -10,8 +10,27 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import java.lang.reflect.Type;
+import java.util.ArrayList;
+import java.util.logging.Logger;
+
+import butterknife.BindView;
 import butterknife.OnClick;
+import hr.foi.air.optimix.model.Person;
+import hr.foi.air.optimix.optimix.adapters.UserAdapter;
+import hr.foi.air.optimix.webservice.ServiceAsyncTask;
+import hr.foi.air.optimix.webservice.ServiceCaller;
+import hr.foi.air.optimix.webservice.ServiceParams;
+import hr.foi.air.optimix.webservice.ServiceResponse;
+import hr.foi.air.optimix.webservice.SimpleResponseHandler;
 
 /**
  * Created by Bogdan Erdelji on 31/10/2017.
@@ -22,6 +41,8 @@ import butterknife.OnClick;
 public class UserListActivity extends Fragment implements View.OnClickListener{
 
     FloatingActionButton buttonAddNewUsers;
+    //@BindView(R.id.listViewUsers)
+    ListView users;
 
     public UserListActivity() {
     }
@@ -34,14 +55,26 @@ public class UserListActivity extends Fragment implements View.OnClickListener{
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
         View view = inflater.inflate(R.layout.tab_user_list, container, false);
+
+        //dohvati sve osobe
+
+        users = (ListView) view.findViewById(R.id.listViewUsers);
+
+        ServiceParams params = new ServiceParams(
+                getString( R.string.all_persons_path) ,
+                ServiceCaller.HTTP_GET, null);
+        new ServiceAsyncTask(usersListHandler).execute(params);
+
         buttonAddNewUsers = (FloatingActionButton) view.findViewById(R.id.floatingActionButtonAddNewUsers);
         buttonAddNewUsers.setOnClickListener(this);
         return view;
     }
 
+
+
     @OnClick(R.id.floatingActionButtonAddNewUsers)
     public void openNewUserCreationActivity() {
-        Log.d("klik", "kliknuo si me");
+
         Activity parentActivity = getActivity();
         Intent intent = new Intent(parentActivity, CreateUserActivity.class);
         ((FragmentIntentInterface)parentActivity).startIntentFromFragment(intent);
@@ -49,11 +82,32 @@ public class UserListActivity extends Fragment implements View.OnClickListener{
 
     @Override
     public void onClick(View v) {
-        Log.d("klik2", "kliknuo si me2");
+
         switch (v.getId()){
             case R.id.floatingActionButtonAddNewUsers: openNewUserCreationActivity();
                 break;
             }
         }
+
+    SimpleResponseHandler usersListHandler = new SimpleResponseHandler() {
+        @Override
+        public boolean handleResponse(ServiceResponse response) {
+            if(response.getHttpCode() == 200) {
+
+                Type listType = new TypeToken<ArrayList<Person>>() { }.getType();
+                ArrayList<Person> t = new Gson().fromJson(response.getJsonResponse(), listType);
+
+                //setViewLayout(R.layout.fragment_team_history);
+                users.setAdapter(new UserAdapter(getActivity().getApplicationContext(),
+                            R.layout.tab_user_list, t));
+
+
+                return true;
+            } else {
+                Toast.makeText(getActivity().getApplicationContext(), "Failed to fetch users", Toast.LENGTH_LONG).show();
+                return false;
+            }
+        }
+    };
 
 }

@@ -24,6 +24,9 @@ public class MainActivity extends AppCompatActivity implements FragmentIntentInt
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.main_tab_layout);
         tabLayout.setupWithViewPager(viewPager);
+        tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
+        tabLayout.setTabMode(TabLayout.MODE_FIXED);
+        
         tabLayout.getTabAt(0).setIcon(R.drawable.ic_bubble_chart_white_36dp);
 
         tabLayout.addTab(tabLayout.newTab());

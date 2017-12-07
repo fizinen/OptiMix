@@ -23,6 +23,10 @@ public class UserNameGenerator {
         String namePart;
         String surnamePart;
 
+        if(nameValue.length() < 3){
+            namePart = (nameValue.toLowerCase()).substring(0,1);
+        }
+
         namePart = (nameValue.toLowerCase()).substring(0,3);
         namePart = removeSpecialCharacters(namePart);
 

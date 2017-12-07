@@ -1,0 +1,85 @@
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TableRow
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+
+        <TextView
+            android:id="@+id/raw_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_column="1"
+            android:text="Sirovina" />
+
+        <TextView
+            android:layout_marginLeft="@dimen/activity_margin"
+            android:id="@+id/raw_ux"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_column="2"
+            android:text="ux" />
+
+        <TextView
+            android:id="@+id/raw_quantity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_column="3"
+            android:layout_gravity="right"
+            android:text="kol" />
+
+    </TableRow>
+
+    <TableRow android:layout_marginLeft="@dimen/activity_margin">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_column="1"
+            android:text="Voda" />
+
+        <TextView
+            android:id="@+id/raw_water"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_column="2"
+            android:layout_gravity="right"
+            android:text="187219" />
+    </TableRow>
+
+    <TableRow android:layout_marginLeft="@dimen/activity_margin">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_column="1"
+            android:text="Mast" />
+
+        <TextView
+            android:id="@+id/raw_fat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_column="2"
+            android:layout_gravity="right"
+            android:text="18,7219" />
+    </TableRow>
+
+    <TableRow android:layout_marginLeft="@dimen/activity_margin">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_column="1"
+            android:text="Proteini" />
+
+        <TextView
+            android:id="@+id/raw_proteins"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_column="2"
+            android:layout_gravity="right"
+            android:text="18,72ds19" />
+    </TableRow>
+
+</TableLayout>

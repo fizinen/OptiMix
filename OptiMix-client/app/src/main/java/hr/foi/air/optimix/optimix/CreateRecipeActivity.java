@@ -13,14 +13,19 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import hr.foi.air.optimix.core.Input;
+import hr.foi.air.optimix.model.Material;
 import hr.foi.air.optimix.model.Person;
 import hr.foi.air.optimix.optimix.handlers.CreateUserHandler;
 import hr.foi.air.optimix.webservice.ServiceAsyncTask;
@@ -81,13 +86,31 @@ public class CreateRecipeActivity extends AppCompatActivity {
     View.OnClickListener onMaterialAdded = new View.OnClickListener(){
         @Override
         public void onClick(View v) {
-            // Here we have to add dynamical generation of Layouts such as is @id/material_addition_layout
-
             LayoutInflater inflater = (LayoutInflater) getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             ViewGroup parent = (ViewGroup) findViewById(R.id.insertion_point);
             View view = inflater.inflate(R.layout.layout_material_addition, null);
             parent.addView(view, materialAddedCounter);
             materialAddedCounter++;
+
+            Spinner generatedSpinner = (Spinner) view.findViewById(R.id.generated_material_selection_spinner);
+            loadSpinnerData(generatedSpinner);
+
         }
     };
+
+    private void loadSpinnerData(Spinner s){
+        //Test data
+        int counter = 0;
+        Material parsedMaterial = new Material(1,"Svinjska plecka");
+
+        //Instead of this dummy data, we need to get data from web service, parse it into this array list.
+        ArrayList<Material> materialList = new ArrayList<Material>();
+        materialList.add(counter, parsedMaterial);
+
+
+        //Implementation
+        ArrayAdapter<Material> adapter = new ArrayAdapter<Material>(this, android.R.layout.simple_spinner_dropdown_item, materialList);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        s.setAdapter(adapter);
+    }
 }

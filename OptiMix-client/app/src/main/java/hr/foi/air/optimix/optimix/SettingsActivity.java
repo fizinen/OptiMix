@@ -23,6 +23,8 @@ public class SettingsActivity extends AppCompatActivity implements FragmentInten
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_layout);
         tabLayout.setupWithViewPager(viewPager);
+        tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
+        tabLayout.setTabMode(TabLayout.MODE_FIXED);
         tabLayout.getTabAt(0).setIcon(R.drawable.ic_account_circle_white_36dp);
         tabLayout.getTabAt(1).setIcon(R.drawable.ic_toc_white_36dp);
     }

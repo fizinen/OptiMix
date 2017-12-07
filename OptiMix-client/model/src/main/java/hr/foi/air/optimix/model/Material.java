@@ -84,4 +84,9 @@ public class Material {
     public void setMaterialAmount(double materialAmount) {
         this.materialAmount = materialAmount;
     }
+
+    @Override
+    public String toString() {
+        return this.getMaterialName();
+    }
 }

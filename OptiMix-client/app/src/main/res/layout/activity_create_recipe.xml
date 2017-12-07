@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:padding="16dp"
+    android:layout_height="wrap_content">
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:id="@+id/recipe_creation_scrollView">
+        <LinearLayout
+            android:id="@+id/recipe_details_layout"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/recipe_name_layout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <EditText
+                    android:id="@+id/recipe_name"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/recipe_name"
+                    android:inputType="text"
+                    android:padding="10dp" />
+            </android.support.design.widget.TextInputLayout>
+            <LinearLayout
+            android:id="@+id/material_addition_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="15dp"
+            android:paddingTop="15dp">
+            <Spinner
+                android:id="@+id/material_selection_spinner"
+                android:layout_width="180dp"
+                android:layout_height="54dp"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp" />
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/material_amount_input_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <EditText
+                    android:id="@+id/material_amount"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="@string/material_amount"
+                    android:inputType="numberDecimal" />
+            </android.support.design.widget.TextInputLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/insertion_point"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            </LinearLayout>
+            <Button
+                android:id="@+id/add_new_material_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="15dp"
+                android:text="@string/material_addition" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp">
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/shrinkage_coefficient"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <EditText
+                        android:id="@+id/shrinkage_coefficient_amount"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/shrinkage_coefficient_name"
+                        android:inputType="numberDecimal"
+                        android:padding="5dp" />
+                </android.support.design.widget.TextInputLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+    <!-- Submit button -->
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <Button
+            android:id="@+id/submit_recipe_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/buttonstyle"
+            android:textColor="@color/white"
+            android:text="@string/create_user"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:clickable="true"
+            />
+    </RelativeLayout>
+</LinearLayout>

@@ -41,7 +41,6 @@
                     android:gravity="center_horizontal"
                     android:inputType="textPersonName"
                     android:hint="@string/username"
-                    android:text="@string/username_input"
                     android:ems="10"
                     android:id="@+id/TextUsername" />
 
@@ -61,7 +60,7 @@
                     android:gravity="center_horizontal"
                     android:inputType="textPassword"
                     android:hint="@string/password"
-                    android:text="@string/password_input"
+
                     android:ems="@integer/ems_registration"
                     android:id="@+id/TextPassword" />
 

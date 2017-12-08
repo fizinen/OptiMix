@@ -9,9 +9,9 @@
         android:id="@+id/floatingActionButtonAddNewRecipe"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/recipe_listing_recipes_list_view"
-        android:layout_alignEnd="@+id/recipe_listing_recipes_list_view"
-        android:layout_alignRight="@+id/recipe_listing_recipes_list_view"
+        android:layout_alignBottom="@+id/listViewRecipes"
+        android:layout_alignEnd="@+id/listViewRecipes"
+        android:layout_alignRight="@+id/listViewRecipes"
         android:clickable="true"
         app:backgroundTint="@color/colorPrimary"
         app:fabSize="normal"
@@ -22,6 +22,6 @@
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
         android:layout_margin="10dp"
-        android:id="@+id/recipe_listing_recipes_list_view" />
+        android:id="@+id/listViewRecipes" />
 
 </RelativeLayout>

@@ -36,7 +36,8 @@ import hr.foi.air.optimix.webservice.SimpleResponseHandler;
 public class ReceiptListAndCreationActivity extends Fragment implements View.OnClickListener {
 
     FloatingActionButton buttonAddNewRecipes;
-    @BindView(R.id.recipe_listing_recipes_list_view) ListView recipeListView;
+
+    ListView recipes;
 
 
     public ReceiptListAndCreationActivity() {
@@ -48,11 +49,14 @@ public class ReceiptListAndCreationActivity extends Fragment implements View.OnC
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_recipes_overview, container, false);
 
+        //dohvati recepte
+
+        recipes = (ListView) view.findViewById(R.id.listViewRecipes);
+
         ServiceParams params = new ServiceParams(
-                //String was not yet implemented on WS side
                 getString( R.string.all_recipes_path) ,
                 ServiceCaller.HTTP_GET, null);
         new ServiceAsyncTask(recipeListHandler).execute(params);
@@ -83,8 +87,8 @@ public class ReceiptListAndCreationActivity extends Fragment implements View.OnC
             if(response.getHttpCode() == 200) {
                 Type listType = new TypeToken<ArrayList<Recipe>>() { }.getType();
                 ArrayList<Recipe> t = new Gson().fromJson(response.getJsonResponse(), listType);
-                recipeListView.setAdapter(new RecipeAdapter(getActivity().getApplicationContext(),
-                        R.layout.tab_user_list, t));
+                recipes.setAdapter(new RecipeAdapter(getActivity().getApplicationContext(),
+                        R.layout.fragment_recipes_overview, t));
 
                 return true;
             } else {

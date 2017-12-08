@@ -30,11 +30,8 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import hr.foi.air.optimix.core.Input;
 import hr.foi.air.optimix.model.Material;
 import hr.foi.air.optimix.optimix.adapters.MaterialsAdapter;
-import hr.foi.air.optimix.optimix.adapters.UserAdapter;
-import hr.foi.air.optimix.optimix.handlers.CreateUserHandler;
 import hr.foi.air.optimix.webservice.ServiceAsyncTask;
 import hr.foi.air.optimix.webservice.ServiceCaller;
 import hr.foi.air.optimix.webservice.ServiceParams;
@@ -49,13 +46,11 @@ public class CreateRecipeActivity extends AppCompatActivity {
 
     @BindView(R.id.submit_recipe_button) Button submitButton;
     @BindView(R.id.add_new_material_button) Button newMaterialButton;
-    //Layout that we copy
-    @BindView(R.id.material_addition_layout) ViewGroup newMaterialAdditionLayout;
-    // Insert point
     @BindView(R.id.recipe_details_layout) ViewGroup recipeDetailsLayout;
 
     private int materialAddedCounter;
-    Spinner generatedMaterialsSpinner;
+    private int maximalNumberOfAddedSpinners;
+    private Spinner generatedMaterialsSpinner;
 
     public CreateRecipeActivity(){
     }
@@ -66,6 +61,7 @@ public class CreateRecipeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_create_recipe);
         ButterKnife.bind(this);
         materialAddedCounter = 0;
+        maximalNumberOfAddedSpinners = 1;
         newMaterialButton.setOnClickListener(onMaterialAdded);
         submitButton.setOnClickListener(onSubmit);
     }
@@ -81,12 +77,17 @@ public class CreateRecipeActivity extends AppCompatActivity {
         @Override
         public void onClick(View v) {
             //Addition of spinner elements
-            LayoutInflater inflater = (LayoutInflater) getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            ViewGroup parent = (ViewGroup) findViewById(R.id.insertion_point);
-            View view = inflater.inflate(R.layout.layout_material_addition, null);
-            parent.addView(view, materialAddedCounter);
-            materialAddedCounter++;
-            generatedMaterialsSpinner = (Spinner) view.findViewById(R.id.generated_material_selection_spinner);
+            if(materialAddedCounter != (maximalNumberOfAddedSpinners)) {
+                LayoutInflater inflater = (LayoutInflater) getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                ViewGroup parent = (ViewGroup) findViewById(R.id.insertion_point);
+                View view = inflater.inflate(R.layout.layout_material_addition, null);
+                parent.addView(view, materialAddedCounter);
+                materialAddedCounter++;
+                generatedMaterialsSpinner = (Spinner) view.findViewById(R.id.generated_material_selection_spinner);
+            }else {
+                Toast.makeText(getApplicationContext(), "No new materials to add to the recipe", Toast.LENGTH_LONG).show();
+            }
+
 
             //Data insertion into spinners (lists of materials)
             ServiceParams params = new ServiceParams(
@@ -103,17 +104,10 @@ public class CreateRecipeActivity extends AppCompatActivity {
             if(response.getHttpCode() == 200) {
                 Type listType = new TypeToken<ArrayList<Material>>() { }.getType();
                 ArrayList<Material> t = new Gson().fromJson(response.getJsonResponse(), listType);
+                maximalNumberOfAddedSpinners = t.size() ;
                 generatedMaterialsSpinner.setAdapter(new MaterialsAdapter(getApplicationContext(), R.layout.activity_create_recipe, t));
                 return true;
             } else {
-                //Test data
-                ArrayList<Material> t = new ArrayList<>();
-                Material testMaterial1 = new Material(1,"Teleca lopatica");
-                Material testMaterial2 = new Material(2,"Svinjski but");
-                t.add(0,testMaterial1);
-                t.add(1,testMaterial2);
-                generatedMaterialsSpinner.setAdapter(new MaterialsAdapter(getApplicationContext(), R.layout.activity_create_recipe, t));
-                //End test data
                 Toast.makeText(getApplicationContext(), "Failed to fetch the materials", Toast.LENGTH_LONG).show();
                 return false;
             }

@@ -5,4 +5,6 @@
     <color name="colorPrimaryDark">#b30000</color>
     <color name="colorAccent">#b30000</color>
     <color name="white">#ffffff</color>
+    <color name="background">#eeeeee</color>
+    <color name="editTextColor">#939393</color>
 </resources>

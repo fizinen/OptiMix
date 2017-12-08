@@ -73,17 +73,14 @@ public class CreateRecipeActivity extends AppCompatActivity {
         @Override
         public void onClick(View v) {
             Log.d("klik","kliknut gumb submit");
-/*
             //This part is the same as in CreateUserActivity - it has to be edited and done in such
             // way so that it works for recipes
-            */
         }
     };
     View.OnClickListener onMaterialAdded = new View.OnClickListener(){
         @Override
         public void onClick(View v) {
             //Addition of spinner elements
-
             LayoutInflater inflater = (LayoutInflater) getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             ViewGroup parent = (ViewGroup) findViewById(R.id.insertion_point);
             View view = inflater.inflate(R.layout.layout_material_addition, null);
@@ -97,28 +94,9 @@ public class CreateRecipeActivity extends AppCompatActivity {
                     ServiceCaller.HTTP_GET, null);
             new ServiceAsyncTask(materialListHandler).execute(params);
 
-            //This might not be necessary - I think this will be replaced via adapter
-            //loadSpinnerData(generatedSpinner);
-
         }
     };
 
-/*
-    private void loadSpinnerData(Spinner s){
-        //Test data
-        int counter = 0;
-        Material parsedMaterial = new Material(1,"Svinjska plecka");
-
-        //Instead of this dummy data, we need to get data from web service, parse it into this array list.
-        ArrayList<Material> materialList = new ArrayList<Material>();
-        materialList.add(counter, parsedMaterial);
-
-        //Implementation
-        ArrayAdapter<Material> adapter = new ArrayAdapter<Material>(this, android.R.layout.simple_spinner_dropdown_item, materialList);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        s.setAdapter(adapter);
-    }
-*/
     SimpleResponseHandler materialListHandler = new SimpleResponseHandler() {
         @Override
         public boolean handleResponse(ServiceResponse response) {
@@ -128,8 +106,6 @@ public class CreateRecipeActivity extends AppCompatActivity {
                 generatedMaterialsSpinner.setAdapter(new MaterialsAdapter(getApplicationContext(), R.layout.activity_create_recipe, t));
                 return true;
             } else {
-
-
                 //Test data
                 ArrayList<Material> t = new ArrayList<>();
                 Material testMaterial1 = new Material(1,"Teleca lopatica");

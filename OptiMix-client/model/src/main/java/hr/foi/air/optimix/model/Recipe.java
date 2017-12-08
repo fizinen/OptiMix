@@ -1,12 +1,13 @@
 package hr.foi.air.optimix.model;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by erdel on 5.12.2017..
  */
 
-public class Recipe {
+public class Recipe implements Serializable {
     long recipeId;
     String recipeName;
     List<Material> listOfRecipeMaterials;

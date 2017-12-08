@@ -42,6 +42,13 @@ public class RawController {
         return new ResponseEntity(this.rawRepository.findAll(), HttpStatus.OK);
     }
     
+    @RequestMapping(value = "/all", method = RequestMethod.POST)
+    public ResponseEntity<List<Raw>> retrieveUsers() {
+        Logger.getLogger("RawController.java").log(Level.INFO,
+                "POST on /raw/all -- retrieving full list of materials");
+        return new ResponseEntity(this.rawRepository.findAll(), HttpStatus.OK);
+    }
+    
     @RequestMapping(value = "/addraw", method = RequestMethod.POST)
     public ResponseEntity<Raw> addraw(@RequestBody Raw raw) {
 

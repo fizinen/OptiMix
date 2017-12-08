@@ -43,7 +43,7 @@ public class RawController {
     }
     
     @RequestMapping(value = "/all", method = RequestMethod.POST)
-    public ResponseEntity<List<Raw>> retrieveUsers() {
+    public ResponseEntity<List<Raw>> retrieveRaws() {
         Logger.getLogger("RawController.java").log(Level.INFO,
                 "POST on /raw/all -- retrieving full list of materials");
         return new ResponseEntity(this.rawRepository.findAll(), HttpStatus.OK);

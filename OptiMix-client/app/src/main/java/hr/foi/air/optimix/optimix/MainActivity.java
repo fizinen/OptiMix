@@ -20,10 +20,14 @@ public class MainActivity extends AppCompatActivity implements FragmentIntentInt
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
 
         adapter.addFragment(new StorageFragment());
+        adapter.addFragment(new AnalysisFragment());
         viewPager.setAdapter(adapter);
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.main_tab_layout);
         tabLayout.setupWithViewPager(viewPager);
+        tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
+        tabLayout.setTabMode(TabLayout.MODE_FIXED);
+
         tabLayout.getTabAt(0).setIcon(R.drawable.ic_bubble_chart_white_36dp);
 
         tabLayout.addTab(tabLayout.newTab());
@@ -32,14 +36,17 @@ public class MainActivity extends AppCompatActivity implements FragmentIntentInt
         tabLayout.addTab(tabLayout.newTab());
         tabLayout.getTabAt(2).setIcon(R.drawable.ic_show_chart_white_36dp);
     }
+
     @OnClick(R.id.floatingSettingsButton)
-    public void settingsButtonClicked(View view){
+    public void settingsButtonClicked(View view) {
         Intent intent = new Intent(this, SettingsActivity.class);
         startActivity(intent);
     }
 
     @Override
     public void startIntentFromFragment(Intent intent) {
+
+        startActivity(intent);
 
     }
 }

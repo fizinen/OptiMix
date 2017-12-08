@@ -1,12 +1,13 @@
 package hr.foi.air.optimix.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  * Created by erdel on 5.12.2017..
  */
 
-public class Material {
+public class Material implements Serializable{
     long materialId;
     String materialNumber;
     String materialName;

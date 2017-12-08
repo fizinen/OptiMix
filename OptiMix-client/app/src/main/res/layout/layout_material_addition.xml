@@ -13,7 +13,7 @@
         android:paddingTop="10dp"
         android:backgroundTint="@android:color/darker_gray"/>
     <EditText
-        android:id="@+id/material_amount"
+        android:id="@+id/generated_material_amount"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:hint="@string/material_amount"

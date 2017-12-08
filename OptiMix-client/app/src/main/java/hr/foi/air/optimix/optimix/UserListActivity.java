@@ -87,7 +87,7 @@ public class UserListActivity extends Fragment implements View.OnClickListener{
             case R.id.floatingActionButtonAddNewUsers: openNewUserCreationActivity();
                 break;
             }
-        }
+    }
 
     SimpleResponseHandler usersListHandler = new SimpleResponseHandler() {
         @Override
@@ -100,7 +100,6 @@ public class UserListActivity extends Fragment implements View.OnClickListener{
                 //setViewLayout(R.layout.fragment_team_history);
                 users.setAdapter(new UserAdapter(getActivity().getApplicationContext(),
                             R.layout.tab_user_list, t));
-
 
                 return true;
             } else {

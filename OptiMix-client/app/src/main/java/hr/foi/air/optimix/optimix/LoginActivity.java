@@ -28,11 +28,16 @@ public class LoginActivity extends AppCompatActivity {
 
     List<Input> inputs;
 
-    @BindView(R.id.TextUsername) EditText username;
-    @BindView(R.id.TextPassword) EditText password;
-    @BindView(R.id.TextUsernameLayout) TextInputLayout usernameLayout;
-    @BindView(R.id.TextPasswordLayout) TextInputLayout passwordLayout;
-    @BindView(R.id.ButtonLogin) Button logIn;
+    @BindView(R.id.TextUsername)
+    EditText username;
+    @BindView(R.id.TextPassword)
+    EditText password;
+    @BindView(R.id.TextUsernameLayout)
+    TextInputLayout usernameLayout;
+    @BindView(R.id.TextPasswordLayout)
+    TextInputLayout passwordLayout;
+    @BindView(R.id.ButtonLogin)
+    Button logIn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,21 +47,22 @@ public class LoginActivity extends AppCompatActivity {
         //binding
         ButterKnife.bind(this);
 
-        Log.d("","username" + username.getText().toString());
-        Log.d("","pass" + password.getText().toString());
+        Log.d("", "username" + username.getText().toString());
+        Log.d("", "pass" + password.getText().toString());
 
       /*  inputs = Arrays.asList(
                 new Input(username, Input.TEXT_MAIN_PATTERN, getString(R.string.username_error)),
                 new Input(password, Input.PASSWORD_PATTERN, getString(R.string.password_error))
         ); */
 
-        if(SessionManager.getInstance(this)
+        if (SessionManager.getInstance(this)
                 .retrieveSession(SessionManager.PERSON_INFO_KEY, Person.class) != null) {
             startActivity(new Intent(this, MainActivity.class));
         }
         logIn.setOnClickListener(onlogin);
-        
+
     }
+
     View.OnClickListener onlogin = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
@@ -65,26 +71,25 @@ public class LoginActivity extends AppCompatActivity {
             String usernameValue = username.getText().toString();
             String passwordValue = password.getText().toString();
 
-          // if(Input.validate(inputs)) {
+            // if(Input.validate(inputs)) {
 
-                Person credentials = new Person(usernameValue, passwordValue);
+            Person credentials = new Person(usernameValue, passwordValue);
 
-            Log.d("","person jajaja" + credentials.toString());
-                LoginHandler loginHandler = new LoginHandler(LoginActivity.this);
-            Log.d("","loginhandlerhah jajaja" + loginHandler.toString());
-                ServiceParams params = new ServiceParams(getString(hr.foi.air.optimix.webservice.R.string.person_login_path), ServiceCaller.HTTP_POST, credentials);
-                try {
-                    Log.d("hh", "GGevo meeeeeeeeeeeeeee");
-                    new ServiceAsyncTask(loginHandler).execute(params);
-                } catch(Exception e) {
-                    Log.d("hh", "evo meeeeeeeeeeeeeee");
-                    Toast.makeText(getApplicationContext(),
-                            getString(R.string.internet_error), Toast.LENGTH_LONG).show();
-                }
-          //  }
+
+            LoginHandler loginHandler = new LoginHandler(LoginActivity.this);
+
+            ServiceParams params = new ServiceParams(getString(hr.foi.air.optimix.webservice.R.string.person_login_path), ServiceCaller.HTTP_POST, credentials);
+            try {
+
+                new ServiceAsyncTask(loginHandler).execute(params);
+            } catch (Exception e) {
+
+                Toast.makeText(getApplicationContext(),
+                        getString(R.string.internet_error), Toast.LENGTH_LONG).show();
+            }
+            //  }
         }
     };
-
 
 
 }

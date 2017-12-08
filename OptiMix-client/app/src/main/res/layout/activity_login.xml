@@ -3,81 +3,80 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     android:padding="@dimen/activity_margin"
-    tools:context="hr.foi.air.optimix.optimix.LoginActivity"
-    android:background="@color/white">
+    tools:context="hr.foi.air.optimix.optimix.LoginActivity">
 
     <ScrollView
+        android:id="@+id/scrollView"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/scrollView" >
+        android:layout_height="wrap_content">
 
         <LinearLayout
-            android:orientation="vertical"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
             <ImageView
+                android:id="@+id/ImageLogo"
                 android:layout_width="@dimen/image_logo_height"
                 android:layout_height="@dimen/image_logo_width"
-                android:id="@+id/ImageLogo"
-                android:background="@drawable/podravka_logo_m"
-                android:contentDescription="@string/app_name"
-                android:clickable="false"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginBottom="@dimen/image_logo_margin_bottom"
-                android:layout_marginTop="@dimen/image_logo_margin_top" />
+                android:layout_marginTop="@dimen/image_logo_margin_top"
+                android:background="@drawable/podravka_logo_m"
+                android:clickable="false"
+                android:contentDescription="@string/app_name" />
 
             <android.support.design.widget.TextInputLayout
-                android:layout_height="match_parent"
+                android:id="@+id/TextUsernameLayout"
                 android:layout_width="fill_parent"
-                android:gravity="center_horizontal"
-                android:id="@+id/TextUsernameLayout">
+                android:layout_height="match_parent"
+                android:gravity="center_horizontal">
 
                 <EditText
+                    android:id="@+id/TextUsername"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
-                    android:gravity="center_horizontal"
-                    android:inputType="textPersonName"
-                    android:hint="@string/username"
-                    android:text="@string/username_input"
                     android:ems="10"
-                    android:id="@+id/TextUsername" />
+                    android:gravity="center_horizontal"
+                    android:hint="@string/username"
+                    android:inputType="textPersonName"
+                    android:text="@string/username_input" />
 
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
-                android:layout_height="match_parent"
-                android:layout_width="fill_parent"
-                android:gravity="center_horizontal"
                 android:id="@+id/TextPasswordLayout"
-                android:layout_marginBottom="@dimen/layout_space">
+                android:layout_width="fill_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="@dimen/layout_space"
+                android:gravity="center_horizontal">
 
                 <EditText
+                    android:id="@+id/TextPassword"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
-                    android:gravity="center_horizontal"
-                    android:inputType="textPassword"
-                    android:hint="@string/password"
-                    android:text="@string/password_input"
                     android:ems="@integer/ems_registration"
-                    android:id="@+id/TextPassword" />
+                    android:gravity="center_horizontal"
+                    android:hint="@string/password"
+                    android:inputType="textPassword"
+                    android:text="@string/password_input" />
 
             </android.support.design.widget.TextInputLayout>
 
             <Button
+                android:id="@+id/ButtonLogin"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:id="@+id/ButtonLogin"
                 android:background="@drawable/buttonstyle"
-                android:textColor="@color/white"
-                android:text="@string/button_login"
                 android:clickable="true"
                 android:onClick="mainButtonClick"
-                />
+                android:text="@string/button_login"
+                android:textColor="@color/white" />
 
         </LinearLayout>
     </ScrollView>

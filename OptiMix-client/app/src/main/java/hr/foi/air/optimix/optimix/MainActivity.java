@@ -27,11 +27,7 @@ public class MainActivity extends AppCompatActivity implements FragmentIntentInt
         tabLayout.setupWithViewPager(viewPager);
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
         tabLayout.setTabMode(TabLayout.MODE_FIXED);
-<<<<<<< HEAD
 
-=======
-        
->>>>>>> eed3de0e1773a7ac958aadcfb479337957649e03
         tabLayout.getTabAt(0).setIcon(R.drawable.ic_bubble_chart_white_36dp);
 
         tabLayout.addTab(tabLayout.newTab());

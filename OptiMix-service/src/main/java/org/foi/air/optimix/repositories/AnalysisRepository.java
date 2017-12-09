@@ -21,15 +21,11 @@ import org.springframework.stereotype.Repository;
 @Repository
 @Table(name = "analysis")
 public interface AnalysisRepository extends JpaRepository<Analysis, String> {
-<<<<<<< HEAD
+
 
     public Analysis findByIdAnalysis(long id);
 
     public Analysis findByIdRaw(long id);
-=======
-    
-    public Analysis findByIdAnalysis(long id);
 
->>>>>>> eed3de0e1773a7ac958aadcfb479337957649e03
 
 }

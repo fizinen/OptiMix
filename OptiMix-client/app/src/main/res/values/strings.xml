@@ -20,6 +20,7 @@
     <string name="password_error">Wrong password!</string>
     <!--Create recipe-->
     <string name="material_amount">Količina</string>
+    <string name="material_amount_dots">Količina</string>
     <string name="recipe_name">Ime recepture</string>
     <string name="shrinkage_coefficient_name">Koeficijent sušenja</string>
     <string name="material_addition">Dodaj sirovinu</string>
@@ -28,5 +29,7 @@
     <string name="radio_technician">Tehničar</string>
     <string name="radio_chemist">Kemičar</string>
     <string name="list_authority">Ovlast:</string>
+
+    <string name="material_name">Naziv sirovine:</string>
 
 </resources>

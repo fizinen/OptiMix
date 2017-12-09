@@ -7,6 +7,7 @@
     <string name="all_persons_path">/person/all</string>
     <string name="all_materials_path">/raw/all</string>
     <string name="all_recipes_path">/recipe/all/</string>
+    <string name="recipe_by_id_path">/recipe/id</string>
 
 
 </resources>

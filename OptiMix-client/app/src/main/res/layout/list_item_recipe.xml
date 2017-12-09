@@ -8,20 +8,8 @@
         android:layout_height="wrap_content"
         android:textColor="@color/colorPrimaryDark"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:layout_marginBottom="5dp"
+        android:layout_margin="15dp"
         android:layout_gravity="center_horizontal"
         android:id="@+id/recipe_listing_recipe_name" />
-    <ListView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:id="@+id/recipe_listing_material_list_insertion_point">
-    </ListView>
-    <View
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="5dp"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/colorPrimaryDark" />
 
 </LinearLayout>

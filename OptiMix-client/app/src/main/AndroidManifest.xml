@@ -21,6 +21,7 @@
         <activity android:name=".MainActivity"/>
         <activity android:name=".CreateUserActivity"/>
         <activity android:name=".CreateRecipeActivity"/>
+        <activity android:name=".RecipeDetailActivity"/>
     </application>
 
 </manifest>

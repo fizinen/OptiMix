@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -63,6 +64,17 @@ public class ReceiptListAndCreationActivity extends Fragment implements View.OnC
 
         buttonAddNewRecipes = (FloatingActionButton) view.findViewById(R.id.floatingActionButtonAddNewRecipe);
         buttonAddNewRecipes.setOnClickListener(this);
+
+        recipes.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Log.d("klik0", "klik");
+
+                Intent intent = new Intent(getContext(), RecipeDetailActivity.class);
+                intent.putExtra("idRecipe",id);
+                startActivity(intent);
+            }
+        });
         return view;
     }
 

@@ -68,10 +68,12 @@ public class ReceiptListAndCreationActivity extends Fragment implements View.OnC
         recipes.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Log.d("klik0", "klik");
+                //We have to get the id of the chosen recipe so first we need an object
+                Recipe theChosenRecipe  = (Recipe) parent.getItemAtPosition(position);
+                long idOfRecipe = theChosenRecipe.getIdRecipe();
 
                 Intent intent = new Intent(getContext(), RecipeDetailActivity.class);
-                intent.putExtra("idRecipe",id);
+                intent.putExtra("idRecipe",idOfRecipe);
                 startActivity(intent);
             }
         });

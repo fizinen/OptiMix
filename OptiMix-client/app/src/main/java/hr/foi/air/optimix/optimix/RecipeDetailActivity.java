@@ -35,6 +35,8 @@ public class RecipeDetailActivity extends AppCompatActivity {
     ListView recipeMaterials;
     TextView recipeName;
     TextView recipeCoefficient;
+
+    long recipeId;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,7 +48,7 @@ public class RecipeDetailActivity extends AppCompatActivity {
         recipeMaterials = (ListView) findViewById(R.id.recipe_detail_material_list);
 
         Intent intent = getIntent();
-        long recipeId = intent.getLongExtra("idRecipe", -1);
+        recipeId = intent.getLongExtra("idRecipe", -1);
 
         if (recipeId != -1) {
             // Here we will use dummy data but we need a webservice that returns recipe by id
@@ -54,10 +56,10 @@ public class RecipeDetailActivity extends AppCompatActivity {
 
             //THIS HERE NEEDS TO BE EDITED TO FIT WEBSERVICE ARGUMENT NEEDS - recipeId has to be passed on
             ServiceParams params = new ServiceParams(
-                    getString( R.string.recipe_by_id_path) ,
+                    getString( R.string.all_recipes_path) ,
                     ServiceCaller.HTTP_GET, null);
             new ServiceAsyncTask(recipeHandler).execute(params);
-
+/*
             //Testdata
             Recipe recipeObject = new Recipe();
             Material newMaterial1 = new Material(10, "Svinjetina");
@@ -77,6 +79,7 @@ public class RecipeDetailActivity extends AppCompatActivity {
             ArrayList<Material> materialArrayList = (ArrayList<Material>) recipeObject.getListOfRecipeMaterials();
             //Here we have to set adapter which we need to implement to show the arrayList <Material>
             recipeMaterials.setAdapter(new MaterialAdapter(RecipeDetailActivity.this, R.layout.activity_recipe_detail, materialArrayList));
+            */
         }
     }
     SimpleResponseHandler recipeHandler = new SimpleResponseHandler() {
@@ -85,12 +88,32 @@ public class RecipeDetailActivity extends AppCompatActivity {
             if(response.getHttpCode() == 200) {
 
                 Type objectType = new TypeToken<ArrayList<Recipe>>() { }.getType();
-                Recipe recipeObject = new Gson().fromJson(response.getJsonResponse(), objectType);
-                recipeName.setText(recipeObject.getRecipeName());
-                recipeCoefficient.setText(recipeObject.getEvaporationCoefficient().toString());
-                ArrayList<Material> materialArrayList = (ArrayList<Material>) recipeObject.getListOfRecipeMaterials();
-                recipeMaterials.setAdapter(new MaterialAdapter(RecipeDetailActivity.this, R.layout.activity_recipe_detail, materialArrayList));
+                ArrayList<Recipe> temporaryRecipeList = new Gson().fromJson(response.getJsonResponse(), objectType);
+                Recipe temporaryRecipeObject = new Recipe();
 
+                //Because our WS returns us a list of recipes we need to find the right one
+                //TemporaryRecipeObject then gets it's value and is being used as source of
+                //information about that recipe
+                for(int i = 0; i < temporaryRecipeList.size();i++){
+                    Recipe loopRecipeObject = temporaryRecipeList.get(i);
+                    if (loopRecipeObject.getIdRecipe() == recipeId){
+                        temporaryRecipeObject = loopRecipeObject;
+                    }
+                }
+
+                //This part here is just to make sure that app doesn't crash when "bad recipes" are loaded.
+                if(temporaryRecipeObject.getRecipeName()!=null){
+                    recipeName.setText(temporaryRecipeObject.getRecipeName());
+                }
+
+                if (temporaryRecipeObject.getEvaporationCoefficient()!=null){
+                    recipeCoefficient.setText(temporaryRecipeObject.getEvaporationCoefficient().toString());
+                }
+
+                ArrayList<Material> materialArrayList = (ArrayList<Material>) temporaryRecipeObject.getListOfRecipeMaterials();
+                if (materialArrayList != null){
+                    recipeMaterials.setAdapter(new MaterialAdapter(RecipeDetailActivity.this, R.layout.activity_recipe_detail, materialArrayList));
+                }
                 return true;
             } else {
                 Toast.makeText(getApplicationContext(), "Failed to fetch this recipe", Toast.LENGTH_LONG).show();

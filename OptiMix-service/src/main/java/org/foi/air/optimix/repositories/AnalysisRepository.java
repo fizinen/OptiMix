@@ -10,17 +10,21 @@ import org.foi.air.optimix.model.Analysis;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+
 /*
  * @author Gloria Babić
+=======
+/**
+ *
+ * @author Lenovo
+>>>>>>> 54add8ea1726d6f04e5c3e973ea29b241ae33489
  */
 @Repository
 @Table(name = "analysis")
 public interface AnalysisRepository extends JpaRepository<Analysis, String> {
-
-
+    
     public Analysis findByIdAnalysis(long id);
 
-    public Analysis findByIdRaw(long id);
 
 
 }

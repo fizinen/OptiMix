@@ -22,12 +22,16 @@ import org.springframework.web.bind.annotation.RestController;
 
 /**
  *
+<<<<<<< HEAD
  * @author Gloria Babić
+=======
+ * @author Lenovo
+>>>>>>> 54add8ea1726d6f04e5c3e973ea29b241ae33489
  */
 @RestController
 @RequestMapping(value = "/analysis")
 public class AnalysisController {
-   
+
     AnalysisRepository analysisRepository;
     
     @Autowired

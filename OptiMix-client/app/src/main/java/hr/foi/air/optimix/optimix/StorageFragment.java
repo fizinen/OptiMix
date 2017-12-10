@@ -41,7 +41,7 @@ public class StorageFragment extends android.support.v4.app.Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_storage_list, container, false);
 
         //dohvati zalihe
@@ -49,7 +49,7 @@ public class StorageFragment extends android.support.v4.app.Fragment {
         storage = (ListView) view.findViewById(R.id.listViewStorage);
 
         ServiceParams params = new ServiceParams(
-                getString(R.string.all_raw_path),
+                getString(R.string.all_analysis_path),
                 ServiceCaller.HTTP_GET, null);
         new ServiceAsyncTask(storageListHandler).execute(params);
 
@@ -61,15 +61,12 @@ public class StorageFragment extends android.support.v4.app.Fragment {
         public boolean handleResponse(ServiceResponse response) {
             if (response.getHttpCode() == 200) {
 
-                Type listType = new TypeToken<ArrayList<Analysis>>() {
-                }.getType();
+                Type listType = new TypeToken<ArrayList<Analysis>>() { }.getType();
                 ArrayList<Analysis> t = new Gson().fromJson(response.getJsonResponse(), listType);
 
 
                 storage.setAdapter(new StorageAdapter(getActivity().getApplicationContext(),
                         R.layout.fragment_storage_list, t));
-
-
                 return true;
             } else {
                 Toast.makeText(getActivity().getApplicationContext(), "Failed to fetch storage", Toast.LENGTH_LONG).show();

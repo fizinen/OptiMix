@@ -29,11 +29,6 @@ public class CreateUserHandler extends ResponseHandler {
 
         if(response.getHttpCode() == 200) {
 
-            LoginHandler loginHandler = new LoginHandler(getActivity());
-            ServiceParams params = new ServiceParams(
-                    getActivity().getString(hr.foi.air.optimix.webservice.R.string.person_login_path),
-                    ServiceCaller.HTTP_POST, person);
-            new ServiceAsyncTask(loginHandler).execute(params);
             return true;
         } else {
 

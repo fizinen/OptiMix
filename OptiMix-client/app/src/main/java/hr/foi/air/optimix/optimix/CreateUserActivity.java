@@ -73,6 +73,8 @@ public class CreateUserActivity extends AppCompatActivity{
 
         ButterKnife.bind(this);
 
+        setTitle("Dodavanje korisnika");
+
         passwordInput = new Input(password, Input.PASSWORD_PATTERN, getString(R.string.password_error));
 
         inputs = Arrays.asList(

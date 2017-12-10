@@ -40,6 +40,7 @@ public class RecipeDetailActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setTitle("Detalji recepta");
 
         setContentView(R.layout.activity_recipe_detail);
 

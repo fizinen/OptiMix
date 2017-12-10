@@ -64,6 +64,8 @@ public class CreateRecipeActivity extends AppCompatActivity {
         maximalNumberOfAddedSpinners = 1;
         newMaterialButton.setOnClickListener(onMaterialAdded);
         submitButton.setOnClickListener(onSubmit);
+
+        setTitle("Dodavanje recepata");
     }
     View.OnClickListener onSubmit = new View.OnClickListener() {
         @Override

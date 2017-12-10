@@ -12,20 +12,13 @@ import org.springframework.stereotype.Repository;
 
 /**
  *
-<<<<<<< HEAD
- * @author Gloria Babić
-=======
  * @author Lenovo
->>>>>>> eed3de0e1773a7ac958aadcfb479337957649e03
  */
 @Repository
 @Table(name = "analysis")
 public interface AnalysisRepository extends JpaRepository<Analysis, String> {
-
-
+    
     public Analysis findByIdAnalysis(long id);
-
-    public Analysis findByIdRaw(long id);
 
 
 }

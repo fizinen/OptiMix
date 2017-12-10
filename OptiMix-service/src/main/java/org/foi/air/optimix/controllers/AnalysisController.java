@@ -22,11 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 /**
  *
-<<<<<<< HEAD
- * @author Gloria Babić
-=======
  * @author Lenovo
->>>>>>> eed3de0e1773a7ac958aadcfb479337957649e03
  */
 @RestController
 @RequestMapping(value = "/analysis")

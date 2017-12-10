@@ -33,6 +33,9 @@ public class Recipe implements Serializable {
     @Column(name = "id_recipe")
     long idRecipe;
 
+    @Column(name = "recipe_name")
+    private String recipeName;
+    
     @Column(name = "recipe_mass")
     private double recipeMass;
 
@@ -74,6 +77,14 @@ public class Recipe implements Serializable {
 
     public void setRecipeMass(double recipeMass) {
         this.recipeMass = recipeMass;
+    }
+    
+    public String getRecipeName() {
+        return recipeName;
+    }
+
+    public void setRecipeName(String recipeName) {
+        this.recipeName = recipeName;
     }
 
 }

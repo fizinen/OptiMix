@@ -107,6 +107,6 @@ public class PersonController {
                     "No user found for id " + id);
             return new ResponseEntity(HttpStatus.NOT_FOUND);
         }
-}
+    }
 
 }

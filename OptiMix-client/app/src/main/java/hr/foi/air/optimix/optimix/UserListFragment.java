@@ -5,14 +5,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
@@ -20,9 +16,7 @@ import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
-import java.util.logging.Logger;
 
-import butterknife.BindView;
 import butterknife.OnClick;
 import hr.foi.air.optimix.model.Person;
 import hr.foi.air.optimix.optimix.adapters.UserAdapter;
@@ -38,13 +32,13 @@ import hr.foi.air.optimix.webservice.SimpleResponseHandler;
  * This is a class intended
  */
 
-public class UserListActivity extends Fragment implements View.OnClickListener{
+public class UserListFragment extends Fragment implements View.OnClickListener{
 
     FloatingActionButton buttonAddNewUsers;
     //@BindView(R.id.listViewUsers)
     ListView users;
 
-    public UserListActivity() {
+    public UserListFragment() {
     }
 
     @Override
@@ -54,7 +48,7 @@ public class UserListActivity extends Fragment implements View.OnClickListener{
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
-        View view = inflater.inflate(R.layout.tab_user_list, container, false);
+        View view = inflater.inflate(R.layout.fragment_user_list, container, false);
 
         //dohvati sve osobe
 
@@ -99,7 +93,7 @@ public class UserListActivity extends Fragment implements View.OnClickListener{
 
                 //setViewLayout(R.layout.fragment_team_history);
                 users.setAdapter(new UserAdapter(getActivity().getApplicationContext(),
-                            R.layout.tab_user_list, t));
+                            R.layout.fragment_user_list, t));
 
                 return true;
             } else {

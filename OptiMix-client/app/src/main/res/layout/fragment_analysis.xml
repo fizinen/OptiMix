@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:padding="@dimen/activity_margin"
+    tools:context="hr.foi.air.optimix.optimix.MainActivity">
+
+    <ScrollView
+        android:id="@+id/scrollViewRaw"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:visibility="invisible">
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/TextMaterialNumberLayout"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="left">
+
+                <EditText
+                    android:id="@+id/analysis_materialNumber_input"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:ems="10"
+                    android:gravity="left"
+                    android:hint="@string/analysis_ux_input"
+                    android:imeOptions="actionNext"
+                    android:inputType="textPersonName" />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/TextMaterialNameLayout"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="left">
+
+                <EditText
+                    android:id="@+id/analysis_materialName_input"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:ems="10"
+                    android:gravity="left"
+                    android:hint="@string/analysis_quantity_input"
+                    android:imeOptions="actionNext"
+                    android:inputType="textPersonName" />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/TextMaterialSeriesLayout"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="left">
+
+                <EditText
+                    android:id="@+id/analysis_materialSeries_input"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:ems="10"
+                    android:gravity="left"
+                    android:hint="@string/analysis_water_input"
+                    android:imeOptions="actionNext"
+                    android:inputType="textPersonName" />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/TextMaterialDateBeforeLayout"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="left">
+
+                <EditText
+                    android:id="@+id/analysis_materialDateBefore_input"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:ems="10"
+                    android:gravity="left"
+                    android:hint="@string/analysis_fat_input"
+                    android:imeOptions="actionNext"
+                    android:inputType="date" />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/TextMaterialAmountLayout"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="left">
+
+                <EditText
+                    android:id="@+id/analysis_materialAmount_input"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:ems="10"
+                    android:gravity="left"
+                    android:hint="@string/analysis_proteins_input"
+                    android:imeOptions="actionNext"
+                    android:inputType="textPersonName" />
+
+            </android.support.design.widget.TextInputLayout>
+
+
+            <android.support.design.widget.FloatingActionButton
+                android:id="@+id/floatingActionButtonAddRaw"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+
+                app:srcCompat="@drawable/ic_done_white_24dp" />
+
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/TextUXLayout"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="left">
+
+                <EditText
+                    android:id="@+id/analysis_ux_input"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:ems="10"
+                    android:gravity="left"
+                    android:hint="@string/analysis_ux_input"
+                    android:imeOptions="actionNext"
+                    android:inputType="textPersonName" />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/TextQuantityLayout"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="left">
+
+                <EditText
+                    android:id="@+id/analysis_quantity_input"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:ems="10"
+                    android:gravity="left"
+                    android:hint="@string/analysis_quantity_input"
+                    android:imeOptions="actionNext"
+                    android:inputType="textPersonName" />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/TextWaterLayout"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="left">
+
+                <EditText
+                    android:id="@+id/analysis_water_input"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:ems="10"
+                    android:gravity="left"
+                    android:hint="@string/analysis_water_input"
+                    android:imeOptions="actionNext"
+                    android:inputType="textPersonName" />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/TextFatLayout"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="left">
+
+                <EditText
+                    android:id="@+id/analysis_fat_input"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:ems="10"
+                    android:gravity="left"
+                    android:hint="@string/analysis_fat_input"
+                    android:imeOptions="actionNext"
+                    android:inputType="textPersonName" />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/TextProteinsLayout"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="left">
+
+                <EditText
+                    android:id="@+id/analysis_proteins_input"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:ems="10"
+                    android:gravity="left"
+                    android:hint="@string/analysis_proteins_input"
+                    android:imeOptions="actionNext"
+                    android:inputType="textPersonName" />
+
+            </android.support.design.widget.TextInputLayout>
+
+
+            <android.support.design.widget.FloatingActionButton
+                android:id="@+id/floatingActionButtonAddAnalysis"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+
+                app:srcCompat="@drawable/ic_done_white_24dp" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</RelativeLayout>

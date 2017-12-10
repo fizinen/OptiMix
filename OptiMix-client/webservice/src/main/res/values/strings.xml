@@ -4,8 +4,9 @@
     <string name="person_path">/person/</string>
     <string name="person_login_path">/person/login</string>
     <string name="person_createuser_path">/person/adduser</string>
+    <string name="analysis_createraw_path">/raw/addraw</string>
     <string name="all_persons_path">/person/all</string>
-    <string name="all_materials_path">/raw/all</string>
+    <string name="all_raw_path">/raw/all</string>
     <string name="all_recipes_path">/recipe/all/</string>
 
 

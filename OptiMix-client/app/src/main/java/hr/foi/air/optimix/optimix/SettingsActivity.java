@@ -17,8 +17,8 @@ public class SettingsActivity extends AppCompatActivity implements FragmentInten
         ViewPager viewPager = (ViewPager) findViewById(R.id.activity_settings_view_pager);
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
 
-        adapter.addFragment(new ReceiptListAndCreationActivity());
         adapter.addFragment(new UserListFragment());
+        adapter.addFragment(new ReceiptListAndCreationActivity());
         viewPager.setAdapter(adapter);
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_layout);

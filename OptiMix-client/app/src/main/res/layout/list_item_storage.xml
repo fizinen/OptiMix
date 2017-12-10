@@ -11,7 +11,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_column="1"
-            android:text="Sirovina" />
+            android:text="Sirovina"
+            android:textColor="#000000" />
 
         <TextView
             android:id="@+id/raw_ux"
@@ -19,15 +20,18 @@
             android:layout_height="wrap_content"
             android:layout_column="2"
             android:layout_marginLeft="@dimen/activity_margin"
-            android:text="ux" />
+            android:text="ux"
+            android:textColor="#000000" />
 
         <TextView
             android:id="@+id/raw_quantity"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_column="3"
+            android:layout_marginLeft="@dimen/activity_margin"
             android:layout_gravity="right"
-            android:text="kol" />
+            android:text="kol"
+            android:textColor="#000000" />
 
     </TableRow>
 
@@ -37,7 +41,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_column="1"
-            android:text="Voda" />
+            android:text="Voda"
+            android:textColor="#000000" />
 
         <TextView
             android:id="@+id/raw_water"
@@ -45,7 +50,7 @@
             android:layout_height="wrap_content"
             android:layout_column="2"
             android:layout_gravity="right"
-            android:text="187219" />
+            android:textColor="#000000" />
     </TableRow>
 
     <TableRow android:layout_marginLeft="@dimen/activity_margin">
@@ -54,7 +59,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_column="1"
-            android:text="Mast" />
+            android:text="Mast"
+            android:textColor="#000000" />
 
         <TextView
             android:id="@+id/raw_fat"
@@ -62,7 +68,7 @@
             android:layout_height="wrap_content"
             android:layout_column="2"
             android:layout_gravity="right"
-            android:text="18,7219" />
+            android:textColor="#000000" />
     </TableRow>
 
     <TableRow android:layout_marginLeft="@dimen/activity_margin">
@@ -71,7 +77,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_column="1"
-            android:text="Proteini" />
+            android:text="Proteini"
+            android:textColor="#000000" />
 
         <TextView
             android:id="@+id/raw_proteins"
@@ -79,7 +86,7 @@
             android:layout_height="wrap_content"
             android:layout_column="2"
             android:layout_gravity="right"
-            android:text="18,72ds19" />
+            android:textColor="#000000" />
     </TableRow>
 
 </TableLayout>

@@ -57,6 +57,6 @@ public class Recipe implements Serializable {
         this.listOfRecipeMaterials = listOfRecipeMaterials;
     }
 
-//listOfRecipeMaterials.object.materialAmount, object.materialId and idRecipe are all added into sirovina_recept table
+//listOfRecipeMaterials.object.materialMass, object.idRaw and idRecipe are all added into sirovina_recept table
     //recept table contains only idRecipe, recipeName and evaporationCoefficient
 }

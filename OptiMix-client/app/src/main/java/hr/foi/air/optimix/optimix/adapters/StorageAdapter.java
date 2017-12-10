@@ -9,6 +9,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import hr.foi.air.optimix.model.Analysis;
+import hr.foi.air.optimix.model.Material;
 import hr.foi.air.optimix.optimix.R;
 
 /**
@@ -38,7 +39,7 @@ public class StorageAdapter extends hr.foi.air.optimix.optimix.adapters.BaseAdap
         try {
             if (convertView == null) {
                 vi = getInflater().inflate(R.layout.list_item_storage, null);
-                holder = new StorageAdapter.ViewHolder();
+                holder = new ViewHolder();
                 holder.rawName = (TextView) vi.findViewById(R.id.raw_name);
                 holder.rawUx = (TextView) vi.findViewById(R.id.raw_ux);
                 holder.rawQuantity = (TextView) vi.findViewById(R.id.raw_quantity);
@@ -48,16 +49,27 @@ public class StorageAdapter extends hr.foi.air.optimix.optimix.adapters.BaseAdap
 
                 vi.setTag(holder);
             } else {
-                holder = (StorageAdapter.ViewHolder) vi.getTag();
+                holder = (ViewHolder) vi.getTag();
             }
 
             Analysis current = getItems().get(position);
-            holder.rawName.setText(current.getRawId().toString());
-            //   holder.rawUx.setText(current.get());
-            // holder.rawQuantity.setText(current.get());
+
             holder.rawWater.setText(String.valueOf(current.getWater()));
             holder.rawFat.setText(String.valueOf(current.getFat()));
             holder.rawProteins.setText(String.valueOf(current.getProteins()));
+
+            Material currentMaterial = current.getRaw();
+            if (currentMaterial != null){
+                holder.rawName.setText(currentMaterial.getMaterialName());
+                holder.rawUx.setText(currentMaterial.getMaterialCode() + " " + currentMaterial.getMaterialSeries());
+                holder.rawQuantity.setText(String.valueOf(currentMaterial.getMaterialMass()));
+            }
+            else {
+                holder.rawName.setText("Nije dostupno");
+                holder.rawUx.setText("Nije dostupno");
+                holder.rawQuantity.setText("Nije dostupno");
+            }
+
 
 
         } catch (Exception e) {

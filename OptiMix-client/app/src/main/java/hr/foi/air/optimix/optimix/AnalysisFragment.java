@@ -86,11 +86,11 @@ public class AnalysisFragment extends android.support.v4.app.Fragment implements
                     String materialNumber = analysis_materialNumber_input.getText().toString();
                     String materialName = analysis_materialName_input.getText().toString();
                     String materialSeries = analysis_materialSeries_input.getText().toString();
-                    Date materialDateBefore = Date.valueOf(analysis_materialDateBefore_input.getText().toString());
-                    double materialAmount = Double.valueOf(analysis_materialAmount_input.getText().toString());
+                    String materialDateBefore = analysis_materialDateBefore_input.getText().toString();
+                    long materialAmount = Long.valueOf(analysis_materialAmount_input.getText().toString());
 
 
-                    Material material = new Material( materialNumber, materialName, materialSeries,materialDateBefore,materialAmount);
+                   Material material = new Material( materialNumber, materialName, materialSeries,materialDateBefore,materialAmount);
 
                     //CreateRawHandler createRawHandler = new CreateRawHandler(CreateRawHandler.this, material);
 

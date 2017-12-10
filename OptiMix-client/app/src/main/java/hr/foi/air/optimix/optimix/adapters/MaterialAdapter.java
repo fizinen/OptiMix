@@ -47,7 +47,7 @@ public class MaterialAdapter  extends hr.foi.air.optimix.optimix.adapters.BaseAd
 
             Material current = getItems().get(position);
             holder.materialName.setText(current.getMaterialName());
-            holder.materialAmount.setText( String.valueOf(current.getMaterialAmount()));
+            holder.materialAmount.setText( String.valueOf(current.getMaterialMass()));
 
         } catch (Exception e) {
             Log.d("Error", "Couldn't create listing elements");

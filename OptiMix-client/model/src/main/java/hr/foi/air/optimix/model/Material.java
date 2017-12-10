@@ -1,57 +1,56 @@
 package hr.foi.air.optimix.model;
 
 import java.io.Serializable;
-import java.util.Date;
 
 /**
  * Created by erdel on 5.12.2017..
  */
 
 public class Material implements Serializable{
-    long materialId;
-    String materialNumber;
+    long idRaw;
+    String materialCode;
     String materialName;
     String materialSeries;
-    Date materialDateBefore;
-    String measurement;
-    double materialAmount;
+    String expirationDate;
+    String measure;
+    long materialMass;
 
     public Material() {
     }
 
-    public Material(long materialId, String materialName) {
-        this.materialId = materialId;
+    public Material(long idRaw, String materialName) {
+        this.idRaw = idRaw;
         this.materialName = materialName;
     }
 
-    public Material(long materialId, String materialName, double materialAmount) {
-        this.materialId = materialId;
+    public Material(long idRaw, String materialName, long materialMass) {
+        this.idRaw = idRaw;
         this.materialName = materialName;
-        this.materialAmount = materialAmount;
+        this.materialMass = materialMass;
     }
 
-    public Material(String materialNumber, String materialName, String materialSeries, java.sql.Date materialDateBefore, double materialAmount) {
-        this.materialNumber = materialNumber;
+    public Material(String materialCode, String materialName, String materialSeries, String expirationDate, long materialMass) {
+        this.materialCode = materialCode;
         this.materialName = materialName;
         this.materialSeries = materialSeries;
-        this.materialDateBefore = materialDateBefore;
-        this.materialAmount = materialAmount;
+        this.expirationDate = expirationDate;
+        this.materialMass = materialMass;
     }
 
-    public long getMaterialId() {
-        return materialId;
+    public long getIdRaw() {
+        return idRaw;
     }
 
-    public void setMaterialId(long materialId) {
-        this.materialId = materialId;
+    public void setIdRaw(long idRaw) {
+        this.idRaw = idRaw;
     }
 
-    public String getMaterialNumber() {
-        return materialNumber;
+    public String getMaterialCode() {
+        return materialCode;
     }
 
-    public void setMaterialNumber(String materialNumber) {
-        this.materialNumber = materialNumber;
+    public void setMaterialCode(String materialCode) {
+        this.materialCode = materialCode;
     }
 
     public String getMaterialName() {
@@ -70,28 +69,28 @@ public class Material implements Serializable{
         this.materialSeries = materialSeries;
     }
 
-    public Date getMaterialDateBefore() {
-        return materialDateBefore;
+    public String getExpirationDate() {
+        return expirationDate;
     }
 
-    public void setMaterialDateBefore(Date materialDateBefore) {
-        this.materialDateBefore = materialDateBefore;
+    public void setExpirationDate(String expirationDate) {
+        this.expirationDate = expirationDate;
     }
 
-    public String getMeasurement() {
-        return measurement;
+    public String getMeasure() {
+        return measure;
     }
 
-    public void setMeasurement(String measurement) {
-        this.measurement = measurement;
+    public void setMeasure(String measure) {
+        this.measure = measure;
     }
 
-    public double getMaterialAmount() {
-        return materialAmount;
+    public double getMaterialMass() {
+        return materialMass;
     }
 
-    public void setMaterialAmount(double materialAmount) {
-        this.materialAmount = materialAmount;
+    public void setMaterialMass(long materialMass) {
+        this.materialMass = materialMass;
     }
 
     @Override

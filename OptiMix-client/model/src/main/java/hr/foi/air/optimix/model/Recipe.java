@@ -16,9 +16,8 @@ public class Recipe implements Serializable {
     public Recipe() {
     }
 
-    public Recipe(String recipeName, Double evaporationCoefficient) {
+    public Recipe(String recipeName) {
         this.recipeName = recipeName;
-        this.evaporationCoefficient = evaporationCoefficient;
     }
 
     public long getIdRecipe() {

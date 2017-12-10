@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Spinner;
@@ -30,8 +31,11 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import hr.foi.air.optimix.core.Input;
 import hr.foi.air.optimix.model.Material;
+import hr.foi.air.optimix.model.Recipe;
 import hr.foi.air.optimix.optimix.adapters.MaterialsAdapter;
+import hr.foi.air.optimix.optimix.handlers.CreateRecipeHandler;
 import hr.foi.air.optimix.webservice.ServiceAsyncTask;
 import hr.foi.air.optimix.webservice.ServiceCaller;
 import hr.foi.air.optimix.webservice.ServiceParams;
@@ -47,6 +51,8 @@ public class CreateRecipeActivity extends AppCompatActivity {
     @BindView(R.id.submit_recipe_button) Button submitButton;
     @BindView(R.id.add_new_material_button) Button newMaterialButton;
     @BindView(R.id.recipe_details_layout) ViewGroup recipeDetailsLayout;
+    @BindView(R.id.recipe_name)
+    EditText recipename;
 
     private int materialAddedCounter;
     private int maximalNumberOfAddedSpinners;
@@ -71,8 +77,18 @@ public class CreateRecipeActivity extends AppCompatActivity {
         @Override
         public void onClick(View v) {
             Log.d("klik","kliknut gumb submit");
-            //This part is the same as in CreateUserActivity - it has to be edited and done in such
-            // way so that it works for recipes
+
+            String nameValue = recipename.getText().toString();
+
+            Recipe recipe = new Recipe(nameValue);
+
+            CreateRecipeHandler createRecipeHandler = new CreateRecipeHandler( CreateRecipeActivity.this , recipe);
+
+            new ServiceAsyncTask(createRecipeHandler).execute(new ServiceParams(
+                getString(hr.foi.air.optimix.webservice.R.string.recipe_createrecipe_path),
+                ServiceCaller.HTTP_POST, recipe));
+
+
         }
     };
     View.OnClickListener onMaterialAdded = new View.OnClickListener(){

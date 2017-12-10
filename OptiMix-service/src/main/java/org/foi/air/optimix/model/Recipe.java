@@ -16,6 +16,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -35,7 +37,7 @@ public class Recipe implements Serializable {
 
     @Column(name = "recipe_name")
     private String recipeName;
-    
+
     @Column(name = "recipe_mass")
     private double recipeMass;
 
@@ -43,9 +45,12 @@ public class Recipe implements Serializable {
     @OneToMany(mappedBy = "recipeId", fetch = FetchType.LAZY)
     private List<RecipeLog> recipeLog;
 
-    @ManyToOne(cascade = {CascadeType.MERGE})
-    @JoinColumn(name = "id_raw")
-    private Raw raw;
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "raw_recipe", joinColumns = {
+        @JoinColumn(name = "id_recipe", nullable = false, updatable = false)},
+            inverseJoinColumns = {
+                @JoinColumn(name = "id_raw", nullable = false, updatable = false)})
+    private List<Raw> raws;
 
     public List<RecipeLog> getRecipe() {
         return recipeLog;
@@ -55,13 +60,23 @@ public class Recipe implements Serializable {
         this.recipeLog = recipe;
     }
 
-    public Raw getRaw() {
-        return raw;
+    public List<RecipeLog> getRecipeLog() {
+        return recipeLog;
     }
 
-    public void setRaw(Raw raw) {
-        this.raw = raw;
+    public void setRecipeLog(List<RecipeLog> recipeLog) {
+        this.recipeLog = recipeLog;
     }
+
+    public List<Raw> getRaws() {
+        return raws;
+    }
+
+    public void setRaws(List<Raw> raws) {
+        this.raws = raws;
+    }
+
+   
 
     public long getIdRecipe() {
         return idRecipe;
@@ -78,7 +93,7 @@ public class Recipe implements Serializable {
     public void setRecipeMass(double recipeMass) {
         this.recipeMass = recipeMass;
     }
-    
+
     public String getRecipeName() {
         return recipeName;
     }

@@ -15,6 +15,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -49,22 +50,24 @@ public class Raw implements Serializable{
     @Column(name = "material_mass")
     private long materialMass;
     
+    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "raws")
     @JsonIgnore
-    @OneToMany(mappedBy = "raw", fetch = FetchType.LAZY)
-    private List<Recipe> recipe;
+    private List<Recipe> partOfRecipe;
     
     @JsonIgnore
     @OneToMany(mappedBy = "rawId", fetch = FetchType.LAZY)
     private List<Analysis> analysis;
+
+    public List<Recipe> getPartOfRecipe() {
+        return partOfRecipe;
+    }
+
+    public void setPartOfRecipe(List<Recipe> partOfRecipe) {
+        this.partOfRecipe = partOfRecipe;
+    }
     
 
-    public List<Recipe> getRecipe() {
-        return recipe;
-    }
-
-    public void setRecipe(List<Recipe> recipe) {
-        this.recipe = recipe;
-    }
+  
 
     public List<Analysis> getAnalysis() {
         return analysis;

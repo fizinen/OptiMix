@@ -15,7 +15,7 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 
 
-import hr.foi.air.optimix.model.Raw;
+import hr.foi.air.optimix.model.Material;
 import hr.foi.air.optimix.optimix.adapters.StorageAdapter;
 import hr.foi.air.optimix.webservice.ServiceAsyncTask;
 import hr.foi.air.optimix.webservice.ServiceCaller;
@@ -60,8 +60,8 @@ public class StorageFragment extends android.support.v4.app.Fragment{
         public boolean handleResponse(ServiceResponse response) {
             if(response.getHttpCode() == 200) {
 
-                Type listType = new TypeToken<ArrayList<Raw>>() { }.getType();
-                ArrayList<Raw> t = new Gson().fromJson(response.getJsonResponse(), listType);
+                Type listType = new TypeToken<ArrayList<Material>>() { }.getType();
+                ArrayList<Material> t = new Gson().fromJson(response.getJsonResponse(), listType);
 
                 //setViewLayout(R.layout.fragment_team_history);
                 storage.setAdapter(new StorageAdapter(getActivity().getApplicationContext(),

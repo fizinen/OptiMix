@@ -9,16 +9,16 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 
-import hr.foi.air.optimix.model.Raw;
+import hr.foi.air.optimix.model.Material;
 import hr.foi.air.optimix.optimix.R;
 
 /**
  * Created by Gloria Babić on 7.12.2017..
  */
 
-public class StorageAdapter extends hr.foi.air.optimix.optimix.adapters.BaseAdapter<Raw>{
+public class StorageAdapter extends hr.foi.air.optimix.optimix.adapters.BaseAdapter<Material>{
 
-    public StorageAdapter(Context context, int resource, ArrayList<Raw> items) {
+    public StorageAdapter(Context context, int resource, ArrayList<Material> items) {
         super(context, resource, items);
     }
 

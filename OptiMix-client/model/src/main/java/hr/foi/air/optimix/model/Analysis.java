@@ -13,36 +13,25 @@ public class Analysis implements Serializable {
     private double water;
     private double fat;
     private double proteins;
-    private Material rawId;
+    private Material raw;
 
-    public Material getRawId() {
-        return rawId;
+    public Material getRaw() {
+        return raw;
     }
 
-    public void setRawId(Material rawId) {
-        this.rawId = rawId;
+    public void setRaw(Material raw) {
+        this.raw = raw;
     }
+
     //private List<AnalysisLog> analysisLog;
-    
-    //// TODO: 10.12.2017.  
-    
-    /*
 
-    public Analysis(long idAnalysis, double water, double fat, double proteins, Material rawId) {
-        this.idAnalysis = idAnalysis;
+
+    public Analysis(double water, double fat, double proteins, Material raw) {
         this.water = water;
         this.fat = fat;
         this.proteins = proteins;
-        //this.rawId = rawId;
+        this.raw = raw;
     }
-
-    public Analysis(double water, double fat, double proteins, Material rawId) {
-        this.water = water;
-        this.fat = fat;
-        this.proteins = proteins;
-        //this.rawId = rawId;
-    }
-    */
 
     public long getIdAnalysis() {
         return idAnalysis;

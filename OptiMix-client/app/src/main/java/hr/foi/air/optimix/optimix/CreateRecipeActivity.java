@@ -91,7 +91,7 @@ public class CreateRecipeActivity extends AppCompatActivity {
 
             //Data insertion into spinners (lists of materials)
             ServiceParams params = new ServiceParams(
-                    getString( R.string.all_materials_path) ,
+                    getString( R.string.all_raw_path) ,
                     ServiceCaller.HTTP_GET, null);
             new ServiceAsyncTask(materialListHandler).execute(params);
 

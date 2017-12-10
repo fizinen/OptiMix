@@ -6,7 +6,11 @@ import android.widget.Toast;
 
 import java.io.Serializable;
 
+import hr.foi.air.optimix.model.Material;
 import hr.foi.air.optimix.optimix.AnalysisFragment;
+import hr.foi.air.optimix.webservice.ServiceAsyncTask;
+import hr.foi.air.optimix.webservice.ServiceCaller;
+import hr.foi.air.optimix.webservice.ServiceParams;
 import hr.foi.air.optimix.webservice.ServiceResponse;
 
 /**
@@ -21,9 +25,10 @@ public class CreateRawHandler extends ResponseHandler {
 
     @Override
     public boolean handleResponse(ServiceResponse response) {
-       // Material material = (Material) getArgs()[0];
+       Material material = (Material) getArgs()[0];
 
         if(response.getHttpCode() == 200) {
+
 
             getActivity().startActivity(new Intent(getActivity(), AnalysisFragment.class));
             getActivity().finish();

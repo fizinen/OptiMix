@@ -8,17 +8,16 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-
-import hr.foi.air.optimix.model.Material;
+import hr.foi.air.optimix.model.Analysis;
 import hr.foi.air.optimix.optimix.R;
 
 /**
  * Created by Gloria Babić on 7.12.2017..
  */
 
-public class StorageAdapter extends hr.foi.air.optimix.optimix.adapters.BaseAdapter<Material>{
+public class StorageAdapter extends hr.foi.air.optimix.optimix.adapters.BaseAdapter<Analysis> {
 
-    public StorageAdapter(Context context, int resource, ArrayList<Material> items) {
+    public StorageAdapter(Context context, int resource, ArrayList<Analysis> items) {
         super(context, resource, items);
     }
 
@@ -38,7 +37,7 @@ public class StorageAdapter extends hr.foi.air.optimix.optimix.adapters.BaseAdap
         final StorageAdapter.ViewHolder holder;
         try {
             if (convertView == null) {
-                vi = getInflater().inflate(R.layout.list_item, null);
+                vi = getInflater().inflate(R.layout.list_item_storage, null);
                 holder = new StorageAdapter.ViewHolder();
                 holder.rawName = (TextView) vi.findViewById(R.id.raw_name);
                 holder.rawUx = (TextView) vi.findViewById(R.id.raw_ux);
@@ -52,19 +51,17 @@ public class StorageAdapter extends hr.foi.air.optimix.optimix.adapters.BaseAdap
                 holder = (StorageAdapter.ViewHolder) vi.getTag();
             }
 
-            /*Material current = getItems().get(position);
-            holder.rawName.setText(current.getMaterialName());
-                holder.rawUx.setText(current.getMaterialUX());
-                holder.rawQuantity.setText(current.getMaterialQuantity());
-                holder.rawWater.setText(current.getMaterialWater());
-                holder.rawFat.setText(current.getMaterialFat());
-                holder.rawProteins.setText(current.getMaterialProteins());
-
-             */
+            Analysis current = getItems().get(position);
+            holder.rawName.setText(current.getRawId().toString());
+            //   holder.rawUx.setText(current.get());
+            // holder.rawQuantity.setText(current.get());
+            holder.rawWater.setText(String.valueOf(current.getWater()));
+            holder.rawFat.setText(String.valueOf(current.getFat()));
+            holder.rawProteins.setText(String.valueOf(current.getProteins()));
 
 
         } catch (Exception e) {
-            Log.d("greškica", "ups");
+            Log.d("storage greška nezz", "ups");
         }
         return vi;
     }

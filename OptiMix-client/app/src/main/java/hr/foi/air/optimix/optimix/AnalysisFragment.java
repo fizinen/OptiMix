@@ -13,6 +13,11 @@ import java.sql.Date;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import hr.foi.air.optimix.model.Analysis;
+import hr.foi.air.optimix.model.Material;
+import hr.foi.air.optimix.optimix.handlers.CreateRawHandler;
+import hr.foi.air.optimix.webservice.ServiceAsyncTask;
+import hr.foi.air.optimix.webservice.ServiceCaller;
+import hr.foi.air.optimix.webservice.ServiceParams;
 
 /**
  * Created by Gloria Babić on 7.12.2017..
@@ -84,15 +89,14 @@ public class AnalysisFragment extends android.support.v4.app.Fragment implements
                     Date materialDateBefore = Date.valueOf(analysis_materialDateBefore_input.getText().toString());
                     double materialAmount = Double.valueOf(analysis_materialAmount_input.getText().toString());
 
-                    //TODO
 
-                    // Material material = new Material( materialNumber, materialName, materialSeries,materialDateBefore,materialAmount);
+                    Material material = new Material( materialNumber, materialName, materialSeries,materialDateBefore,materialAmount);
 
-                    /*CreateRawHandler createRawHandler = new CreateRawHandler(CreateRawHandler.this, material);
+                    //CreateRawHandler createRawHandler = new CreateRawHandler(CreateRawHandler.this, material);
 
-                    new ServiceAsyncTask(createRawHandler).execute(new ServiceParams(
+                    /*new ServiceAsyncTask(createRawHandler).execute(new ServiceParams(
                     getString(hr.foi.air.optimix.webservice.R.string.analysis_createraw_path),
-                    ServiceCaller.HTTP_POST, material));*/
+                    ServiceCaller.HTTP_POST, material)); */
 
                     break;
                 case R.id.floatingActionButtonAddAnalysis:

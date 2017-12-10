@@ -30,6 +30,14 @@ public class Material implements Serializable{
         this.materialAmount = materialAmount;
     }
 
+    public Material(String materialNumber, String materialName, String materialSeries, java.sql.Date materialDateBefore, double materialAmount) {
+        this.materialNumber = materialNumber;
+        this.materialName = materialName;
+        this.materialSeries = materialSeries;
+        this.materialDateBefore = materialDateBefore;
+        this.materialAmount = materialAmount;
+    }
+
     public long getMaterialId() {
         return materialId;
     }

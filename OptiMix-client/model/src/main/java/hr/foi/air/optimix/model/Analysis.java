@@ -13,7 +13,15 @@ public class Analysis implements Serializable {
     private double water;
     private double fat;
     private double proteins;
-    // private Material rawId;
+    private Material rawId;
+
+    public Material getRawId() {
+        return rawId;
+    }
+
+    public void setRawId(Material rawId) {
+        this.rawId = rawId;
+    }
     //private List<AnalysisLog> analysisLog;
     
     //// TODO: 10.12.2017.  

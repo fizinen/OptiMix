@@ -10,23 +10,23 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-import hr.foi.air.optimix.model.Material;
+import hr.foi.air.optimix.model.Raw;
 import hr.foi.air.optimix.optimix.R;
 
 /**
  * Created by erdel on 9.12.2017..
  */
 
-public class MaterialAdapter  extends hr.foi.air.optimix.optimix.adapters.BaseAdapter<Material>{
+public class RawAdapter extends hr.foi.air.optimix.optimix.adapters.BaseAdapter<Raw>{
 
 
-    public MaterialAdapter(Context context, int resource, ArrayList<Material> items) {
+    public RawAdapter(Context context, int resource, ArrayList<Raw> items) {
         super(context, resource, items);
     }
 
     public static class ViewHolder {
-        public TextView materialName;
-        public TextView materialAmount;
+        public TextView rawName;
+        public TextView rawAmount;
     }
 
     @NonNull
@@ -36,18 +36,18 @@ public class MaterialAdapter  extends hr.foi.air.optimix.optimix.adapters.BaseAd
         final ViewHolder holder;
         try {
             if (convertView == null) {
-                vi = getInflater().inflate(R.layout.list_item_material_of_recipe, parent, false);
+                vi = getInflater().inflate(R.layout.list_item_raw_of_recipe, parent, false);
                 holder = new ViewHolder();
-                holder.materialName = (TextView) vi.findViewById(R.id.recipe_detail_list_material_name);
-                holder.materialAmount =(TextView) vi.findViewById(R.id.recipe_detail_list_material_amount);
+                holder.rawName = (TextView) vi.findViewById(R.id.recipe_detail_list_raw_name);
+                holder.rawAmount =(TextView) vi.findViewById(R.id.recipe_detail_list_raw_amount);
                 vi.setTag(holder);
             } else {
                 holder = (ViewHolder) vi.getTag();
             }
 
-            Material current = getItems().get(position);
-            holder.materialName.setText(current.getMaterialName());
-            holder.materialAmount.setText( String.valueOf(current.getMaterialMass()));
+            Raw current = getItems().get(position);
+            holder.rawName.setText(current.getRawName());
+            holder.rawAmount.setText( String.valueOf(current.getRawMass()));
 
         } catch (Exception e) {
             Log.d("Error", "Couldn't create listing elements");

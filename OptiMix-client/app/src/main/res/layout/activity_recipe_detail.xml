@@ -57,7 +57,7 @@
     <ListView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/recipe_detail_material_list">
+        android:id="@+id/recipe_detail_raw_list">
 
     </ListView>
 

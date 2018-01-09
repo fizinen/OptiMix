@@ -22,6 +22,6 @@ public interface RawRepository extends JpaRepository<Raw, String> {
 
     public Raw findByIdRaw(long id);
 
-    public Raw findByMaterialName(String materialName);
+    public Raw findByRawName(String rawName);
 
 }

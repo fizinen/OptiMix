@@ -9,7 +9,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import hr.foi.air.optimix.model.Analysis;
-import hr.foi.air.optimix.model.Material;
+import hr.foi.air.optimix.model.Raw;
 import hr.foi.air.optimix.optimix.R;
 
 /**
@@ -58,11 +58,11 @@ public class StorageAdapter extends hr.foi.air.optimix.optimix.adapters.BaseAdap
             holder.rawFat.setText(String.valueOf(current.getFat()));
             holder.rawProteins.setText(String.valueOf(current.getProteins()));
 
-            Material currentMaterial = current.getRaw();
-            if (currentMaterial != null){
-                holder.rawName.setText(currentMaterial.getMaterialName());
-                holder.rawUx.setText(currentMaterial.getMaterialCode() + " " + currentMaterial.getMaterialSeries());
-                holder.rawQuantity.setText(String.valueOf(currentMaterial.getMaterialMass()));
+            Raw currentRaw = current.getRaw();
+            if (currentRaw != null){
+                holder.rawName.setText(currentRaw.getRawName());
+                holder.rawUx.setText(currentRaw.getRawCode() + " " + currentRaw.getRawSeries());
+                holder.rawQuantity.setText(String.valueOf(currentRaw.getRawMass()));
             }
             else {
                 holder.rawName.setText("Nije dostupno");

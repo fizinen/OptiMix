@@ -6,14 +6,14 @@
     android:paddingTop="15dp"
     xmlns:android="http://schemas.android.com/apk/res/android">
     <Spinner
-        android:id="@+id/generated_material_selection_spinner"
+        android:id="@+id/generated_raw_selection_spinner"
         android:layout_width="180dp"
         android:layout_height="54dp"
         android:paddingBottom="10dp"
         android:paddingTop="10dp"
         android:backgroundTint="@android:color/darker_gray"/>
     <EditText
-        android:id="@+id/generated_material_amount"
+        android:id="@+id/generated_raw_amount"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:hint="@string/material_amount"

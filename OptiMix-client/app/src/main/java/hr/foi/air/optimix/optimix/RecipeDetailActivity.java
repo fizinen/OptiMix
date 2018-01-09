@@ -12,14 +12,12 @@ import android.widget.Toast;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
-import org.w3c.dom.Text;
-
 import java.lang.reflect.Type;
 import java.util.ArrayList;
-import java.util.List;
-import hr.foi.air.optimix.model.Material;
+
+import hr.foi.air.optimix.model.Raw;
 import hr.foi.air.optimix.model.Recipe;
-import hr.foi.air.optimix.optimix.adapters.MaterialAdapter;
+import hr.foi.air.optimix.optimix.adapters.RawAdapter;
 import hr.foi.air.optimix.webservice.ServiceAsyncTask;
 import hr.foi.air.optimix.webservice.ServiceCaller;
 import hr.foi.air.optimix.webservice.ServiceParams;
@@ -32,7 +30,7 @@ import hr.foi.air.optimix.webservice.SimpleResponseHandler;
  */
 
 public class RecipeDetailActivity extends AppCompatActivity {
-    ListView recipeMaterials;
+    ListView recipeRaws;
     TextView recipeName;
     TextView recipeCoefficient;
 
@@ -46,7 +44,7 @@ public class RecipeDetailActivity extends AppCompatActivity {
 
         recipeName = (TextView) findViewById(R.id.recipe_detail_recipe_name);
         recipeCoefficient = (TextView) findViewById(R.id.recipe_detail_recipe_coefficient);
-        recipeMaterials = (ListView) findViewById(R.id.recipe_detail_material_list);
+        recipeRaws = (ListView) findViewById(R.id.recipe_detail_raw_list);
 
         Intent intent = getIntent();
         recipeId = intent.getLongExtra("idRecipe", -1);
@@ -63,23 +61,23 @@ public class RecipeDetailActivity extends AppCompatActivity {
 /*
             //Testdata
             Recipe recipeObject = new Recipe();
-            Material newMaterial1 = new Material(10, "Svinjetina");
-            Material newMaterial2 = new Material(11, "Teletina");
-            List<Material> materialList = new ArrayList<Material>();
-            materialList.add(0, newMaterial1);
-            materialList.add(1, newMaterial2);
+            Raw newRaw1 = new Raw(10, "Svinjetina");
+            Raw newRaw2 = new Raw(11, "Teletina");
+            List<Raw> rawList = new ArrayList<Raw>();
+            rawList.add(0, newRaw1);
+            rawList.add(1, newRaw2);
             recipeObject.setEvaporationCoefficient(0.04);
             recipeObject.setIdRecipe(5);
             recipeObject.setRecipeName("Hrenovke");
-            recipeObject.setListOfRecipeMaterials(materialList);
+            recipeObject.setListOfRecipeRaws(rawList);
             //End testdata
 
             recipeName.setText(recipeObject.getRecipeName());
             recipeCoefficient.setText(recipeObject.getEvaporationCoefficient().toString());
 
-            ArrayList<Material> materialArrayList = (ArrayList<Material>) recipeObject.getListOfRecipeMaterials();
-            //Here we have to set adapter which we need to implement to show the arrayList <Material>
-            recipeMaterials.setAdapter(new MaterialAdapter(RecipeDetailActivity.this, R.layout.activity_recipe_detail, materialArrayList));
+            ArrayList<Raw> rawArrayList = (ArrayList<Raw>) recipeObject.getListOfRecipeRaws();
+            //Here we have to set adapter which we need to implement to show the arrayList <Raw>
+            recipeRaws.setAdapter(new RawAdapter(RecipeDetailActivity.this, R.layout.activity_recipe_detail, rawArrayList));
             */
         }
     }
@@ -111,9 +109,9 @@ public class RecipeDetailActivity extends AppCompatActivity {
                     recipeCoefficient.setText(temporaryRecipeObject.getEvaporationCoefficient().toString());
                 }
 
-                ArrayList<Material> materialArrayList = (ArrayList<Material>) temporaryRecipeObject.getListOfRecipeMaterials();
-                if (materialArrayList != null){
-                    recipeMaterials.setAdapter(new MaterialAdapter(RecipeDetailActivity.this, R.layout.activity_recipe_detail, materialArrayList));
+                ArrayList<Raw> rawArrayList = (ArrayList<Raw>) temporaryRecipeObject.getListOfRecipeRaws();
+                if (rawArrayList != null){
+                    recipeRaws.setAdapter(new RawAdapter(RecipeDetailActivity.this, R.layout.activity_recipe_detail, rawArrayList));
                 }
                 return true;
             } else {

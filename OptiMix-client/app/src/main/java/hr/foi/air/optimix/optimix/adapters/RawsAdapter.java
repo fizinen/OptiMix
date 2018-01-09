@@ -8,27 +8,26 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import java.util.ArrayList;
-import hr.foi.air.optimix.model.Material;
-import hr.foi.air.optimix.optimix.R;
+import hr.foi.air.optimix.model.Raw;
 
 /**
  * Created by erdel on 8.12.2017..
  */
 
-public class MaterialsAdapter extends hr.foi.air.optimix.optimix.adapters.BaseAdapter<Material>{
+public class RawsAdapter extends hr.foi.air.optimix.optimix.adapters.BaseAdapter<Raw>{
     Context context;
-    ArrayList<Material> materialArrayList;
-    public MaterialsAdapter(Context context, int resource, ArrayList<Material> items) {
+    ArrayList<Raw> rawArrayList;
+    public RawsAdapter(Context context, int resource, ArrayList<Raw> items) {
         super(context, resource, items);
         this.context = context;
-        this.materialArrayList = items;
+        this.rawArrayList = items;
     }
 
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         TextView text = new TextView(context);
-        text.setText(materialArrayList.get(position).getMaterialName());
+        text.setText(rawArrayList.get(position).getRawName());
         text.setTextColor(Color.DKGRAY);
 
         return text;
@@ -45,7 +44,7 @@ public class MaterialsAdapter extends hr.foi.air.optimix.optimix.adapters.BaseAd
         int px = (int) (16 * scale + 0.5f);
         text.setPadding(px, px, px, px);
 
-        text.setText(materialArrayList.get(position).getMaterialName());
+        text.setText(rawArrayList.get(position).getRawName());
         return text;
     }
 }

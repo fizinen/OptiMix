@@ -16,7 +16,6 @@ import java.util.ArrayList;
 
 
 import hr.foi.air.optimix.model.Analysis;
-import hr.foi.air.optimix.model.Material;
 import hr.foi.air.optimix.optimix.adapters.StorageAdapter;
 import hr.foi.air.optimix.webservice.ServiceAsyncTask;
 import hr.foi.air.optimix.webservice.ServiceCaller;

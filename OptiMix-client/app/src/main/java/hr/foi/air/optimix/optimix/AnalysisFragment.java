@@ -8,16 +8,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 
-import java.sql.Date;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import hr.foi.air.optimix.model.Analysis;
-import hr.foi.air.optimix.model.Material;
-import hr.foi.air.optimix.optimix.handlers.CreateRawHandler;
-import hr.foi.air.optimix.webservice.ServiceAsyncTask;
-import hr.foi.air.optimix.webservice.ServiceCaller;
-import hr.foi.air.optimix.webservice.ServiceParams;
+import hr.foi.air.optimix.model.Raw;
 
 /**
  * Created by Gloria Babić on 7.12.2017..
@@ -25,16 +18,16 @@ import hr.foi.air.optimix.webservice.ServiceParams;
 
 public class AnalysisFragment extends android.support.v4.app.Fragment implements View.OnClickListener {
 
-    @BindView(R.id.analysis_materialNumber_input)
-    EditText analysis_materialNumber_input;
-    @BindView(R.id.analysis_materialName_input)
-    EditText analysis_materialName_input;
-    @BindView(R.id.analysis_materialSeries_input)
-    EditText analysis_materialSeries_input;
-    @BindView(R.id.analysis_materialDateBefore_input)
-    EditText analysis_materialDateBefore_input;
-    @BindView(R.id.analysis_materialAmount_input)
-    EditText analysis_materialAmount_input;
+    @BindView(R.id.analysis_rawNumber_input)
+    EditText analysis_rawNumber_input;
+    @BindView(R.id.analysis_rawName_input)
+    EditText analysis_rawName_input;
+    @BindView(R.id.analysis_rawSeries_input)
+    EditText analysis_rawSeries_input;
+    @BindView(R.id.analysis_rawDateBefore_input)
+    EditText analysis_rawDateBefore_input;
+    @BindView(R.id.analysis_rawAmount_input)
+    EditText analysis_rawAmount_input;
 
     @BindView(R.id.floatingActionButtonAddRaw)
     FloatingActionButton buttonAddNewRaw;
@@ -83,14 +76,14 @@ public class AnalysisFragment extends android.support.v4.app.Fragment implements
             int id = v.getId();
             switch (id) {
                 case R.id.floatingActionButtonAddRaw:
-                    String materialNumber = analysis_materialNumber_input.getText().toString();
-                    String materialName = analysis_materialName_input.getText().toString();
-                    String materialSeries = analysis_materialSeries_input.getText().toString();
-                    String materialDateBefore = analysis_materialDateBefore_input.getText().toString();
-                    long materialAmount = Long.valueOf(analysis_materialAmount_input.getText().toString());
+                    String rawNumber = analysis_rawNumber_input.getText().toString();
+                    String rawName = analysis_rawName_input.getText().toString();
+                    String rawSeries = analysis_rawSeries_input.getText().toString();
+                    String rawDateBefore = analysis_rawDateBefore_input.getText().toString();
+                    long rawAmount = Long.valueOf(analysis_rawAmount_input.getText().toString());
 
 
-                   Material material = new Material( materialNumber, materialName, materialSeries,materialDateBefore,materialAmount);
+                   Raw material = new Raw( rawNumber, rawName, rawSeries,rawDateBefore,rawAmount);
 
                     //CreateRawHandler createRawHandler = new CreateRawHandler(CreateRawHandler.this, material);
 
@@ -104,14 +97,14 @@ public class AnalysisFragment extends android.support.v4.app.Fragment implements
                     double water = Double.valueOf(analysis_water_input.getText().toString());
                     double fat = Double.valueOf(analysis_fat_input.getText().toString());
                     double proteins = Double.valueOf(analysis_proteins_input.getText().toString());
-                    //Material rawId;
+                    //Raw rawId;
                     //private List<AnalysisLog> analysisLog;
 
                     //TODO
 
                    // Analysis analysis = new Analysis(rawId, water, fat, proteins);
 
-                    /*CreateRawHandler createRawHandler = new CreateRawHandler(CreateRawHandler.this, material);
+                    /*CreateRawHandler createRawHandler = new CreateRawHandler(CreateRawHandler.this, raw);
 
                     new ServiceAsyncTask(createRawHandler).execute(new ServiceParams(
                     getString(hr.foi.air.optimix.webservice.R.string.analysis_createraw_path),

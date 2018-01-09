@@ -10,7 +10,7 @@ import java.util.List;
 public class Recipe implements Serializable {
     long idRecipe;
     String recipeName;
-    List<Material> listOfRecipeMaterials;
+    List<Raw> listOfRecipeRaws;
     Double evaporationCoefficient;
 
     public Recipe() {
@@ -44,18 +44,18 @@ public class Recipe implements Serializable {
         this.evaporationCoefficient = evaporationCoefficient;
     }
 
-    public void addMaterial(Material addedMaterial){
-        listOfRecipeMaterials.add(addedMaterial);
+    public void addMaterial(Raw addedRaw){
+        listOfRecipeRaws.add(addedRaw);
     }
 
-    public List<Material> getListOfRecipeMaterials() {
-        return listOfRecipeMaterials;
+    public List<Raw> getListOfRecipeRaws() {
+        return listOfRecipeRaws;
     }
 
-    public void setListOfRecipeMaterials(List<Material> listOfRecipeMaterials) {
-        this.listOfRecipeMaterials = listOfRecipeMaterials;
+    public void setListOfRecipeRaws(List<Raw> listOfRecipeRaws) {
+        this.listOfRecipeRaws = listOfRecipeRaws;
     }
 
-//listOfRecipeMaterials.object.materialMass, object.idRaw and idRecipe are all added into sirovina_recept table
+//listOfRecipeRaws.object.rawMass, object.idRaw and idRecipe are all added into sirovina_recept table
     //recept table contains only idRecipe, recipeName and evaporationCoefficient
 }

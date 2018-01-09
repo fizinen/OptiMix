@@ -32,14 +32,14 @@ public class Raw implements Serializable{
     @Column(name = "id_raw")
     long idRaw;
     
-    @Column(name = "material_code")
-    private String materialCode;
+    @Column(name = "raw_code")
+    private String rawCode;
     
-    @Column(name = "material_name")
-    private String materialName;
+    @Column(name = "raw_name")
+    private String rawName;
     
-    @Column(name = "material_series")
-    private String materialSeries;
+    @Column(name = "raw_series")
+    private String rawSeries;
     
     @Column(name = "expiration_date")
     private Date expirationDate;
@@ -47,8 +47,8 @@ public class Raw implements Serializable{
     @Column(name = "measure")
     private String measure;
     
-    @Column(name = "material_mass")
-    private long materialMass;
+    @Column(name = "raw_mass")
+    private long rawMass;
     
     @ManyToMany(fetch = FetchType.LAZY, mappedBy = "raws")
     @JsonIgnore
@@ -87,28 +87,28 @@ public class Raw implements Serializable{
         this.idRaw = idRaw;
     }
 
-    public String getMaterialCode() {
-        return materialCode;
+    public String getRawCode() {
+        return rawCode;
     }
 
-    public void setMaterialCode(String materialCode) {
-        this.materialCode = materialCode;
+    public void setRawCode(String rawCode) {
+        this.rawCode = rawCode;
     }
 
-    public String getMaterialName() {
-        return materialName;
+    public String getRawName() {
+        return rawName;
     }
 
-    public void setMaterialName(String materialName) {
-        this.materialName = materialName;
+    public void setRawName(String rawName) {
+        this.rawName = rawName;
     }
 
-    public String getMaterialSeries() {
-        return materialSeries;
+    public String getRawSeries() {
+        return rawSeries;
     }
 
-    public void setMaterialSeries(String materialSeries) {
-        this.materialSeries = materialSeries;
+    public void setRawSeries(String rawSeries) {
+        this.rawSeries = rawSeries;
     }
 
     public Date getExpirationDate() {
@@ -127,12 +127,12 @@ public class Raw implements Serializable{
         this.measure = measure;
     }
 
-    public long getMaterialMass() {
-        return materialMass;
+    public long getRawMass() {
+        return rawMass;
     }
 
-    public void setMaterialMass(long materialMass) {
-        this.materialMass = materialMass;
+    public void setRawMass(long rawMass) {
+        this.rawMass = rawMass;
     }
 
     

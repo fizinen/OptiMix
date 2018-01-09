@@ -20,13 +20,13 @@
 
 
             <android.support.design.widget.TextInputLayout
-                android:id="@+id/TextMaterialCodeLayout"
+                android:id="@+id/TextRawCodeLayout"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:gravity="left">
 
                 <EditText
-                    android:id="@+id/analysis_materialNumber_input"
+                    android:id="@+id/analysis_rawNumber_input"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
@@ -39,13 +39,13 @@
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
-                android:id="@+id/TextMaterialNameLayout"
+                android:id="@+id/TextRawNameLayout"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:gravity="left">
 
                 <EditText
-                    android:id="@+id/analysis_materialName_input"
+                    android:id="@+id/analysis_rawName_input"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
@@ -58,13 +58,13 @@
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
-                android:id="@+id/TextMaterialSeriesLayout"
+                android:id="@+id/TextRawSeriesLayout"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:gravity="left">
 
                 <EditText
-                    android:id="@+id/analysis_materialSeries_input"
+                    android:id="@+id/analysis_rawSeries_input"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
@@ -77,13 +77,13 @@
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
-                android:id="@+id/TextMaterialDateBeforeLayout"
+                android:id="@+id/TextRawDateBeforeLayout"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:gravity="left">
 
                 <EditText
-                    android:id="@+id/analysis_materialDateBefore_input"
+                    android:id="@+id/analysis_rawDateBefore_input"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
@@ -96,13 +96,13 @@
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
-                android:id="@+id/TextMaterialAmountLayout"
+                android:id="@+id/TextRawAmountLayout"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:gravity="left">
 
                 <EditText
-                    android:id="@+id/analysis_materialAmount_input"
+                    android:id="@+id/analysis_rawAmount_input"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"

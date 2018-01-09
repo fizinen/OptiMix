@@ -6,7 +6,7 @@ import android.widget.Toast;
 
 import java.io.Serializable;
 
-import hr.foi.air.optimix.model.Material;
+import hr.foi.air.optimix.model.Raw;
 import hr.foi.air.optimix.optimix.AnalysisFragment;
 import hr.foi.air.optimix.webservice.ServiceAsyncTask;
 import hr.foi.air.optimix.webservice.ServiceCaller;
@@ -25,7 +25,7 @@ public class CreateRawHandler extends ResponseHandler {
 
     @Override
     public boolean handleResponse(ServiceResponse response) {
-       Material material = (Material) getArgs()[0];
+        Raw material = (Raw) getArgs()[0];
 
         if(response.getHttpCode() == 200) {
 
@@ -37,7 +37,7 @@ public class CreateRawHandler extends ResponseHandler {
         } else {
             // show fail
             Toast.makeText(getActivity(),
-                    "Material creation failed, please try again (" + response.getHttpCode() + ")",
+                    "Raw creation failed, please try again (" + response.getHttpCode() + ")",
                     Toast.LENGTH_LONG).show();
             return false;
         }

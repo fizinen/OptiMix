@@ -1,25 +1,16 @@
 package hr.foi.air.optimix.optimix;
 
-import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.support.annotation.Nullable;
-import android.support.design.widget.TextInputEditText;
-import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
-import android.text.Layout;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
@@ -27,14 +18,12 @@ import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
-import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import hr.foi.air.optimix.core.Input;
-import hr.foi.air.optimix.model.Material;
+import hr.foi.air.optimix.model.Raw;
 import hr.foi.air.optimix.model.Recipe;
-import hr.foi.air.optimix.optimix.adapters.MaterialsAdapter;
+import hr.foi.air.optimix.optimix.adapters.RawsAdapter;
 import hr.foi.air.optimix.optimix.handlers.CreateRecipeHandler;
 import hr.foi.air.optimix.webservice.ServiceAsyncTask;
 import hr.foi.air.optimix.webservice.ServiceCaller;
@@ -49,14 +38,14 @@ import hr.foi.air.optimix.webservice.SimpleResponseHandler;
 public class CreateRecipeActivity extends AppCompatActivity {
 
     @BindView(R.id.submit_recipe_button) Button submitButton;
-    @BindView(R.id.add_new_material_button) Button newMaterialButton;
+    @BindView(R.id.add_new_raw_button) Button newRawButton;
     @BindView(R.id.recipe_details_layout) ViewGroup recipeDetailsLayout;
     @BindView(R.id.recipe_name)
     EditText recipename;
 
-    private int materialAddedCounter;
+    private int rawAddedCounter;
     private int maximalNumberOfAddedSpinners;
-    private Spinner generatedMaterialsSpinner;
+    private Spinner generatedRawsSpinner;
 
     public CreateRecipeActivity(){
     }
@@ -66,9 +55,9 @@ public class CreateRecipeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_recipe);
         ButterKnife.bind(this);
-        materialAddedCounter = 0;
+        rawAddedCounter = 0;
         maximalNumberOfAddedSpinners = 1;
-        newMaterialButton.setOnClickListener(onMaterialAdded);
+        newRawButton.setOnClickListener(onRawAdded);
         submitButton.setOnClickListener(onSubmit);
 
         setTitle("Dodavanje recepata");
@@ -91,17 +80,17 @@ public class CreateRecipeActivity extends AppCompatActivity {
 
         }
     };
-    View.OnClickListener onMaterialAdded = new View.OnClickListener(){
+    View.OnClickListener onRawAdded = new View.OnClickListener(){
         @Override
         public void onClick(View v) {
             //Addition of spinner elements
-            if(materialAddedCounter != (maximalNumberOfAddedSpinners)) {
+            if(rawAddedCounter != (maximalNumberOfAddedSpinners)) {
                 LayoutInflater inflater = (LayoutInflater) getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                 ViewGroup parent = (ViewGroup) findViewById(R.id.insertion_point);
-                View view = inflater.inflate(R.layout.layout_material_addition, null);
-                parent.addView(view, materialAddedCounter);
-                materialAddedCounter++;
-                generatedMaterialsSpinner = (Spinner) view.findViewById(R.id.generated_material_selection_spinner);
+                View view = inflater.inflate(R.layout.layout_raw_addition, null);
+                parent.addView(view, rawAddedCounter);
+                rawAddedCounter++;
+                generatedRawsSpinner = (Spinner) view.findViewById(R.id.generated_raw_selection_spinner);
             }else {
                 Toast.makeText(getApplicationContext(), "No new materials to add to the recipe", Toast.LENGTH_LONG).show();
             }
@@ -120,10 +109,10 @@ public class CreateRecipeActivity extends AppCompatActivity {
         @Override
         public boolean handleResponse(ServiceResponse response) {
             if(response.getHttpCode() == 200) {
-                Type listType = new TypeToken<ArrayList<Material>>() { }.getType();
-                ArrayList<Material> t = new Gson().fromJson(response.getJsonResponse(), listType);
+                Type listType = new TypeToken<ArrayList<Raw>>() { }.getType();
+                ArrayList<Raw> t = new Gson().fromJson(response.getJsonResponse(), listType);
                 maximalNumberOfAddedSpinners = t.size() ;
-                generatedMaterialsSpinner.setAdapter(new MaterialsAdapter(getApplicationContext(), R.layout.activity_create_recipe, t));
+                generatedRawsSpinner.setAdapter(new RawsAdapter(getApplicationContext(), R.layout.activity_create_recipe, t));
                 return true;
             } else {
                 Toast.makeText(getApplicationContext(), "Failed to fetch the materials", Toast.LENGTH_LONG).show();

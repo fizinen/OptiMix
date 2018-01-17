@@ -28,11 +28,11 @@ import hr.foi.air.optimix.webservice.SimpleResponseHandler;
 
 /**
  * Created by Bogdan Erdelji on 31/10/2017.
- *
+ * <p>
  * This is a class intended
  */
 
-public class UserListFragment extends Fragment implements View.OnClickListener{
+public class UserListFragment extends Fragment implements View.OnClickListener {
 
     FloatingActionButton buttonAddNewUsers;
     //@BindView(R.id.listViewUsers)
@@ -47,7 +47,7 @@ public class UserListFragment extends Fragment implements View.OnClickListener{
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_user_list, container, false);
 
         //dohvati sve osobe
@@ -55,7 +55,7 @@ public class UserListFragment extends Fragment implements View.OnClickListener{
         users = (ListView) view.findViewById(R.id.listViewUsers);
 
         ServiceParams params = new ServiceParams(
-                getString( R.string.all_persons_path) ,
+                getString(R.string.all_persons_path),
                 ServiceCaller.HTTP_GET, null);
         new ServiceAsyncTask(usersListHandler).execute(params);
 
@@ -65,35 +65,36 @@ public class UserListFragment extends Fragment implements View.OnClickListener{
     }
 
 
-
     @OnClick(R.id.floatingActionButtonAddNewUsers)
     public void openNewUserCreationActivity() {
 
         Activity parentActivity = getActivity();
         Intent intent = new Intent(parentActivity, CreateUserActivity.class);
-        ((FragmentIntentInterface)parentActivity).startIntentFromFragment(intent);
+        ((FragmentIntentInterface) parentActivity).startIntentFromFragment(intent);
     }
 
     @Override
     public void onClick(View v) {
 
-        switch (v.getId()){
-            case R.id.floatingActionButtonAddNewUsers: openNewUserCreationActivity();
+        switch (v.getId()) {
+            case R.id.floatingActionButtonAddNewUsers:
+                openNewUserCreationActivity();
                 break;
-            }
+        }
     }
 
     SimpleResponseHandler usersListHandler = new SimpleResponseHandler() {
         @Override
         public boolean handleResponse(ServiceResponse response) {
-            if(response.getHttpCode() == 200) {
+            if (response.getHttpCode() == 200) {
 
-                Type listType = new TypeToken<ArrayList<Person>>() { }.getType();
+                Type listType = new TypeToken<ArrayList<Person>>() {
+                }.getType();
                 ArrayList<Person> t = new Gson().fromJson(response.getJsonResponse(), listType);
 
                 //setViewLayout(R.layout.fragment_team_history);
                 users.setAdapter(new UserAdapter(getActivity().getApplicationContext(),
-                            R.layout.fragment_user_list, t));
+                        R.layout.fragment_user_list, t));
 
                 return true;
             } else {

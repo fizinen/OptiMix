@@ -17,7 +17,8 @@ import java.util.ArrayList;
 
 import hr.foi.air.optimix.model.Raw;
 import hr.foi.air.optimix.model.Recipe;
-import hr.foi.air.optimix.optimix.adapters.RawAdapter;
+import hr.foi.air.optimix.optimix.adapters.RawsAdapter;
+import hr.foi.air.optimix.optimix.adapters.RecipeRawsAdapter;
 import hr.foi.air.optimix.webservice.ServiceAsyncTask;
 import hr.foi.air.optimix.webservice.ServiceCaller;
 import hr.foi.air.optimix.webservice.ServiceParams;
@@ -77,7 +78,7 @@ public class RecipeDetailActivity extends AppCompatActivity {
 
             ArrayList<Raw> rawArrayList = (ArrayList<Raw>) recipeObject.getListOfRecipeRaws();
             //Here we have to set adapter which we need to implement to show the arrayList <Raw>
-            recipeRaws.setAdapter(new RawAdapter(RecipeDetailActivity.this, R.layout.activity_recipe_detail, rawArrayList));
+            recipeRaws.setAdapter(new RecipeRawsAdapter(RecipeDetailActivity.this, R.layout.activity_recipe_detail, rawArrayList));
             */
         }
     }
@@ -111,7 +112,7 @@ public class RecipeDetailActivity extends AppCompatActivity {
 
                 ArrayList<Raw> rawArrayList = (ArrayList<Raw>) temporaryRecipeObject.getListOfRecipeRaws();
                 if (rawArrayList != null){
-                    recipeRaws.setAdapter(new RawAdapter(RecipeDetailActivity.this, R.layout.activity_recipe_detail, rawArrayList));
+                    recipeRaws.setAdapter(new RecipeRawsAdapter(RecipeDetailActivity.this, R.layout.activity_recipe_detail, rawArrayList));
                 }
                 return true;
             } else {

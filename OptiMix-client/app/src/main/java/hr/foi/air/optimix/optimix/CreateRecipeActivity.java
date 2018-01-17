@@ -100,12 +100,12 @@ public class CreateRecipeActivity extends AppCompatActivity {
             ServiceParams params = new ServiceParams(
                     getString( R.string.all_raw_path) ,
                     ServiceCaller.HTTP_GET, null);
-            new ServiceAsyncTask(materialListHandler).execute(params);
+            new ServiceAsyncTask(rawListHandler).execute(params);
 
         }
     };
 
-    SimpleResponseHandler materialListHandler = new SimpleResponseHandler() {
+    SimpleResponseHandler rawListHandler = new SimpleResponseHandler() {
         @Override
         public boolean handleResponse(ServiceResponse response) {
             if(response.getHttpCode() == 200) {

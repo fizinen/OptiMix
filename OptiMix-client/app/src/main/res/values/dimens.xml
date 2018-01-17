@@ -12,4 +12,6 @@
     <dimen name="layout_space">50dp</dimen>
 
     <integer name="ems_registration">10</integer>
+
+    <dimen name="list_item_space">10dp</dimen>
 </resources>

@@ -27,14 +27,9 @@ public class MainActivity extends AppCompatActivity implements FragmentIntentInt
         tabLayout.setupWithViewPager(viewPager);
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
         tabLayout.setTabMode(TabLayout.MODE_FIXED);
+        tabLayout.getTabAt(0).setText("Skladište");
+        tabLayout.getTabAt(1).setText("Analiza");
 
-        tabLayout.getTabAt(0).setIcon(R.drawable.ic_bubble_chart_white_36dp);
-
-        tabLayout.addTab(tabLayout.newTab());
-        tabLayout.getTabAt(1).setIcon(R.drawable.ic_dvr_white_36dp);
-
-        tabLayout.addTab(tabLayout.newTab());
-        tabLayout.getTabAt(2).setIcon(R.drawable.ic_show_chart_white_36dp);
     }
 
     @OnClick(R.id.floatingSettingsButton)

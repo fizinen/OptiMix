@@ -4,11 +4,9 @@ import android.content.Context;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import java.util.ArrayList;
-import java.util.logging.Logger;
 
 import hr.foi.air.optimix.model.Person;
 import hr.foi.air.optimix.optimix.R;
@@ -36,7 +34,7 @@ public class UserAdapter extends hr.foi.air.optimix.optimix.adapters.BaseAdapter
         final ViewHolder holder;
         try {
             if (convertView == null) {
-                vi = getInflater().inflate(R.layout.list_item, null);
+                vi = getInflater().inflate(R.layout.list_item_user, null);
                 holder = new ViewHolder();
                 holder.personName = (TextView) vi.findViewById(R.id.person_name);
                 holder.personSurname = (TextView) vi.findViewById(R.id.person_surname);

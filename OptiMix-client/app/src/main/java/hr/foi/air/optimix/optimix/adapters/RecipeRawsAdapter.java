@@ -17,16 +17,17 @@ import hr.foi.air.optimix.optimix.R;
  * Created by erdel on 9.12.2017..
  */
 
-public class RawAdapter extends hr.foi.air.optimix.optimix.adapters.BaseAdapter<Raw>{
-
-
-    public RawAdapter(Context context, int resource, ArrayList<Raw> items) {
+public class RecipeRawsAdapter extends hr.foi.air.optimix.optimix.adapters.BaseAdapter<Raw>{
+    Context context;
+    ArrayList<Raw> rawArrayList;
+    public RecipeRawsAdapter(Context context, int resource, ArrayList<Raw> items) {
         super(context, resource, items);
+        this.context = context;
+        this.rawArrayList = items;
     }
 
     public static class ViewHolder {
         public TextView rawName;
-        public TextView rawAmount;
     }
 
     @NonNull
@@ -39,7 +40,6 @@ public class RawAdapter extends hr.foi.air.optimix.optimix.adapters.BaseAdapter<
                 vi = getInflater().inflate(R.layout.list_item_raw_of_recipe, parent, false);
                 holder = new ViewHolder();
                 holder.rawName = (TextView) vi.findViewById(R.id.recipe_detail_list_raw_name);
-                holder.rawAmount =(TextView) vi.findViewById(R.id.recipe_detail_list_raw_amount);
                 vi.setTag(holder);
             } else {
                 holder = (ViewHolder) vi.getTag();
@@ -47,7 +47,6 @@ public class RawAdapter extends hr.foi.air.optimix.optimix.adapters.BaseAdapter<
 
             Raw current = getItems().get(position);
             holder.rawName.setText(current.getRawName());
-            holder.rawAmount.setText( String.valueOf(current.getRawMass()));
 
         } catch (Exception e) {
             Log.d("Error", "Couldn't create listing elements");

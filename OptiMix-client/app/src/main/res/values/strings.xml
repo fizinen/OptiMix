@@ -9,13 +9,11 @@
     <string name="username_input">ja</string>
     <string name="password">Lozinka</string>
     <string name="password_input">ti</string>
-    <string name="analysis_ux_input">UX</string>
 
     <!-- Create user -->
     <string name="person_name">Ime</string>
     <string name="person_surname">Prezime</string>
     <string name="person_desc">Opis</string>
-    <string name="person_radius">Radius</string>
     <string name="create_user">Dodaj</string>
     <string name="username_error">Wrong username!</string>
     <string name="password_error">Wrong password!</string>
@@ -30,6 +28,11 @@
     <string name="radio_technician">Tehničar</string>
     <string name="radio_chemist">Kemičar</string>
     <string name="list_authority">Ovlast:</string>
+    <string name="analysis_ux_input">UX</string>
+    <string name="analysis_raw_name_input">Naziv sirovine</string>
+    <string name="analysis_search_raw_input">Sirovine...</string>
+    <string name="analysis_raw_number_input">UX sirovine</string>
+    <string name="analysis_raw_date_input">Rok trajanja</string>
     <string name="analysis_quantity_input">Količina</string>
     <string name="analysis_water_input">Voda</string>
     <string name="analysis_fat_input">Mast</string>

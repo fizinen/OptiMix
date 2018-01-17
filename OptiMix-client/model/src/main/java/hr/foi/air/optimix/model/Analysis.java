@@ -9,10 +9,12 @@ import java.util.Date;
 
 public class Analysis implements Serializable {
 
-    long idAnalysis;
+    private long idAnalysis;
     private double water;
     private double fat;
     private double proteins;
+    private String expirationDate;
+    private long analysisRawMass;
     private Raw raw;
 
     public Raw getRaw() {
@@ -26,11 +28,14 @@ public class Analysis implements Serializable {
     //private List<AnalysisLog> analysisLog;
 
 
-    public Analysis(double water, double fat, double proteins, Raw raw) {
+    public Analysis(double water, double fat, double proteins, String expirationDate, long analysisRawMass,  Raw raw) {
         this.water = water;
         this.fat = fat;
         this.proteins = proteins;
+        this.expirationDate = expirationDate;
+        this.analysisRawMass = analysisRawMass;
         this.raw = raw;
+
     }
 
     public long getIdAnalysis() {
@@ -63,6 +68,22 @@ public class Analysis implements Serializable {
 
     public void setProteins(double proteins) {
         this.proteins = proteins;
+    }
+
+    public String getExpirationDate() {
+        return expirationDate;
+    }
+
+    public void setExpirationDate(String expirationDate) {
+        this.expirationDate = expirationDate;
+    }
+
+    public long getAnalysisRawMass() {
+        return analysisRawMass;
+    }
+
+    public void setAnalysisRawMass(long analysisRawMass) {
+        this.analysisRawMass = analysisRawMass;
     }
 
 }

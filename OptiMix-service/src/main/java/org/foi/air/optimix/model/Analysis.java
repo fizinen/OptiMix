@@ -7,6 +7,7 @@ package org.foi.air.optimix.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -42,6 +43,12 @@ public class Analysis implements Serializable {
     @Column(name = "proteins")
     private double proteins;
     
+    @Column(name = "expiration_date")
+    private Date expirationDate;
+    
+    @Column(name = "raw_mass")
+    private long analysisRawMass;
+    
     @ManyToOne(cascade = {CascadeType.MERGE})
     @JoinColumn(name = "id_raw")
     private Raw rawId;
@@ -58,8 +65,6 @@ public class Analysis implements Serializable {
         this.rawId = raw;
     }
 
-
-    
 
     public List<AnalysisLog> getUserAnalysis() {
         return analysisLog;
@@ -101,6 +106,22 @@ public class Analysis implements Serializable {
 
     public void setProteins(double proteins) {
         this.proteins = proteins;
+    }
+    
+    public Date getExpirationDate() {
+        return expirationDate;
+    }
+
+    public void setExpirationDate(Date expirationDate) {
+        this.expirationDate = expirationDate;
+    }
+
+    public long getAnalysisRawMass() {
+        return analysisRawMass;
+    }
+
+    public void setAnalysisRawMass(long analysisRawMass) {
+        this.analysisRawMass = analysisRawMass;
     }
 
 }

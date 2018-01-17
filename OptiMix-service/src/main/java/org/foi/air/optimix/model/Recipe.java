@@ -38,12 +38,24 @@ public class Recipe implements Serializable {
     @Column(name = "recipe_name")
     private String recipeName;
 
-    @Column(name = "recipe_mass")
-    private double recipeMass;
-
     @JsonIgnore
     @OneToMany(mappedBy = "recipeId", fetch = FetchType.LAZY)
     private List<RecipeLog> recipeLog;
+    
+    /*
+    @JsonIgnore
+    @OneToMany(mappedBy = "recipes", fetch = FetchType.LAZY)
+    private List<RecipeRaws> recipeRaws;
+    
+    public List<RecipeRaws> getRecipeRaws() {
+        return recipeRaws;
+    }
+
+    public void setRecipeRaws(List<RecipeRaws> recipeRaws) {
+        this.recipeRaws = recipeRaws;
+    }
+    
+    */
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "raw_recipe", joinColumns = {
@@ -52,6 +64,15 @@ public class Recipe implements Serializable {
                 @JoinColumn(name = "id_raw", nullable = false, updatable = false)})
     private List<Raw> raws;
 
+    public List<Raw> getRaws() {
+        return raws;
+    }
+
+    public void setRaws(List<Raw> raws) {
+        this.raws = raws;
+    }
+    
+    
     public List<RecipeLog> getRecipe() {
         return recipeLog;
     }
@@ -68,15 +89,6 @@ public class Recipe implements Serializable {
         this.recipeLog = recipeLog;
     }
 
-    public List<Raw> getRaws() {
-        return raws;
-    }
-
-    public void setRaws(List<Raw> raws) {
-        this.raws = raws;
-    }
-
-   
 
     public long getIdRecipe() {
         return idRecipe;
@@ -84,14 +96,6 @@ public class Recipe implements Serializable {
 
     public void setIdRecipe(long idRecipe) {
         this.idRecipe = idRecipe;
-    }
-
-    public double getRecipeMass() {
-        return recipeMass;
-    }
-
-    public void setRecipeMass(double recipeMass) {
-        this.recipeMass = recipeMass;
     }
 
     public String getRecipeName() {

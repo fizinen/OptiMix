@@ -72,6 +72,17 @@ public class RawController {
 
     }
     
+    @RequestMapping(value = "/{id}", method = RequestMethod.POST)
+    public ResponseEntity<Raw> retrieveRawById(@RequestParam long id) {
+        Logger.getLogger("RawController.java").log(Level.INFO,
+                "POST on /raw/" + id + " -- ");
+        Raw found = this.rawRepository.findByIdRaw(id);
+
+        return (found != null) ? new ResponseEntity(found, HttpStatus.OK)
+                : new ResponseEntity(HttpStatus.NOT_FOUND);
+
+    }
+    
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
     public ResponseEntity modify(@PathVariable long id, @RequestBody Raw raw) {
         Logger.getLogger("RawController.java").log(Level.INFO,

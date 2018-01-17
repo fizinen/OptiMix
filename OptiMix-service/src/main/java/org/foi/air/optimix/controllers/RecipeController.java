@@ -76,6 +76,16 @@ public class RecipeController {
 
     }
     
+    @RequestMapping(value = "/{id}", method = RequestMethod.POST)
+    public ResponseEntity<Recipe> retrieveRecipeById(@RequestParam long id) {
+        Logger.getLogger("RecipeController.java").log(Level.INFO,
+                "POST on /recipe/" + id + " -- ");
+        Recipe found = this.recipeRepository.findByIdRecipe(id);
+
+        return (found != null) ? new ResponseEntity(found, HttpStatus.OK)
+                : new ResponseEntity(HttpStatus.NOT_FOUND);
+
+    }
     
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
     public ResponseEntity modify(@PathVariable long id, @RequestBody Recipe recipe) {

@@ -1,17 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:padding="16dp"
-    android:layout_height="wrap_content">
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp">
+
     <ScrollView
+        android:id="@+id/recipe_creation_scrollView"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:id="@+id/recipe_creation_scrollView">
+        android:layout_height="fill_parent">
+
         <LinearLayout
             android:id="@+id/recipe_details_layout"
-            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
             <android.support.design.widget.TextInputLayout
                 android:id="@+id/recipe_name_layout"
                 android:layout_width="match_parent"
@@ -28,56 +32,40 @@
 
             <LinearLayout
                 android:id="@+id/insertion_point"
-                android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
             </LinearLayout>
+
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
+
                 <Button
                     android:id="@+id/add_new_raw_button"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
                     android:padding="15dp"
-                    android:text="@string/material_addition"
-                    android:layout_centerInParent="true"/>
+                    android:text="@string/material_addition" />
             </RelativeLayout>
 
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="5dp">
-                <android.support.design.widget.TextInputLayout
-                    android:id="@+id/shrinkage_coefficient"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-                    <EditText
-                        android:id="@+id/shrinkage_coefficient_amount"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="@string/shrinkage_coefficient_name"
-                        android:inputType="numberDecimal"
-                        android:padding="5dp" />
-                </android.support.design.widget.TextInputLayout>
-            </LinearLayout>
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
+
                 <Button
                     android:id="@+id/submit_recipe_button"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/buttonstyle"
-                    android:textColor="@color/white"
-                    android:text="@string/create_user"
                     android:layout_alignParentBottom="true"
                     android:layout_centerHorizontal="true"
-                    android:clickable="true"
                     android:layout_marginTop="20dp"
-                    />
+                    android:background="@drawable/buttonstyle"
+                    android:clickable="true"
+                    android:text="@string/create_user"
+                    android:textColor="@color/white" />
             </RelativeLayout>
         </LinearLayout>
     </ScrollView>

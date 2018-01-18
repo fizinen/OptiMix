@@ -60,7 +60,8 @@ public class StorageFragment extends android.support.v4.app.Fragment {
         public boolean handleResponse(ServiceResponse response) {
             if (response.getHttpCode() == 200) {
 
-                Type listType = new TypeToken<ArrayList<Analysis>>() { }.getType();
+                Type listType = new TypeToken<ArrayList<Analysis>>() {
+                }.getType();
                 ArrayList<Analysis> t = new Gson().fromJson(response.getJsonResponse(), listType);
 
 

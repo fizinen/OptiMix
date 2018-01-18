@@ -11,7 +11,6 @@ public class Recipe implements Serializable {
     long idRecipe;
     String recipeName;
     List<Raw> listOfRecipeRaws;
-    Double evaporationCoefficient;
 
     public Recipe() {
     }
@@ -34,14 +33,6 @@ public class Recipe implements Serializable {
 
     public void setRecipeName(String recipeName) {
         this.recipeName = recipeName;
-    }
-
-    public Double getEvaporationCoefficient() {
-        return evaporationCoefficient;
-    }
-
-    public void setEvaporationCoefficient(Double evaporationCoefficient) {
-        this.evaporationCoefficient = evaporationCoefficient;
     }
 
     public void addMaterial(Raw addedRaw){

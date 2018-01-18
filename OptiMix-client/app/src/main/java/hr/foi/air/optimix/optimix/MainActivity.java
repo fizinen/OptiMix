@@ -1,5 +1,7 @@
 package hr.foi.air.optimix.optimix;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
@@ -8,6 +10,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import butterknife.OnClick;
+import hr.foi.air.optimix.core.SessionManager;
 
 public class MainActivity extends AppCompatActivity implements FragmentIntentInterface {
 
@@ -27,14 +30,9 @@ public class MainActivity extends AppCompatActivity implements FragmentIntentInt
         tabLayout.setupWithViewPager(viewPager);
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
         tabLayout.setTabMode(TabLayout.MODE_FIXED);
+        tabLayout.getTabAt(0).setText("Skladište");
+        tabLayout.getTabAt(1).setText("Analiza");
 
-        tabLayout.getTabAt(0).setIcon(R.drawable.ic_bubble_chart_white_36dp);
-
-        tabLayout.addTab(tabLayout.newTab());
-        tabLayout.getTabAt(1).setIcon(R.drawable.ic_dvr_white_36dp);
-
-        tabLayout.addTab(tabLayout.newTab());
-        tabLayout.getTabAt(2).setIcon(R.drawable.ic_show_chart_white_36dp);
     }
 
     @OnClick(R.id.floatingSettingsButton)
@@ -49,4 +47,46 @@ public class MainActivity extends AppCompatActivity implements FragmentIntentInt
         startActivity(intent);
 
     }
-}
+
+    @Override
+    public void onBackPressed() {
+        showPopUp();
+
+    }
+
+    private void showPopUp() {
+
+        AlertDialog.Builder helpBuilder = new AlertDialog.Builder(this);
+        helpBuilder.setTitle("Log out");
+        helpBuilder.setMessage("Da li se uistinu želite odjaviti?");
+        helpBuilder.setPositiveButton("Da",
+                new DialogInterface.OnClickListener() {
+
+                    public void onClick(DialogInterface dialog, int which) {
+                        signOut();
+                    }
+                });
+
+        helpBuilder.setNegativeButton("Ne", new DialogInterface.OnClickListener() {
+
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                // Zatvori dijalog
+            }
+        });
+
+        AlertDialog helpDialog = helpBuilder.create();
+        helpDialog.show();
+
+    }
+
+    private void signOut() {
+                SessionManager.getInstance(getApplicationContext()).destroyAll();
+                for (int i = 0; i < getFragmentManager().getBackStackEntryCount(); ++i) {
+                    getFragmentManager().popBackStack();
+                }
+                MainActivity.super.onBackPressed();
+            }
+
+
+    }

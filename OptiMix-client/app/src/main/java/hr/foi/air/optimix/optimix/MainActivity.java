@@ -3,6 +3,7 @@ package hr.foi.air.optimix.optimix;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -11,6 +12,7 @@ import android.view.View;
 
 import butterknife.OnClick;
 import hr.foi.air.optimix.core.SessionManager;
+import hr.foi.air.optimix.model.Person;
 
 public class MainActivity extends AppCompatActivity implements FragmentIntentInterface {
 
@@ -19,11 +21,16 @@ public class MainActivity extends AppCompatActivity implements FragmentIntentInt
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        Person personInSession = SessionManager.getInstance(this).retrieveSession(SessionManager.PERSON_INFO_KEY, Person.class);
+
+
         ViewPager viewPager = (ViewPager) findViewById(R.id.activity_main_view_pager);
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
 
         adapter.addFragment(new StorageFragment());
-        adapter.addFragment(new AnalysisFragment());
+        if(personInSession.getAuthority() == 0 || personInSession.getAuthority() == 2){
+            adapter.addFragment(new AnalysisFragment());
+        }
         viewPager.setAdapter(adapter);
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.main_tab_layout);
@@ -31,7 +38,17 @@ public class MainActivity extends AppCompatActivity implements FragmentIntentInt
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
         tabLayout.setTabMode(TabLayout.MODE_FIXED);
         tabLayout.getTabAt(0).setText("Skladište");
-        tabLayout.getTabAt(1).setText("Analiza");
+        if(personInSession.getAuthority() == 0 || personInSession.getAuthority() == 2){
+            tabLayout.getTabAt(1).setText("Analiza");
+        }
+
+
+
+
+        if (personInSession.getAuthority() != 0){
+            FloatingActionButton settingButton = (FloatingActionButton) this.findViewById(R.id.floatingSettingsButton);
+            settingButton.hide();
+        }
 
     }
 

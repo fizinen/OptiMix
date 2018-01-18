@@ -22,7 +22,6 @@
             android:id="@+id/recipe_detail_list_raw_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_marginLeft="15dp"
             android:textAppearance="?android:attr/textAppearanceMedium"

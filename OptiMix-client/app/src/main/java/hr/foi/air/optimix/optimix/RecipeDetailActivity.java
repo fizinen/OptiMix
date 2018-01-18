@@ -67,7 +67,7 @@ public class RecipeDetailActivity extends AppCompatActivity {
 
                 recipeName.setText(recipe.getRecipeName());
 
-                recipeRaws.setAdapter(new RawAdapter(RecipeDetailActivity.this,
+                recipeRaws.setAdapter(new RawsAdapter(RecipeDetailActivity.this,
                         R.layout.activity_recipe_detail, recipeRawsArray));
 						
                 return true;

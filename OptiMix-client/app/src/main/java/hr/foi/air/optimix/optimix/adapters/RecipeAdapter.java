@@ -63,7 +63,7 @@ public class RecipeAdapter extends hr.foi.air.optimix.optimix.adapters.BaseAdapt
 
             ArrayList<Raw> arrlistofRaws = new ArrayList<Raw>(listOfRecipeRaws);
 
-            recipeRaws.setAdapter(new RawAdapter(context, R.layout.activity_recipe_detail, arrlistofRaws));
+            recipeRaws.setAdapter(new RawsAdapter(context, R.layout.activity_recipe_detail, arrlistofRaws));
 
 
         } catch (Exception e) {

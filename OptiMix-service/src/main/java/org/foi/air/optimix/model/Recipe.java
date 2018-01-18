@@ -42,9 +42,9 @@ public class Recipe implements Serializable {
     @OneToMany(mappedBy = "recipeId", fetch = FetchType.LAZY)
     private List<RecipeLog> recipeLog;
     
-    /*
+    
     @JsonIgnore
-    @OneToMany(mappedBy = "recipes", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "rawRecipeId", fetch = FetchType.LAZY)
     private List<RecipeRaws> recipeRaws;
     
     public List<RecipeRaws> getRecipeRaws() {
@@ -55,7 +55,7 @@ public class Recipe implements Serializable {
         this.recipeRaws = recipeRaws;
     }
     
-    */
+    /*
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "raw_recipe", joinColumns = {
@@ -72,7 +72,7 @@ public class Recipe implements Serializable {
         this.raws = raws;
     }
     
-    
+    */
     public List<RecipeLog> getRecipe() {
         return recipeLog;
     }

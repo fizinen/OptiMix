@@ -25,6 +25,7 @@ import javax.persistence.Table;
 /**
  *
  * @author Gloria Babić
+ * @author Lenovo
  */
 @Entity
 @Table(name = "recipe")
@@ -39,8 +40,12 @@ public class Recipe implements Serializable {
     private String recipeName;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "recipeId", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "recipeIdLog", fetch = FetchType.LAZY)
     private List<RecipeLog> recipeLog;
+    
+    @JsonIgnore
+    @OneToMany(mappedBy = "recipeId", fetch = FetchType.LAZY)
+    private List<Calculation> calculations;
     
     
     @JsonIgnore
@@ -73,23 +78,6 @@ public class Recipe implements Serializable {
     }
     
     */
-    public List<RecipeLog> getRecipe() {
-        return recipeLog;
-    }
-
-    public void setRecipe(List<RecipeLog> recipe) {
-        this.recipeLog = recipe;
-    }
-
-    public List<RecipeLog> getRecipeLog() {
-        return recipeLog;
-    }
-
-    public void setRecipeLog(List<RecipeLog> recipeLog) {
-        this.recipeLog = recipeLog;
-    }
-
-
     public long getIdRecipe() {
         return idRecipe;
     }
@@ -105,5 +93,23 @@ public class Recipe implements Serializable {
     public void setRecipeName(String recipeName) {
         this.recipeName = recipeName;
     }
+
+    public List<RecipeLog> getRecipeLog() {
+        return recipeLog;
+    }
+
+    public void setRecipeLog(List<RecipeLog> recipeLog) {
+        this.recipeLog = recipeLog;
+    }
+
+    public List<Calculation> getCalculations() {
+        return calculations;
+    }
+
+    public void setCalculations(List<Calculation> calculations) {
+        this.calculations = calculations;
+    }
+    
+    
 
 }

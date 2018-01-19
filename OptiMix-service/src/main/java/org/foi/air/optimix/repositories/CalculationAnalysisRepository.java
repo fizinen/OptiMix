@@ -5,6 +5,7 @@
  */
 package org.foi.air.optimix.repositories;
 
+import java.util.List;
 import javax.persistence.Table;
 import org.foi.air.optimix.model.CalculationAnalysis;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -19,5 +20,7 @@ import org.springframework.stereotype.Repository;
 public interface CalculationAnalysisRepository extends JpaRepository<CalculationAnalysis, String>{
     
     public CalculationAnalysis findByIdCalculationAnalysis(long id);
+    
+    public List<CalculationAnalysis> findAllByCalculationId(long calculationId);
     
 }

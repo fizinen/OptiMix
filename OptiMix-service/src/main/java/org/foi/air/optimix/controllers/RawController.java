@@ -27,28 +27,28 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping(value = "/raw")
 public class RawController {
-    
+
     RawRepository rawRepository;
-    
+
     @Autowired
-    public RawController (RawRepository rawRepository){
+    public RawController(RawRepository rawRepository) {
         this.rawRepository = rawRepository;
     }
-    
+
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public ResponseEntity<List<Raw>> retrieveAll() {
         Logger.getLogger("RawController.java").log(Level.INFO,
                 "GET on /raw -- retrieving full list of materials");
         return new ResponseEntity(this.rawRepository.findAll(), HttpStatus.OK);
     }
-    
+
     @RequestMapping(value = "/all", method = RequestMethod.POST)
     public ResponseEntity<List<Raw>> retrieveRaws() {
         Logger.getLogger("RawController.java").log(Level.INFO,
                 "POST on /raw/all -- retrieving full list of materials");
         return new ResponseEntity(this.rawRepository.findAll(), HttpStatus.OK);
     }
-    
+
     @RequestMapping(value = "/addraw", method = RequestMethod.POST)
     public ResponseEntity<Raw> addraw(@RequestBody Raw raw) {
 
@@ -60,7 +60,7 @@ public class RawController {
                 : new ResponseEntity(HttpStatus.BAD_REQUEST);
 
     }
-    
+
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public ResponseEntity<Raw> retrieveById(@RequestParam long id) {
         Logger.getLogger("RawController.java").log(Level.INFO,
@@ -71,7 +71,7 @@ public class RawController {
                 : new ResponseEntity(HttpStatus.NOT_FOUND);
 
     }
-    
+
     @RequestMapping(value = "/{id}", method = RequestMethod.POST)
     public ResponseEntity<Raw> retrieveRawById(@RequestParam long id) {
         Logger.getLogger("RawController.java").log(Level.INFO,
@@ -82,14 +82,14 @@ public class RawController {
                 : new ResponseEntity(HttpStatus.NOT_FOUND);
 
     }
-    
+
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
     public ResponseEntity modify(@PathVariable long id, @RequestBody Raw raw) {
         Logger.getLogger("RawController.java").log(Level.INFO,
                 "PUT on /raw/" + id + " -- " + raw.toString());
-        
+
         Raw signed = this.rawRepository.findByIdRaw(id);
-        if(signed != null) {
+        if (signed != null) {
             this.rawRepository.save(raw);
             Logger.getLogger("RawController.java").log(Level.INFO,
                     "Update successful for " + raw.toString());
@@ -99,6 +99,6 @@ public class RawController {
                     "No raw found for id " + id);
             return new ResponseEntity(HttpStatus.NOT_FOUND);
         }
-}
-    
+    }
+
 }

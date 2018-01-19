@@ -22,39 +22,40 @@ import org.springframework.web.bind.annotation.RestController;
 
 /**
  *
-<<<<<<< HEAD
+ * <<<<<<< HEAD
  * @author Gloria Babić
 =======
  * @author Lenovo
 >>>>>>> 54add8ea1726d6f04e5c3e973ea29b241ae33489
  */
+
 @RestController
 @RequestMapping(value = "/analysis")
 public class AnalysisController {
 
     AnalysisRepository analysisRepository;
-    
+
     @Autowired
-    public AnalysisController (AnalysisRepository analysisRepository) {
+    public AnalysisController(AnalysisRepository analysisRepository) {
         this.analysisRepository = analysisRepository;
     }
-    
+
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public ResponseEntity<List<Analysis>> retrieveAll() {
         Logger.getLogger("AnalysisController.java").log(Level.INFO,
                 "GET on /analysis -- retrieving full list of analysis");
         return new ResponseEntity(this.analysisRepository.findAll(), HttpStatus.OK);
     }
-    
+
     @RequestMapping(value = "/all", method = RequestMethod.POST)
     public ResponseEntity<List<Analysis>> retrieveUsers() {
         Logger.getLogger("AnalysisController.java").log(Level.INFO,
                 "POST on /analysis/all -- retrieving full list of analysis");
         return new ResponseEntity(this.analysisRepository.findAll(), HttpStatus.OK);
     }
-    
+
     @RequestMapping(value = "/addanalysis", method = RequestMethod.POST)
-    public ResponseEntity<Analysis> addanalysis (@RequestBody Analysis analysis) {
+    public ResponseEntity<Analysis> addanalysis(@RequestBody Analysis analysis) {
 
         Logger.getLogger("AnalysisController.java").log(Level.INFO,
                 "POST on /analysis/addanalysis -- " + analysis.toString());
@@ -64,7 +65,7 @@ public class AnalysisController {
                 : new ResponseEntity(HttpStatus.BAD_REQUEST);
 
     }
-    
+
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public ResponseEntity<Analysis> retrieveById(@RequestParam long id) {
         Logger.getLogger("AnalysisController.java").log(Level.INFO,
@@ -75,14 +76,14 @@ public class AnalysisController {
                 : new ResponseEntity(HttpStatus.NOT_FOUND);
 
     }
-    
+
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
     public ResponseEntity modify(@PathVariable long id, @RequestBody Analysis analysis) {
         Logger.getLogger("AnalysisController.java").log(Level.INFO,
                 "PUT on /analysis/" + id + " -- " + analysis.toString());
-        
+
         Analysis signed = this.analysisRepository.findByIdAnalysis(id);
-        if(signed != null) {
+        if (signed != null) {
             this.analysisRepository.save(analysis);
             Logger.getLogger("AnalysisController.java").log(Level.INFO,
                     "Update successful for " + analysis.toString());
@@ -93,6 +94,6 @@ public class AnalysisController {
             return new ResponseEntity(HttpStatus.NOT_FOUND);
         }
 
-}
-    
+    }
+
 }

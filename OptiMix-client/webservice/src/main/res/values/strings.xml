@@ -9,7 +9,8 @@
     <string name="all_persons_path">/person/all</string>
     <string name="all_raw_path">/raw/all</string>
     <string name="all_recipes_path">/recipe/all/</string>
-    <string name="recipe_path">/recipe/</string>
+    <string name="recipe_path">/recipe/zu?id=</string>
+    <string name="raws_for_recipe_path">/reciperaws/recipe?recipe_id=</string>
     <string name="all_analysis_path">/analysis/all/</string>
 
 

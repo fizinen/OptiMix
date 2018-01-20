@@ -58,10 +58,10 @@ public class StorageAdapter extends hr.foi.air.optimix.optimix.adapters.BaseAdap
             holder.rawFat.setText(String.valueOf(current.getFat()));
             holder.rawProteins.setText(String.valueOf(current.getProteins()));
 
-            Raw currentRaw = current.getRaw();
+            Raw currentRaw = current.getRawId();
             if (currentRaw != null){
                 holder.rawName.setText(currentRaw.getRawName());
-                holder.rawUx.setText(currentRaw.getRawCode());
+                holder.rawUx.setText(String.valueOf((currentRaw.getRawCode()) + "-" + String.valueOf(current.getExpirationDate())));
                 holder.rawQuantity.setText(String.valueOf(current.getAnalysisRawMass()));
             }
             else {

@@ -79,7 +79,7 @@ public class CalculationAnalysisController {
     }
     
     
-    @RequestMapping(value = "/recipe{calculationId}", method = RequestMethod.GET)
+    @RequestMapping(value = "/calculation{calculationId}", method = RequestMethod.GET)
     public ResponseEntity<List<CalculationAnalysis>> retrieveAllForCalculations(@RequestParam("calculation_id") long calculationId) {
         Logger.getLogger("CalculationAnalysisController.java").log(Level.INFO,
                 "GET on /calculationanalysis/calculation" + calculationId + " -- retrieving calculationanalysis list of specific calculation");

@@ -38,10 +38,6 @@ public class CalculationAnalysis implements Serializable{
     public long getCalculationId() {
         return calculationId;
     }
-
-    public void setCalculationId(long calculationId) {
-        this.calculationId = calculationId;
-    }
     
     @ManyToOne
     @JoinColumn(name = "calculation")

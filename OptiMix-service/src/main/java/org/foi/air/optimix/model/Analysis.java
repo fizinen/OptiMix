@@ -54,7 +54,7 @@ public class Analysis implements Serializable {
     private Raw rawId;
     
     @JsonIgnore
-    @OneToMany(mappedBy = "analysisId", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "analysisIdLog", fetch = FetchType.LAZY)
     private List<AnalysisLog> analysisLog;
     
     @JsonIgnore
@@ -76,8 +76,7 @@ public class Analysis implements Serializable {
     public void setRawId(Raw rawId) {
         this.rawId = rawId;
     }
-    
-    
+
     public List<AnalysisLog> getAnalysisLog() {
         return analysisLog;
     }

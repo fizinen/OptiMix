@@ -93,6 +93,15 @@ public class RecipeRawsController {
         return new ResponseEntity(this.recipeRawsRepository.findAllByRecipeId(recipeId), HttpStatus.OK);
 
     }
+    
+    @RequestMapping(value = "/recipe{recipeId}", method = RequestMethod.POST)
+    public ResponseEntity<List<RecipeRaws>> retrieveAllForRecipesId(@RequestParam("recipe_id") long recipeId) {
+        Logger.getLogger("RecipeRawsController.java").log(Level.INFO,
+                "POST on /reciperaws/recipe" + recipeId + " -- retrieving reciperaws list of specific recipe");
+        
+        return new ResponseEntity(this.recipeRawsRepository.findAllByRecipeId(recipeId), HttpStatus.OK);
+
+    }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
     public ResponseEntity modify(@PathVariable long id, @RequestBody RecipeRaws recipeRaws) {

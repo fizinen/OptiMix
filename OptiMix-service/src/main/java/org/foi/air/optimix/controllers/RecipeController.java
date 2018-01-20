@@ -65,10 +65,10 @@ public class RecipeController {
     }
     
     
-    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "{id}", method = RequestMethod.GET)
     public ResponseEntity<Recipe> retrieveById(@RequestParam long id) {
         Logger.getLogger("RecipeController.java").log(Level.INFO,
-                "GET on /recipe/" + id + " -- ");
+                "GET on /recipe" + id + " -- ");
         Recipe found = this.recipeRepository.findByIdRecipe(id);
 
         return (found != null) ? new ResponseEntity(found, HttpStatus.OK)
@@ -76,10 +76,10 @@ public class RecipeController {
 
     }
     
-    @RequestMapping(value = "/{id}", method = RequestMethod.POST)
+    @RequestMapping(value = "{id}", method = RequestMethod.POST)
     public ResponseEntity<Recipe> retrieveRecipeById(@RequestParam long id) {
         Logger.getLogger("RecipeController.java").log(Level.INFO,
-                "POST on /recipe/" + id + " -- ");
+                "POST on /recipe" + id + " -- ");
         Recipe found = this.recipeRepository.findByIdRecipe(id);
 
         return (found != null) ? new ResponseEntity(found, HttpStatus.OK)
@@ -87,10 +87,10 @@ public class RecipeController {
 
     }
     
-    @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+    @RequestMapping(value = "{id}", method = RequestMethod.PUT)
     public ResponseEntity modify(@PathVariable long id, @RequestBody Recipe recipe) {
         Logger.getLogger("RecipeController.java").log(Level.INFO,
-                "PUT on /recipe/" + id + " -- " + recipe.toString());
+                "PUT on /recipe" + id + " -- " + recipe.toString());
         
         Recipe signed = this.recipeRepository.findByIdRecipe(id);
         if(signed != null) {

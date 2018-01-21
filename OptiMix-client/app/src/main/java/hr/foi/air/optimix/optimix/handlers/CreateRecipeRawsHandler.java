@@ -24,8 +24,6 @@ public class CreateRecipeRawsHandler extends ResponseHandler {
 
         if(response.getHttpCode() == 200) {
 
-            getActivity().startActivity(new Intent(getActivity(), CreateRecipeActivity.class));
-            getActivity().finish();
 
             return true;
         } else {

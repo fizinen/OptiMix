@@ -25,7 +25,6 @@ import hr.foi.air.optimix.model.Raw;
 import hr.foi.air.optimix.model.Recipe;
 import hr.foi.air.optimix.model.RecipeRaws;
 import hr.foi.air.optimix.optimix.adapters.RawsAdapter;
-import hr.foi.air.optimix.optimix.adapters.RecipeAdapter;
 import hr.foi.air.optimix.optimix.handlers.CreateRecipeHandler;
 import hr.foi.air.optimix.optimix.handlers.CreateRecipeRawsHandler;
 import hr.foi.air.optimix.webservice.ServiceAsyncTask;
@@ -47,17 +46,17 @@ public class CreateRecipeActivity extends AppCompatActivity {
     @BindView(R.id.recipe_details_layout)
     ViewGroup recipeDetailsLayout;
     @BindView(R.id.recipe_name)
-    EditText recipename;
+    EditText recipeName;
 
 
     private int rawAddedCounter;
     private int maximalNumberOfAddedSpinners;
-    private Spinner generatedRawsSpinner;
-    private EditText generatedRawAmount;
+    ArrayList<Spinner> generatedRawsSpinner;
+    ArrayList<EditText> generatedRawAmount;
 
     Recipe createdRecipe;
-    Raw rawName;
-    double rawAmout;
+    ArrayList<Raw> rawName;
+    ArrayList<Double> rawAmount;
 
 
     public CreateRecipeActivity() {
@@ -73,6 +72,10 @@ public class CreateRecipeActivity extends AppCompatActivity {
         newRawButton.setOnClickListener(onRawAdded);
         submitButton.setOnClickListener(onSubmit);
         createdRecipe = new Recipe();
+        generatedRawsSpinner = new ArrayList<Spinner>();
+        generatedRawAmount = new ArrayList<EditText>() ;
+        rawName = new ArrayList<Raw>();
+        rawAmount = new ArrayList<Double>();
 
         setTitle("Dodavanje recepata");
     }
@@ -88,8 +91,10 @@ public class CreateRecipeActivity extends AppCompatActivity {
                 View view = inflater.inflate(R.layout.layout_raw_addition, null);
                 parent.addView(view, rawAddedCounter);
                 rawAddedCounter++;
-                generatedRawsSpinner = (Spinner) view.findViewById(R.id.generated_raw_selection_spinner);
-                generatedRawAmount = (EditText) view.findViewById(R.id.generated_raw_amount);
+                Spinner spinner = (Spinner) view.findViewById(R.id.generated_raw_selection_spinner);
+                generatedRawsSpinner.add(spinner);
+                EditText editText = (EditText) view.findViewById(R.id.generated_raw_amount);
+                generatedRawAmount.add(editText);
 
             } else {
                 Toast.makeText(getApplicationContext(), "No new materials to add to the recipe", Toast.LENGTH_LONG).show();
@@ -106,7 +111,6 @@ public class CreateRecipeActivity extends AppCompatActivity {
     };
 
 
-
     SimpleResponseHandler rawListHandler = new SimpleResponseHandler() {
         @Override
         public boolean handleResponse(ServiceResponse response) {
@@ -115,7 +119,7 @@ public class CreateRecipeActivity extends AppCompatActivity {
                 }.getType();
                 ArrayList<Raw> t = new Gson().fromJson(response.getJsonResponse(), listType);
                 maximalNumberOfAddedSpinners = t.size();
-                generatedRawsSpinner.setAdapter(new RawsAdapter(getApplicationContext(), R.layout.activity_create_recipe, t));
+                generatedRawsSpinner.get(rawAddedCounter-1).setAdapter(new RawsAdapter(getApplicationContext(), R.layout.activity_create_recipe, t));
                 return true;
             } else {
                 Toast.makeText(getApplicationContext(), "Failed to fetch the materials", Toast.LENGTH_LONG).show();
@@ -125,15 +129,19 @@ public class CreateRecipeActivity extends AppCompatActivity {
     };
 
 
-
     View.OnClickListener onSubmit = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
             Log.d("klik", "kliknut gumb submit");
 
-            String nameValue = recipename.getText().toString();
-            rawName = (Raw) generatedRawsSpinner.getSelectedItem();
-            rawAmout = Double.parseDouble(generatedRawAmount.getText().toString());
+            String nameValue = recipeName.getText().toString();
+            for (Spinner s:generatedRawsSpinner) {
+                rawName.add((Raw) s.getSelectedItem());
+            }
+
+            for (EditText e:generatedRawAmount) {
+                rawAmount.add(Double.parseDouble(e.getText().toString()));
+            }
 
             Recipe recipe = new Recipe(nameValue);
 
@@ -149,8 +157,6 @@ public class CreateRecipeActivity extends AppCompatActivity {
             new ServiceAsyncTask(recipeListHandler).execute(params);
 
 
-
-
         }
     };
 
@@ -162,16 +168,22 @@ public class CreateRecipeActivity extends AppCompatActivity {
                 }.getType();
                 ArrayList<Recipe> t = new Gson().fromJson(response.getJsonResponse(), listType);
 
-                for (Recipe r:t) {
-                    if(r.getRecipeName().equals(recipename.getText().toString())){
+                for (Recipe r : t) {
+                    if (r.getRecipeName().equals(recipeName.getText().toString())) {
                         createdRecipe = r;
-                        RecipeRaws recipeRaws = new RecipeRaws(createdRecipe.getIdRecipe(), createdRecipe, rawName, rawAmout);
 
-                        CreateRecipeRawsHandler createRecipeRawsHandler = new CreateRecipeRawsHandler(CreateRecipeActivity.this, recipeRaws);
+                        for (int i = 0; i < rawName.size() ; i++) {
 
-                        new ServiceAsyncTask(createRecipeRawsHandler).execute(new ServiceParams(
-                                getString(hr.foi.air.optimix.webservice.R.string.reciperaws_createreciperaws_path),
-                                ServiceCaller.HTTP_POST, recipeRaws));
+                            RecipeRaws recipeRaws = new RecipeRaws(createdRecipe.getIdRecipe(), createdRecipe, rawName.get(i), rawAmount.get(i));
+
+                            CreateRecipeRawsHandler createRecipeRawsHandler = new CreateRecipeRawsHandler(CreateRecipeActivity.this, recipeRaws);
+
+                            new ServiceAsyncTask(createRecipeRawsHandler).execute(new ServiceParams(
+                                    getString(hr.foi.air.optimix.webservice.R.string.reciperaws_createreciperaws_path),
+                                    ServiceCaller.HTTP_POST, recipeRaws));
+
+                        }
+
                         return true;
                     }
                 }

@@ -35,7 +35,7 @@ import hr.foi.air.optimix.core.DocumentListElement;
  * Created by erdel on 19.1.2018..
  */
 
-public class FilePrinter extends Fragment implements DocumentListElement {
+public class FilePrinter implements DocumentListElement {
     private File pdfFile;
     private int position;
     private String name = "Ispis izračuna";
@@ -43,25 +43,14 @@ public class FilePrinter extends Fragment implements DocumentListElement {
 
     private WebView mWebView;
 
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setRetainInstance(true);
-    }
 
-    @Nullable
-    @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-        return null;
-    }
-
-    private void doWebViewPrint(String headerName, String fileContent) {
+    private void doWebViewPrint(String headerName, String fileContent, final Activity activity) {
         // Create a WebView object specifically for printing
-        WebView webView = new WebView(getActivity());
+        WebView webView = new WebView(activity);
         webView.setWebViewClient(new WebViewClient() {
             @Override
             public void onPageFinished(WebView view, String url) {
-                createWebPrintJob(view);
+                createWebPrintJob(view, activity);
                 mWebView = null;
             }
         });
@@ -75,9 +64,9 @@ public class FilePrinter extends Fragment implements DocumentListElement {
         mWebView = webView;
     }
 
-    private void createWebPrintJob(WebView webView) {
+    private void createWebPrintJob(WebView webView, Activity activity) {
         // Get a PrintManager instance
-        PrintManager printManager = (PrintManager) getActivity()
+        PrintManager printManager = (PrintManager) activity
                 .getSystemService(Context.PRINT_SERVICE);
 
         // Get a print adapter instance
@@ -105,10 +94,10 @@ public class FilePrinter extends Fragment implements DocumentListElement {
     }
 
     @Override
-    public String CreateFile(String fileName, String fileContent) throws Exception {
+    public String CreateFile(String fileName, String fileContent, Activity activity) throws Exception {
         String createdFileName;
         try {
-            doWebViewPrint(fileName,fileContent);
+            doWebViewPrint(fileName,fileContent, activity);
            return "succesful";
         }
         catch(Exception e1)

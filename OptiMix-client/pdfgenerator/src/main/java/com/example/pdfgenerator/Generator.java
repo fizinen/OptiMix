@@ -1,5 +1,6 @@
 package com.example.pdfgenerator;
 
+import android.app.Activity;
 import android.os.Environment;
 
 import com.itextpdf.text.Document;
@@ -38,6 +39,7 @@ public class Generator implements DocumentListElement {
         PdfWriter.getInstance(document, output);
         document.open();
         document.addHeader(headerName, headerName);
+        document.add(new Paragraph(headerName+"\n\n\n"));
         //This might not be necessary
         document.add(new LineSeparator());
         document.add(new Paragraph(fileContent));
@@ -63,7 +65,7 @@ public class Generator implements DocumentListElement {
     }
 
     @Override
-    public String CreateFile(String fileName, String fileContent) throws FileNotFoundException, DocumentException  {
+    public String CreateFile(String fileName, String fileContent, Activity activity) throws FileNotFoundException, DocumentException  {
         String createdFileName;
         try {
             createdFileName = createPdf(fileName,fileContent);

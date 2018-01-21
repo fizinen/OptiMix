@@ -1,1 +1,1 @@
-include ':app', ':core', ':webservice', ':model', ':pdfgenerator'
+include ':app', ':core', ':webservice', ':model', ':pdfgenerator', ':fileprinter'

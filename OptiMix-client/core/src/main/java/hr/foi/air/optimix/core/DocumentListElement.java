@@ -1,5 +1,7 @@
 package hr.foi.air.optimix.core;
 
+import android.app.Fragment;
+
 import java.io.FileNotFoundException;
 
 /**

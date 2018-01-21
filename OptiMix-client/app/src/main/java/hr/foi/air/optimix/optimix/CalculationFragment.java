@@ -18,6 +18,8 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import hr.foi.air.optimix.core.Input;
 import hr.foi.air.optimix.model.Analysis;
 import hr.foi.air.optimix.model.Calculation;
@@ -37,15 +39,22 @@ import hr.foi.air.optimix.webservice.SimpleResponseHandler;
 
 public class CalculationFragment extends android.support.v4.app.Fragment {
 
-    ListView recipes;
+    @BindView(R.id.recipe_spinner)
     Spinner chooseRecipe;
-    ArrayList<Recipe> recipeList;
+    @BindView(R.id.make_calculation_button)
     Button calculateRecipe;
-    double calculationAmount;
-    Input calcamount;
-    List<Input> inputs;
+    @BindView(R.id.recipe_amount)
+    EditText calculationAmount;
 
+    ListView recipes;
+    ArrayList<Recipe> recipeList;
+    boolean error;
 
+    public CalculationFragment(){
+
+    }
+
+    @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
@@ -55,15 +64,14 @@ public class CalculationFragment extends android.support.v4.app.Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_calculation, container, false);
 
-        chooseRecipe = (Spinner) view.findViewById(R.id.recipe_spinner);
-        calculateRecipe = (Button) view.findViewById(R.id.make_calculation_button);
+        ButterKnife.bind(this, view);
 
         ServiceParams params = new ServiceParams(
                 getString(R.string.all_recipes_path),
                 ServiceCaller.HTTP_GET, null);
         new ServiceAsyncTask(recipeListHandler).execute(params);
 
-        //calculateRecipe.setOnClickListener(onCalculate);
+        calculateRecipe.setOnClickListener(onCalculate);
 
         return view;
     }
@@ -89,18 +97,18 @@ public class CalculationFragment extends android.support.v4.app.Fragment {
             }
         }
     };
-/*
+
     View.OnClickListener onCalculate  = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
 
-            calculationAmount = Double.valueOf(v.findViewById(R.id.recipe_amount).toString());
-
             Recipe recipe = (Recipe) chooseRecipe.getSelectedItem();
 
-            Calculation calculation = new Calculation(calculationAmount, recipe);
+            Double calcAmount = Double.parseDouble(calculationAmount.getText().toString());
 
-            CreateCalculationHandler createCalculationHandler = new CreateCalculationHandler(CalculationFragment.this.getActivity(), calculation);
+            Calculation calculation = new Calculation(calcAmount, recipe);
+
+            CreateCalculationHandler createCalculationHandler = new CreateCalculationHandler(getActivity(), calculation);
 
             new ServiceAsyncTask(createCalculationHandler).execute(new ServiceParams(
                     getString(hr.foi.air.optimix.webservice.R.string.calculation_create_path),
@@ -109,6 +117,6 @@ public class CalculationFragment extends android.support.v4.app.Fragment {
 
         }
     };
-*/
+
 
 }

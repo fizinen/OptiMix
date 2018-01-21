@@ -10,6 +10,7 @@ import java.io.Serializable;
 import hr.foi.air.optimix.model.Calculation;
 
 import hr.foi.air.optimix.optimix.CalculationFragment;
+import hr.foi.air.optimix.optimix.MainActivity;
 import hr.foi.air.optimix.webservice.ServiceResponse;
 
 /**
@@ -28,7 +29,7 @@ public class CreateCalculationHandler extends ResponseHandler {
 
         if (response.getHttpCode() == 200) {
 
-            getActivity().startActivity(new Intent(getActivity(), CalculationFragment.class));
+            getActivity().startActivity(new Intent(getActivity(), MainActivity.class));
             getActivity().finish();
 
             return true;

@@ -1,7 +1,6 @@
 package hr.foi.air.optimix.optimix;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,7 +12,6 @@ import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
-
 
 import hr.foi.air.optimix.model.Analysis;
 import hr.foi.air.optimix.optimix.adapters.StorageAdapter;

@@ -45,4 +45,9 @@
     <string name="amount_sign">kg</string>
     <string name="calculation_make">Napravi izračun</string>
 
+    <string name="log_out">Odjava</string>
+    <string name="log_out_yes">Da</string>
+    <string name="log_out_no">Ne</string>
+    <string name="log_out_question">Želite li se uistinu odjaviti?</string>
+
 </resources>

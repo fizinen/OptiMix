@@ -14,6 +14,8 @@
     <string name="raws_for_recipe_path">/reciperaws/recipe?recipe_id=</string>
     <string name="all_analysis_path">/analysis/all/</string>
     <string name="calculation_create_path">/calculation/addcalculation</string>
+    <string name="analysis_createanalysis_path">/analysis/addanalysis/</string>
+
 
 
 </resources>

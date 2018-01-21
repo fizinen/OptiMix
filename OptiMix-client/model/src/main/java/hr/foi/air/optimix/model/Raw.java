@@ -11,10 +11,16 @@ public class Raw implements Serializable{
     String rawCode;
     String rawName;
 
+    public Raw() {
+    }
 
     public Raw(String rawCode, String rawName) {
         this.rawCode = rawCode;
         this.rawName = rawName;
+    }
+
+    public Raw(String rawCode) {
+        this.rawCode = rawCode;
     }
 
     public long getIdRaw() {

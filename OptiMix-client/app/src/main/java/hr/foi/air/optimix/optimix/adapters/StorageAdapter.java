@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import hr.foi.air.optimix.model.Analysis;
 import hr.foi.air.optimix.model.Raw;
 import hr.foi.air.optimix.optimix.R;
+import hr.foi.air.optimix.optimix.StorageFragment;
 
 /**
  * Created by Gloria Babić on 7.12.2017..
@@ -42,7 +43,6 @@ public class StorageAdapter extends hr.foi.air.optimix.optimix.adapters.BaseAdap
                 holder = new ViewHolder();
                 holder.rawName = (TextView) vi.findViewById(R.id.raw_name);
                 holder.rawUx = (TextView) vi.findViewById(R.id.raw_ux);
-                holder.rawQuantity = (TextView) vi.findViewById(R.id.raw_quantity);
                 holder.rawWater = (TextView) vi.findViewById(R.id.raw_water);
                 holder.rawFat = (TextView) vi.findViewById(R.id.raw_fat);
                 holder.rawProteins = (TextView) vi.findViewById(R.id.raw_proteins);
@@ -63,14 +63,13 @@ public class StorageAdapter extends hr.foi.air.optimix.optimix.adapters.BaseAdap
                 holder.rawName.setText(currentRaw.getRawName());
                 holder.rawUx.setText(String.valueOf((currentRaw.getRawCode()) + "-" + String.valueOf(current.getExpirationDate())));
                 holder.rawQuantity.setText(String.valueOf(current.getAnalysisRawMass()));
+
             }
             else {
                 holder.rawName.setText("Nije dostupno");
                 holder.rawUx.setText("Nije dostupno");
-                holder.rawQuantity.setText("Nije dostupno");
+
             }
-
-
 
         } catch (Exception e) {
             Log.d("storage greška nezz", "ups");

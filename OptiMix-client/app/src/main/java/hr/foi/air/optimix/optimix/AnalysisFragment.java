@@ -1,18 +1,12 @@
 package hr.foi.air.optimix.optimix;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.design.widget.FloatingActionButton;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Adapter;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
@@ -20,14 +14,14 @@ import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
-import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import hr.foi.air.optimix.core.Input;
-import hr.foi.air.optimix.model.Person;
+import hr.foi.air.optimix.model.Analysis;
 import hr.foi.air.optimix.model.Raw;
-import hr.foi.air.optimix.optimix.adapters.RawsAdapter;
+import hr.foi.air.optimix.optimix.handlers.CreateAnalysisHandler;
 import hr.foi.air.optimix.webservice.ServiceAsyncTask;
 import hr.foi.air.optimix.webservice.ServiceCaller;
 import hr.foi.air.optimix.webservice.ServiceParams;
@@ -38,140 +32,125 @@ import hr.foi.air.optimix.webservice.SimpleResponseHandler;
  * Created by Gloria Babić on 7.12.2017..
  */
 
-public class AnalysisFragment extends android.support.v4.app.Fragment implements View.OnClickListener {
-    /*
-    @BindView(R.id.analysis_rawNumber_input)
-    EditText analysis_rawNumber_input;
-    @BindView(R.id.analysis_rawName_input)
-    EditText analysis_rawName_input;
+public class AnalysisFragment extends android.support.v4.app.Fragment {
 
-    @BindView(R.id.analysis_rawSeries_input)
-    EditText analysis_rawSeries_input;
-
-    @BindView(R.id.analysis_rawAmount_input)
-    EditText analysis_rawAmount_input;
-
-    @BindView(R.id.floatingActionButtonAddRaw)
-    FloatingActionButton buttonAddNewRaw;
-    */
-
-    @BindView(R.id.analysis_raw_date_input)
-    EditText analysis_raw_date_input;
-    @BindView(R.id.analysis_ux_input)
-    EditText analysis_ux_input;
-    @BindView(R.id.analysis_fat_input)
-    EditText analysis_fat_input;
-    @BindView(R.id.analysis_quantity_input)
-    EditText analysis_quantity_input;
-    @BindView(R.id.analysis_proteins_input)
-    EditText analysis_proteins_input;
+    @BindView(R.id.analysisUInput)
+    EditText analysisUInput;
+    @BindView(R.id.analysisXInput)
+    EditText analysisXInput;
+    @BindView(R.id.analysis_raw_amount_input)
+    EditText analysis_raw_amount_input;
     @BindView(R.id.analysis_water_input)
     EditText analysis_water_input;
+    @BindView(R.id.analysis_fat_input)
+    EditText analysis_fat_input;
+    @BindView(R.id.analysis_proteins_input)
+    EditText analysis_proteins_input;
+
+    @BindView(R.id.analysisRawName)
+    TextView analysisRawName;
+
+    @BindView(R.id.analysisXMessage)
+    TextView analysisXMessage;
+
+    @BindView(R.id.submitAnalysisButton)
+    Button submitAnalysisButton;
+
+    Raw desiredRaw;
+    String analysisX;
+
+    boolean error;
+    boolean firstFocus;
+
+    private Pattern pattern;
+    private Matcher matcher;
+
+    private static final String DATE_PATTERN =
+            "(?:0[1-9]|[1-2][0-9]|3[0-1])(?:0[1-9]|1[0-2])(?:20[0-9][0-9])";
 
 
-    @BindView(R.id.floatingActionButtonAddAnalysis)
-    FloatingActionButton buttonAddNewAnalysis;
-
+    public AnalysisFragment() {
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
     }
 
-    public String[] analysis_raw_name_fills = {"svinjetina", "teletina", "tele2", "konje", "rowk"};
-
-    ListView raws;
-
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_analysis, container, false);
 
-        raws = (ListView) view.findViewById(R.id.listViewRaws);
-
-        ServiceParams params = new ServiceParams(
-                getString(R.string.all_raw_path),
-                ServiceCaller.HTTP_GET, null);
-        new ServiceAsyncTask(rawsListHandler).execute(params);
-
-        AutoCompleteTextView acTextView = (AutoCompleteTextView) view.findViewById(R.id.analysis_raw_name_input);
-        ArrayAdapter<String> adapter = new ArrayAdapter(this.getActivity(), android.R.layout.simple_list_item_1, analysis_raw_name_fills);
-
-        acTextView.setThreshold(1);
-        acTextView.setAdapter(adapter);
-
         ButterKnife.bind(this, view);
+        error = false;
 
-        //buttonAddNewAnalysis = (FloatingActionButton) view.findViewById(R.id.floatingActionButtonAddAnalysis);
-        buttonAddNewAnalysis.setOnClickListener(this);
-        //buttonAddNewRaw.setOnClickListener(this);
+        analysisUInput.setOnFocusChangeListener(onUIFocus);
+        analysisXInput.setOnFocusChangeListener(onUXFocus);
+        submitAnalysisButton.setOnClickListener(onSubmit);
 
         return view;
     }
 
 
-    @Override
-    public void onClick(View v) {
+    View.OnFocusChangeListener onUXFocus = new View.OnFocusChangeListener() {
+        @Override
+        public void onFocusChange(View v, boolean hasFocus) {
 
-        {
-            int id = v.getId();
-            switch (id) {
-                /*
-                case R.id.floatingActionButtonAddRaw:
-                    String rawNumber = analysis_rawNumber_input.getText().toString();
-                    String rawName = analysis_rawName_input.getText().toString();
+            if (!hasFocus) {
 
-                   Raw material = new Raw(rawNumber, rawName);
-
-                    //CreateRawHandler createRawHandler = new CreateRawHandler(CreateRawHandler.this, material);
-
-                    /*new ServiceAsyncTask(createRawHandler).execute(new ServiceParams(
-                    getString(hr.foi.air.optimix.webservice.R.string.analysis_createraw_path),
-                    ServiceCaller.HTTP_POST, material)); */ /*
-
-                    break;
-                */
-                case R.id.floatingActionButtonAddAnalysis:
-
-                    double water = Double.valueOf(analysis_water_input.getText().toString());
-                    double fat = Double.valueOf(analysis_fat_input.getText().toString());
-                    double proteins = Double.valueOf(analysis_proteins_input.getText().toString());
-                    String rawDateBefore = String.valueOf(analysis_raw_date_input.getText().toString());
-                    long rawAmount = Long.valueOf(analysis_quantity_input.getText().toString());
-                    //Raw rawId;
-                    //private List<AnalysisLog> analysisLog;
-
-                    //TODO
-
-                    // Analysis analysis = new Analysis(rawId, water, fat, proteins);
-
-                    /*CreateRawHandler createRawHandler = new CreateRawHandler(CreateRawHandler.this, raw);
-
-                    new ServiceAsyncTask(createRawHandler).execute(new ServiceParams(
-                    getString(hr.foi.air.optimix.webservice.R.string.analysis_createraw_path),
-                    ServiceCaller.HTTP_POST, material));*/
-                    break;
-
+                analysisX = analysisXInput.getText().toString();
+                pattern = Pattern.compile(DATE_PATTERN);
+                matcher = pattern.matcher(analysisX);
+                if (!matcher.matches()) {
+                    analysisXMessage.setText("Pogrešan datum!");
+                    error = true;
+                } else {
+                    analysisXMessage.setText("");
+                    error = false;
+                }
             }
-
         }
 
-    }
+    };
+    View.OnFocusChangeListener onUIFocus = new View.OnFocusChangeListener() {
+        @Override
+        public void onFocusChange(View v, boolean hasFocus) {
+
+            String analysisU = analysisUInput.getText().toString();
+            desiredRaw = new Raw(analysisU);
+            if (!hasFocus) {
+                ServiceParams params = new ServiceParams(getString(hr.foi.air.optimix.webservice.R.string.all_raw_path),
+                        ServiceCaller.HTTP_POST, null);
+                new ServiceAsyncTask(rawFillHandler).execute(params);
+
+            }
+        }
+
+    };
 
 
-    SimpleResponseHandler rawsListHandler = new SimpleResponseHandler() {
+    SimpleResponseHandler rawFillHandler = new SimpleResponseHandler() {
         @Override
         public boolean handleResponse(ServiceResponse response) {
             if (response.getHttpCode() == 200) {
-
                 Type listType = new TypeToken<ArrayList<Raw>>() {
                 }.getType();
                 ArrayList<Raw> t = new Gson().fromJson(response.getJsonResponse(), listType);
 
-                //setViewLayout(R.layout.fragment_team_history);
-                raws.setAdapter(new RawsAdapter(getActivity().getApplicationContext(),
-                        R.layout.fragment_analysis, t));
-
-                return true;
+                error = true;
+                for (Raw raw : t) {
+                    if (raw.getRawCode().equals(desiredRaw.getRawCode())) {
+                        analysisRawName.setText(raw.getRawName());
+                        desiredRaw = raw;
+                        error = false;
+                    }
+                }
+                if (error) {
+                    analysisRawName.setText("Krivo unesena šifra sirovine!");
+                    return false;
+                } else {
+                    return true;
+                }
             } else {
                 Toast.makeText(getActivity().getApplicationContext(), "Failed to fetch raws", Toast.LENGTH_LONG).show();
                 return false;
@@ -179,4 +158,27 @@ public class AnalysisFragment extends android.support.v4.app.Fragment implements
         }
     };
 
+    View.OnClickListener onSubmit = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+
+            Long analysisRawAmount = Long.parseLong(analysis_raw_amount_input.getText().toString());
+            Double analysisWater = Double.parseDouble(analysis_water_input.getText().toString());
+            Double analysisFat = Double.parseDouble(analysis_fat_input.getText().toString());
+            Double analysisProteins = Double.parseDouble(analysis_proteins_input.getText().toString());
+
+            Analysis analysis = new Analysis(analysisWater, analysisFat, analysisProteins, analysisX ,analysisRawAmount , desiredRaw );
+            //Analysis analysis = new Analysis(desiredRaw.getIdRaw(), , analysisRawAmount, analysisWater, analysisFat, analysisProteins);
+            if (!error) {
+                CreateAnalysisHandler createAnalysisHandler = new CreateAnalysisHandler(getActivity(), analysis);
+
+                new ServiceAsyncTask(createAnalysisHandler).execute(new ServiceParams(
+                        getString(hr.foi.air.optimix.webservice.R.string.analysis_createanalysis_path),
+                        ServiceCaller.HTTP_POST, analysis));
+            } else {
+                Toast.makeText(getActivity().getApplicationContext(), "Krivo uneseni podaci!", Toast.LENGTH_LONG).show();
+
+            }
+        }
+    };
 }

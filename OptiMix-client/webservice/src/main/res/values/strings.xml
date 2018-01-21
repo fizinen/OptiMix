@@ -11,6 +11,8 @@
     <string name="all_recipes_path">/recipe/all/</string>
     <string name="recipe_path">/recipe/</string>
     <string name="all_analysis_path">/analysis/all/</string>
+    <string name="analysis_createanalysis_path">/analysis/addanalysis/</string>
+
 
 
 </resources>

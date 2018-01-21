@@ -15,27 +15,23 @@ public class Analysis implements Serializable {
     private double proteins;
     private String expirationDate;
     private long analysisRawMass;
-    private Raw raw;
+    private Raw rawId;
 
-    public Raw getRaw() {
-        return raw;
-    }
-
-    public void setRaw(Raw raw) {
-        this.raw = raw;
-    }
-
-    //private List<AnalysisLog> analysisLog;
-
-
-    public Analysis(double water, double fat, double proteins, String expirationDate, long analysisRawMass,  Raw raw) {
+    public Analysis(double water, double fat, double proteins, String expirationDate, long analysisRawMass, Raw rawId) {
         this.water = water;
         this.fat = fat;
         this.proteins = proteins;
         this.expirationDate = expirationDate;
         this.analysisRawMass = analysisRawMass;
-        this.raw = raw;
+        this.rawId = rawId;
+    }
 
+    public Raw getRawId() {
+        return rawId;
+    }
+
+    public void setRawId(Raw rawId) {
+        this.rawId = rawId;
     }
 
     public long getIdAnalysis() {

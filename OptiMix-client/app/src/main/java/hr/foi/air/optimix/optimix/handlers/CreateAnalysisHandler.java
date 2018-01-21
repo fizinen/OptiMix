@@ -8,6 +8,7 @@ import java.io.Serializable;
 
 import hr.foi.air.optimix.model.Analysis;
 import hr.foi.air.optimix.optimix.AnalysisFragment;
+import hr.foi.air.optimix.optimix.MainActivity;
 import hr.foi.air.optimix.webservice.ServiceResponse;
 
 /**
@@ -26,7 +27,7 @@ public class CreateAnalysisHandler extends ResponseHandler {
 
         if (response.getHttpCode() == 200) {
 
-            getActivity().startActivity(new Intent(getActivity(), AnalysisFragment.class));
+            getActivity().startActivity( (new Intent(getActivity(), MainActivity.class)));
             getActivity().finish();
 
             return true;

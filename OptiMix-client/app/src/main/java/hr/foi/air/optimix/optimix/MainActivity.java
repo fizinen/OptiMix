@@ -24,6 +24,7 @@ public class MainActivity extends AppCompatActivity implements FragmentIntentInt
 
         adapter.addFragment(new StorageFragment());
         adapter.addFragment(new AnalysisFragment());
+        adapter.addFragment(new CalculationFragment());
         viewPager.setAdapter(adapter);
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.main_tab_layout);
@@ -32,6 +33,7 @@ public class MainActivity extends AppCompatActivity implements FragmentIntentInt
         tabLayout.setTabMode(TabLayout.MODE_FIXED);
         tabLayout.getTabAt(0).setText("Skladište");
         tabLayout.getTabAt(1).setText("Analiza");
+        tabLayout.getTabAt(2).setText("Izračun");
 
     }
 

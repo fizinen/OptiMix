@@ -6,6 +6,7 @@
     <string name="person_createuser_path">/person/adduser</string>
     <string name="analysis_createraw_path">/raw/addraw</string>
     <string name="recipe_createrecipe_path">/recipe/addrecipe</string>
+    <string name="reciperaws_createreciperaws_path">/reciperaws/addreciperaws</string>
     <string name="all_persons_path">/person/all</string>
     <string name="all_raw_path">/raw/all</string>
     <string name="all_raw_path_for_recipe">/raw/</string>

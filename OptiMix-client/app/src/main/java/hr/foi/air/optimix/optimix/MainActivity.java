@@ -74,9 +74,9 @@ public class MainActivity extends AppCompatActivity implements FragmentIntentInt
     private void showPopUp() {
 
         AlertDialog.Builder helpBuilder = new AlertDialog.Builder(this);
-        helpBuilder.setTitle("Log out");
-        helpBuilder.setMessage("Da li se uistinu želite odjaviti?");
-        helpBuilder.setPositiveButton("Da",
+        helpBuilder.setTitle(R.string.log_out);
+        helpBuilder.setMessage(R.string.log_out_question);
+        helpBuilder.setPositiveButton(R.string.log_out_yes,
                 new DialogInterface.OnClickListener() {
 
                     public void onClick(DialogInterface dialog, int which) {
@@ -84,7 +84,7 @@ public class MainActivity extends AppCompatActivity implements FragmentIntentInt
                     }
                 });
 
-        helpBuilder.setNegativeButton("Ne", new DialogInterface.OnClickListener() {
+        helpBuilder.setNegativeButton(R.string.log_out_no, new DialogInterface.OnClickListener() {
 
             @Override
             public void onClick(DialogInterface dialog, int which) {

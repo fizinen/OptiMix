@@ -41,15 +41,15 @@ public class Calculation implements Serializable{
         this.idCalculation = idCalculation;
     }
     
-   @Column(name = "kolicina_proizvoda")
-   private double kolicinaProizvoda;
+   @Column(name = "calculation_full_amount")
+   private double calculationFullAmount;
 
-    public double getKolicinaProizvoda() {
-        return kolicinaProizvoda;
+    public double getCalculationFullAmount() {
+        return calculationFullAmount;
     }
 
-    public void setKolicinaProizvoda(double kolicinaProizvoda) {
-        this.kolicinaProizvoda = kolicinaProizvoda;
+    public void setCalculationFullAmount(double calculationFullAmount) {
+        this.calculationFullAmount = calculationFullAmount;
     }
     
     @ManyToOne(cascade = {CascadeType.MERGE})

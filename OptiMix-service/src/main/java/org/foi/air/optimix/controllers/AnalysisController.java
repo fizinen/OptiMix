@@ -40,6 +40,10 @@ public class AnalysisController {
         this.analysisRepository = analysisRepository;
     }
 
+     /**
+     * gets all analysises from database
+     * @return all groups in json format with HTTP 200
+     */
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public ResponseEntity<List<Analysis>> retrieveAll() {
         Logger.getLogger("AnalysisController.java").log(Level.INFO,

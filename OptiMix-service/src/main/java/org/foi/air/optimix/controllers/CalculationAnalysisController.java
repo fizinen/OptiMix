@@ -41,6 +41,10 @@ public class CalculationAnalysisController {
         this.analysisRepository = analysisRepository;
     }
 
+     /**
+     * gets all calculationsAnalysises from database
+     * @return all groups in json format with HTTP 200
+     */
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public ResponseEntity<List<CalculationAnalysis>> retrieveAll() {
         Logger.getLogger("CalculationAnalysisController.java").log(Level.INFO,

@@ -35,6 +35,10 @@ public class PersonController {
         this.personRepository = personRepository;
     }
 
+     /**
+     * gets all persons from database
+     * @return all groups in json format with HTTP 200
+     */
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public ResponseEntity<List<Person>> retrieveAll() {
         Logger.getLogger("PersonController.java").log(Level.INFO,

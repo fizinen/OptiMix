@@ -35,6 +35,10 @@ public class RawController {
         this.rawRepository = rawRepository;
     }
 
+    /**
+     * gets all raws from database
+     * @return all groups in json format with HTTP 200
+     */
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public ResponseEntity<List<Raw>> retrieveAll() {
         Logger.getLogger("RawController.java").log(Level.INFO,

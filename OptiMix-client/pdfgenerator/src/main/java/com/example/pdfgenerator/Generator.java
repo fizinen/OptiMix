@@ -23,7 +23,7 @@ import hr.foi.air.optimix.core.DocumentListElement;
 public class Generator implements DocumentListElement {
     private File pdfFile;
     private int position;
-    private String name = "generiranje pdf";
+    private String name = "Kreiraj pdf";
 
     private String createPdf(String headerName, String fileContent) throws FileNotFoundException, DocumentException {
 

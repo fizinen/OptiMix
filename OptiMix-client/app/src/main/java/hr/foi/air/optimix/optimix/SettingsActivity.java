@@ -7,6 +7,11 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 
 
+/**
+ * Settings activity that extends AppCompatActivity and implements View.FragmentIntentInterface
+ * Adding recipes and user activity. This activity makes two fragments in tabs from which user can and recipe.
+ * Admin can add user from this activity.
+ */
 public class SettingsActivity extends AppCompatActivity implements FragmentIntentInterface {
 
     @Override

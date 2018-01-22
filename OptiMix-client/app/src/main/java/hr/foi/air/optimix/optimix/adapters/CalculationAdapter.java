@@ -15,6 +15,10 @@ import hr.foi.air.optimix.optimix.R;
  * Created by Lenovo on 20.1.2018..
  */
 
+/**
+ * Extends Base adapeter.
+ * Makes view for xml of fragment/activity to show Calculation app uses.
+ */
 public class CalculationAdapter  extends hr.foi.air.optimix.optimix.adapters.BaseAdapter<Calculation>{
 
     Context context;

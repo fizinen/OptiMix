@@ -32,6 +32,10 @@ import hr.foi.air.optimix.webservice.SimpleResponseHandler;
  * Created by erdel on 9.12.2017..
  */
 
+/**
+ * RecipeDetail activity that extends AppCompatActivity
+ * Shows list of recipes and then gives all raw used for that recipe.
+ */
 public class RecipeDetailActivity extends AppCompatActivity {
     ListView recipeRaws;
     TextView recipeName;
@@ -50,13 +54,7 @@ public class RecipeDetailActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         recipeId = intent.getLongExtra("idRecipe", -1);
-/*
-        if (recipeId != -1) {
-            ServiceParams params = new ServiceParams(getString(hr.foi.air.optimix.webservice.R.string.recipe_path) + recipeId,
-                    ServiceCaller.HTTP_POST, null);
-            new ServiceAsyncTask(recipeHandler).execute(params);
-        }
-*/
+
         if (recipeId != -1) {
             ServiceParams params = new ServiceParams(getString(hr.foi.air.optimix.webservice.R.string.raws_for_recipe_path) + recipeId,
                     ServiceCaller.HTTP_POST, null);
@@ -91,35 +89,5 @@ public class RecipeDetailActivity extends AppCompatActivity {
 
         }
     };
-    /*
-    SimpleResponseHandler recipeHandler = new SimpleResponseHandler() {
-        @Override
-        public boolean handleResponse(ServiceResponse response) {
-            if (response.getHttpCode() == 200) {
-
-                Recipe recipe = new Gson().fromJson(response.getJsonResponse(), Recipe.class);
-
-                ArrayList<RecipeRaws> recipeRawsArray = new ArrayList<RecipeRaws>(recipe.getRecipeRaws());
-
-                ArrayList<Raw> rec = new ArrayList<>();
-
-                for(int i = 0; i < recipeRawsArray.size(); i++){
-                    rec.add(recipeRawsArray.get(i).getRecipeRawId());
-                }
-
-                recipeName.setText(recipe.getRecipeName());
-
-                recipeRaws.setAdapter(new RawsAdapter(RecipeDetailActivity.this,
-                        R.layout.activity_recipe_detail, rec));
-						
-                return true;
-            } else {
-                Toast.makeText(RecipeDetailActivity.this, "Failed to fetch storage", Toast.LENGTH_LONG).show();
-                return false;
-            }
-
-        }
-    };
-    */
 }
 

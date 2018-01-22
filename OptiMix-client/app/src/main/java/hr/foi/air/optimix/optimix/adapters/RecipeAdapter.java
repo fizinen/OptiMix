@@ -26,6 +26,10 @@ import static android.R.id.list;
  * Created by erdel on 8.12.2017..
  */
 
+/**
+ * Extends Base adapeter.
+ * Makes view for xml of fragment/activity to show Recipes app uses.
+ */
 public class RecipeAdapter extends hr.foi.air.optimix.optimix.adapters.BaseAdapter<Recipe> {
 
     Context context;

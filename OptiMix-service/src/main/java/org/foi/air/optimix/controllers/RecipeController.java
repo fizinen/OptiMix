@@ -35,7 +35,10 @@ public class RecipeController {
         this.recipeRepository = recipeRepository;
     }
     
-    
+     /**
+     * gets all recipes from database
+     * @return all groups in json format with HTTP 200
+     */
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public ResponseEntity<List<Recipe>> retrieveAll() {
         Logger.getLogger("RecipeController.java").log(Level.INFO,

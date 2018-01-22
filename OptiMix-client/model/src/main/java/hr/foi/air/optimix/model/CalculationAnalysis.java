@@ -6,6 +6,9 @@ import java.io.Serializable;
  * Created by Lenovo on 20.1.2018..
  */
 
+/**
+ * Class for calculations with analysis info of every raw.
+ */
 public class CalculationAnalysis implements Serializable {
 
     private long idCalculationAnalysis;

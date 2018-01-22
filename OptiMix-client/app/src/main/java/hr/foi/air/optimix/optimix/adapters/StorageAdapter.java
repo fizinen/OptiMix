@@ -17,6 +17,10 @@ import hr.foi.air.optimix.optimix.StorageFragment;
  * Created by Gloria Babić on 7.12.2017..
  */
 
+/**
+ * Extends Base adapeter.
+ * Makes view for xml of fragment/activity to show Storgae (all analysis) app uses.
+ */
 public class StorageAdapter extends hr.foi.air.optimix.optimix.adapters.BaseAdapter<Analysis> {
 
     public StorageAdapter(Context context, int resource, ArrayList<Analysis> items) {

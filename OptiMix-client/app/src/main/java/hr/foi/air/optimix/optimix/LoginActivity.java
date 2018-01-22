@@ -23,6 +23,9 @@ import hr.foi.air.optimix.webservice.ServiceAsyncTask;
 import hr.foi.air.optimix.webservice.ServiceCaller;
 import hr.foi.air.optimix.webservice.ServiceParams;
 
+/**
+ * Login activity extends AppCompatActivity for useres to log in to application.
+ */
 public class LoginActivity extends AppCompatActivity {
 
 

@@ -7,6 +7,9 @@ import java.util.Date;
  * Created by Gloria Babić on 8.12.2017..
  */
 
+/**
+ * Class for analysises.
+ */
 public class Analysis implements Serializable {
 
     private long idAnalysis;

@@ -25,6 +25,9 @@ import hr.foi.air.optimix.webservice.SimpleResponseHandler;
  * Created by Gloria Babić on 7.12.2017..
  */
 
+/**
+ * Storage fragmet extends fragment for showing and adding analysies.
+ */
 public class StorageFragment extends android.support.v4.app.Fragment {
 
     ListView storage;

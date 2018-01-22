@@ -14,6 +14,12 @@ import butterknife.OnClick;
 import hr.foi.air.optimix.core.SessionManager;
 import hr.foi.air.optimix.model.Person;
 
+/**
+ * Main activity extends AppCompatActivity and implements FragmentIntentInterface.
+ * Used for main page and first 3 fragments (storage, calculation and analysis).
+ * Regulates users permission to see all or some of tabs (fragments).
+ * Handling signing out from application.
+ */
 public class MainActivity extends AppCompatActivity implements FragmentIntentInterface {
 
     @Override
@@ -75,6 +81,9 @@ public class MainActivity extends AppCompatActivity implements FragmentIntentInt
 
     }
 
+    /**
+     * Shows pop up window that assk if user is sure to log out
+     */
     private void showPopUp() {
 
         AlertDialog.Builder helpBuilder = new AlertDialog.Builder(this);
@@ -101,6 +110,9 @@ public class MainActivity extends AppCompatActivity implements FragmentIntentInt
 
     }
 
+    /**
+     * Signs out user from application.
+     */
     private void signOut() {
                 SessionManager.getInstance(getApplicationContext()).destroyAll();
                 for (int i = 0; i < getFragmentManager().getBackStackEntryCount(); ++i) {

@@ -11,6 +11,10 @@ import java.io.Serializable;
  * Created by Gloria Babić on 31.10.2017..
  */
 
+/**
+ * Class SessionManager works with sessions.
+ * Mainly used for keeping user in application so he/she does not have to log in again.
+ */
 public class SessionManager {
 
     public static final String SHARED_PREFS_NAME = "hr.foi.air.optimix.session";

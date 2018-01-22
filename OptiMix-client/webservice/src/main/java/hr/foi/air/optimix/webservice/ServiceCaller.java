@@ -13,6 +13,10 @@ import java.net.URL;
  * Created by Gloria Babić on 31.10.2017..
  */
 
+/**
+ * Class ServiceCaller for making async tasks to webservice.
+ * Decides what method of HTTP request needs to be send to ServiceResponse.
+ */
 public class ServiceCaller {
 
 

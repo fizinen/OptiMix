@@ -6,6 +6,11 @@ import java.io.Serializable;
  * Created by Gloria Babić on 31.10.2017..
  */
 
+/**
+ * Class ServiceParams
+ * Class for operating with all parameters of Service call, response and every interaction with webservice.
+ * Deals with strings for url, method, type and urlEncoding and with Serializable object.
+ */
 public class ServiceParams {
 
     private String url;

@@ -38,7 +38,7 @@ import hr.foi.air.optimix.core.DocumentListElement;
 public class FilePrinter implements DocumentListElement {
     private File pdfFile;
     private int position;
-    private String name = "Ispis izračuna";
+    private String name = "Ispiši dokument";
     private PrintManager mgr=null;
 
     private WebView mWebView;

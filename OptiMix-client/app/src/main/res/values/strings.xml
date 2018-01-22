@@ -18,11 +18,11 @@
     <string name="username_error">Wrong username!</string>
     <string name="password_error">Wrong password!</string>
     <!--Create recipe-->
-    <string name="material_amount">Količina</string>
+    <string name="material_amount">Postotak</string>
     <string name="material_amount_dots">Količina</string>
     <string name="recipe_name">Ime recepture</string>
-    <string name="shrinkage_coefficient_name">Koeficijent sušenja</string>
-    <string name="material_addition">Dodaj sirovinu</string>
+    <string name="material_addition">Dodaj novu sirovinu</string>
+    <string name="error_message">Postotak sirovina prelazi 100!</string>
 
     <string name="internet_error">Cannot connect to server, please check your internet connection</string>
     <string name="radio_technician">Tehničar</string>
@@ -39,5 +39,25 @@
     <string name="analysis_proteins_input">Proteini</string>
 
     <string name="material_name">Naziv sirovine:</string>
+    <string name="calculation_recipe_name">Ime recepta za izračun:</string>
+    <string name="calculation_full_amount">Količina proizvoda:</string>
+    <string name="percentage_sign">%</string>
+    <string name="amount_sign">kg</string>
+    <string name="calculation_make">Napravi izračun</string>
+    <string name="calculation_made_name">Izračun za recept:</string>
+    <string name="calculation_preview">Ispis izračuna</string>
+    <string name="document_print_modular">Ispiši dokument</string>
+    <string name="document_create_pdf">Kreiraj pdf</string>
+	<string name="raw_ux_holder">U-X broj:</string>
+    <string name="raw_name_holder">Sirovina:</string>
+
+    <string name="calculation_made_item_name">Naziv sirovine:</string>
+    <string name="calculation_made_item_amount">Količina sirovine:</string>
+
+    <string name="log_out">Odjava</string>
+    <string name="log_out_yes">Da</string>
+    <string name="log_out_no">Ne</string>
+    <string name="log_out_question">Želite li se uistinu odjaviti?</string>
+    <string name="error_message_zero">Postotak ne smije biti nula!</string>
 
 </resources>

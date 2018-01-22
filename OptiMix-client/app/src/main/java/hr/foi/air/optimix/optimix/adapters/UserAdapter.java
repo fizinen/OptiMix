@@ -15,6 +15,10 @@ import hr.foi.air.optimix.optimix.R;
  * Created by Gloria Babić on 2.12.2017..
  */
 
+/**
+ * Extends Base adapeter.
+ * Makes view for xml of fragment/activity to show Users (persons) app uses.
+ */
 public class UserAdapter extends hr.foi.air.optimix.optimix.adapters.BaseAdapter<Person>{
 
     public UserAdapter(Context context, int resource, ArrayList<Person> items) {

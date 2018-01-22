@@ -54,28 +54,38 @@ public class Analysis implements Serializable {
     private Raw rawId;
     
     @JsonIgnore
-    @OneToMany(mappedBy = "analysisId", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "analysisIdLog", fetch = FetchType.LAZY)
     private List<AnalysisLog> analysisLog;
+    
+    @JsonIgnore
+    @OneToMany(mappedBy = "analysisCalculationId", fetch = FetchType.LAZY)
+    private List<CalculationAnalysis> calculationAnalysis;
 
-    public Raw getRaw() {
+    public List<CalculationAnalysis> getCalculationAnalysis() {
+        return calculationAnalysis;
+    }
+
+    public void setCalculationAnalysis(List<CalculationAnalysis> calculationAnalysis) {
+        this.calculationAnalysis = calculationAnalysis;
+    }
+
+    public Raw getRawId() {
         return rawId;
     }
 
-    public void setRaw(Raw raw) {
-        this.rawId = raw;
+    public void setRawId(Raw rawId) {
+        this.rawId = rawId;
     }
 
-
-    public List<AnalysisLog> getUserAnalysis() {
+    public List<AnalysisLog> getAnalysisLog() {
         return analysisLog;
     }
 
-    public void setUserAnalysis(List<AnalysisLog> userAnalysis) {
-        this.analysisLog = userAnalysis;
+    public void setAnalysisLog(List<AnalysisLog> analysisLog) {
+        this.analysisLog = analysisLog;
     }
-    
-    
 
+    
     public long getIdAnalysis() {
         return idAnalysis;
     }
@@ -84,6 +94,7 @@ public class Analysis implements Serializable {
         this.idAnalysis = idAnalysis;
     }
 
+    
     public double getWater() {
         return water;
     }
@@ -92,6 +103,7 @@ public class Analysis implements Serializable {
         this.water = water;
     }
 
+    
     public double getFat() {
         return fat;
     }
@@ -100,6 +112,7 @@ public class Analysis implements Serializable {
         this.fat = fat;
     }
 
+    
     public double getProteins() {
         return proteins;
     }
@@ -107,6 +120,7 @@ public class Analysis implements Serializable {
     public void setProteins(double proteins) {
         this.proteins = proteins;
     }
+    
     
     public Date getExpirationDate() {
         return expirationDate;
@@ -116,6 +130,7 @@ public class Analysis implements Serializable {
         this.expirationDate = expirationDate;
     }
 
+    
     public long getAnalysisRawMass() {
         return analysisRawMass;
     }

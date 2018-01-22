@@ -16,6 +16,8 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
+            <!-- Recipe name -->
+
             <android.support.design.widget.TextInputLayout
                 android:id="@+id/recipe_name_layout"
                 android:layout_width="match_parent"
@@ -26,7 +28,7 @@
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/recipe_name"
-                    android:inputType="text"
+                    android:inputType="textPersonName"
                     android:padding="10dp" />
             </android.support.design.widget.TextInputLayout>
 
@@ -51,24 +53,35 @@
                     android:text="@string/material_addition" />
             </RelativeLayout>
 
-            <RelativeLayout
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                >
+
+                <!-- Error message -->
+
+                <TextView
+                    android:id="@+id/error_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="@dimen/image_logo_margin_top" />
+
+                <!-- Submit button -->
 
                 <Button
                     android:id="@+id/submit_recipe_button"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentBottom="true"
-                    android:layout_centerHorizontal="true"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:layout_marginTop="20dp"
+
                     android:background="@drawable/buttonstyle"
                     android:clickable="true"
                     android:text="@string/create_user"
                     android:textColor="@color/white" />
-            </RelativeLayout>
+            </LinearLayout>
         </LinearLayout>
     </ScrollView>
-    <!-- Submit button -->
+
 
 </LinearLayout>

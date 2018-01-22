@@ -11,26 +11,32 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import hr.foi.air.optimix.model.Raw;
+import hr.foi.air.optimix.model.RecipeRaws;
 import hr.foi.air.optimix.optimix.R;
 
+
 /**
- * Created by erdel on 9.12.2017..
+ * Created by Lenovo on 20.1.2018..
  */
 
-public class RecipeRawsAdapter extends hr.foi.air.optimix.optimix.adapters.BaseAdapter<Raw>{
+/**
+ * Extends Base adapeter.
+ * Makes view for xml of fragment/activity to show RecipesRaws (all raws of recipe) app uses.
+ */
+public class RecipeRawsAdapter extends hr.foi.air.optimix.optimix.adapters.BaseAdapter<RecipeRaws>{
     Context context;
-    ArrayList<Raw> rawArrayList;
-    public RecipeRawsAdapter(Context context, int resource, ArrayList<Raw> items) {
+    ArrayList<RecipeRaws> recipeRawsArrayList;
+    public RecipeRawsAdapter(Context context, int resource, ArrayList<RecipeRaws> items) {
         super(context, resource, items);
         this.context = context;
-        this.rawArrayList = items;
+        this.recipeRawsArrayList = items;
     }
 
     public static class ViewHolder {
         public TextView rawName;
+        public TextView rawAmount;
     }
 
-    @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         View vi = convertView;
@@ -40,13 +46,15 @@ public class RecipeRawsAdapter extends hr.foi.air.optimix.optimix.adapters.BaseA
                 vi = getInflater().inflate(R.layout.list_item_raw_of_recipe, parent, false);
                 holder = new ViewHolder();
                 holder.rawName = (TextView) vi.findViewById(R.id.recipe_detail_list_raw_name);
+                holder.rawAmount = (TextView) vi.findViewById(R.id.recipe_detail_list_raw_amount);
                 vi.setTag(holder);
             } else {
                 holder = (ViewHolder) vi.getTag();
             }
 
-            Raw current = getItems().get(position);
-            holder.rawName.setText(current.getRawName());
+            RecipeRaws current = getItems().get(position);
+            holder.rawName.setText(current.getRecipeRawId().getRawName());
+            holder.rawAmount.setText(String.valueOf(current.getRawAmount()));
 
         } catch (Exception e) {
             Log.d("Error", "Couldn't create listing elements");

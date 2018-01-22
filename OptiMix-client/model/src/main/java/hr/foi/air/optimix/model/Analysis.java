@@ -7,6 +7,9 @@ import java.util.Date;
  * Created by Gloria Babić on 8.12.2017..
  */
 
+/**
+ * Class for analysises.
+ */
 public class Analysis implements Serializable {
 
     private long idAnalysis;
@@ -15,27 +18,25 @@ public class Analysis implements Serializable {
     private double proteins;
     private String expirationDate;
     private long analysisRawMass;
-    private Raw raw;
-
-    public Raw getRaw() {
-        return raw;
-    }
-
-    public void setRaw(Raw raw) {
-        this.raw = raw;
-    }
-
-    //private List<AnalysisLog> analysisLog;
+    private Raw rawId;
 
 
-    public Analysis(double water, double fat, double proteins, String expirationDate, long analysisRawMass,  Raw raw) {
+    public Analysis(double water, double fat, double proteins, String expirationDate, long analysisRawMass, Raw rawId) {
         this.water = water;
         this.fat = fat;
         this.proteins = proteins;
         this.expirationDate = expirationDate;
         this.analysisRawMass = analysisRawMass;
-        this.raw = raw;
+        this.rawId = rawId;
+    }
 
+    public Raw getRawId() {
+        return rawId;
+    }
+
+
+    public void setRawId(Raw rawId) {
+        this.rawId = rawId;
     }
 
     public long getIdAnalysis() {

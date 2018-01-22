@@ -23,7 +23,8 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "recipe_raw")
 public class RecipeRaws implements Serializable{
-    /*
+    
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_recipe_raws")
@@ -36,35 +37,40 @@ public class RecipeRaws implements Serializable{
     public void setIdRecipeRaws(long idRecipeRaws) {
         this.idRecipeRaws = idRecipeRaws;
     }
-    */
-
     
-    @Id
-    @ManyToOne
-    @JoinColumn(name = "recipe_id")
-    private Recipe recipe;
+    
+    @Column(name = "recipe_id")
+    long recipeId;
 
-    public Recipe getRecipe() {
-        return recipe;
-    }
-
-    public void setRecipe(Recipe recipe) {
-        this.recipe = recipe;
+    public long getRecipeId() {
+        return recipeId;
     }
     
-    @Id
     @ManyToOne
-    @JoinColumn(name = "raw_id")
-    private Raw raw;
+    @JoinColumn(name = "recipe")
+    private Recipe rawRecipeId;
 
-    public Raw getRaw() {
-        return raw;
+    public Recipe getRawRecipeId() {
+        return rawRecipeId;
+    }
+    
+    public void setRawRecipeId(Recipe rawRecipeId) {
+        this.rawRecipeId = rawRecipeId;
+        this.recipeId = rawRecipeId.getIdRecipe();
+    }
+    
+    @ManyToOne
+    @JoinColumn(name = "raw")
+    private Raw recipeRawId;
+
+    public Raw getRecipeRawId() {
+        return recipeRawId;
     }
 
-    public void setRaw(Raw raw) {
-        this.raw = raw;
+    public void setRecipeRawId(Raw recipeRawId) {
+        this.recipeRawId = recipeRawId;
     }
-
+    
     
     @Column(name = "raw_amount")
     private double rawAmount;

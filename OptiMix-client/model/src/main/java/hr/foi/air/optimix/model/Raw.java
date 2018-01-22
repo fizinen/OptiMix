@@ -1,20 +1,29 @@
 package hr.foi.air.optimix.model;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
- * Created by erdel on 5.12.2017..
+ * Created by Lenovo on 20.1.2018..
  */
-
+/**
+ * Class for raws.
+ */
 public class Raw implements Serializable{
     long idRaw;
     String rawCode;
     String rawName;
 
+    public Raw() {
+    }
 
     public Raw(String rawCode, String rawName) {
         this.rawCode = rawCode;
         this.rawName = rawName;
+    }
+
+    public Raw(String rawCode) {
+        this.rawCode = rawCode;
     }
 
     public long getIdRaw() {
@@ -40,6 +49,7 @@ public class Raw implements Serializable{
     public void setRawName(String rawName) {
         this.rawName = rawName;
     }
+
 
     @Override
     public String toString() {

@@ -6,11 +6,20 @@
     <string name="person_createuser_path">/person/adduser</string>
     <string name="analysis_createraw_path">/raw/addraw</string>
     <string name="recipe_createrecipe_path">/recipe/addrecipe</string>
+    <string name="reciperaws_createreciperaws_path">/reciperaws/addreciperaws</string>
     <string name="all_persons_path">/person/all</string>
     <string name="all_raw_path">/raw/all</string>
+    <string name="all_raw_path_for_recipe">/raw/</string>
     <string name="all_recipes_path">/recipe/all/</string>
-    <string name="recipe_path">/recipe/</string>
+    <string name="recipe_path">/recipe/zu?id=</string>
+    <string name="raws_for_recipe_path">/reciperaws/recipe?recipe_id=</string>
     <string name="all_analysis_path">/analysis/all/</string>
+    <string name="calculation_create_path">/calculation/addcalculation</string>
+    <string name="analysis_createanalysis_path">/analysis/addanalysis/</string>
+    <string name="calculation_analysis_create_path">/calculationanalysis/addcalculationanalysis</string>
+    <string name="all_calculation_path">/calculation/all/</string>
+    <string name="all_calculationanalysis_path">/calculationanalysis/all/</string>
+
 
 
 </resources>

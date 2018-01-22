@@ -26,12 +26,10 @@ import hr.foi.air.optimix.webservice.ServiceParams;
 import hr.foi.air.optimix.webservice.ServiceResponse;
 import hr.foi.air.optimix.webservice.SimpleResponseHandler;
 
-/**
- * Created by Bogdan Erdelji on 31/10/2017.
- * <p>
- * This is a class intended
- */
 
+/**
+ * User fragmet extends fragment for showing list of users.
+ */
 public class UserListFragment extends Fragment implements View.OnClickListener {
 
     FloatingActionButton buttonAddNewUsers;

@@ -36,18 +36,19 @@ public class AnalysisLog implements Serializable{
     
     @ManyToOne(cascade = {CascadeType.MERGE})
     @JoinColumn(name = "id_analysis")
-    private Analysis analysisId;
+    private Analysis analysisIdLog;
     
     @Column(name = "input_date")
     private Date inputDate;
 
-    public Analysis getAnalysis() {
-        return analysisId;
+    public Analysis getAnalysisIdLog() {
+        return analysisIdLog;
     }
 
-    public void setAnalysis(Analysis analysis) {
-        this.analysisId = analysis;
+    public void setAnalysisIdLog(Analysis analysisIdLog) {
+        this.analysisIdLog = analysisIdLog;
     }
+
 
     public long getIdAnalysisLog() {
         return idAnalysisLog;

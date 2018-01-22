@@ -32,7 +32,7 @@ public class RecipeLog implements Serializable {
 
     @ManyToOne(cascade = {CascadeType.MERGE})
     @JoinColumn(name = "id_recipe")
-    private Recipe recipeId;
+    private Recipe recipeIdLog;
 
     @ManyToOne(cascade = {CascadeType.MERGE})
     @JoinColumn(name = "id_person")
@@ -50,11 +50,11 @@ public class RecipeLog implements Serializable {
     }
 
     public Recipe getRecipe() {
-        return recipeId;
+        return recipeIdLog;
     }
 
     public void setRecipe(Recipe recipe) {
-        this.recipeId = recipe;
+        this.recipeIdLog = recipe;
     }
 
     public Person getUser() {

@@ -16,6 +16,7 @@ import java.util.List;
 
 import hr.foi.air.optimix.model.Raw;
 import hr.foi.air.optimix.model.Recipe;
+import hr.foi.air.optimix.model.RecipeRaws;
 import hr.foi.air.optimix.optimix.R;
 import hr.foi.air.optimix.optimix.RecipeDetailActivity;
 
@@ -25,6 +26,10 @@ import static android.R.id.list;
  * Created by erdel on 8.12.2017..
  */
 
+/**
+ * Extends Base adapeter.
+ * Makes view for xml of fragment/activity to show Recipes app uses.
+ */
 public class RecipeAdapter extends hr.foi.air.optimix.optimix.adapters.BaseAdapter<Recipe> {
 
     Context context;
@@ -59,11 +64,9 @@ public class RecipeAdapter extends hr.foi.air.optimix.optimix.adapters.BaseAdapt
             Recipe current = getItems().get(position);
             holder.recipeName.setText(current.getRecipeName());
 
-            List<Raw> listOfRecipeRaws = current.getListOfRecipeRaws();
+            ArrayList<Raw> rec = new ArrayList<>();
 
-            ArrayList<Raw> arrlistofRaws = new ArrayList<Raw>(listOfRecipeRaws);
-
-            recipeRaws.setAdapter(new RawsAdapter(context, R.layout.activity_recipe_detail, arrlistofRaws));
+            recipeRaws.setAdapter(new RawsAdapter(context, R.layout.activity_recipe_detail, rec));
 
 
         } catch (Exception e) {

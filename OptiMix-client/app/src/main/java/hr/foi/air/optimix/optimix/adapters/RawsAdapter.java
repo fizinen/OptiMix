@@ -14,6 +14,10 @@ import hr.foi.air.optimix.model.Raw;
  * Created by erdel on 8.12.2017..
  */
 
+/**
+ * Extends Base adapeter.
+ * Makes view for xml of fragment/activity to show Raws app uses.
+ */
 public class RawsAdapter extends hr.foi.air.optimix.optimix.adapters.BaseAdapter<Raw>{
     Context context;
     ArrayList<Raw> rawArrayList;

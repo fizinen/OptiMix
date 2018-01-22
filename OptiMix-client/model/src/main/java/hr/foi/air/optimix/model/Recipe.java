@@ -7,10 +7,12 @@ import java.util.List;
  * Created by erdel on 5.12.2017..
  */
 
+/**
+ * Class for recipes.
+ */
 public class Recipe implements Serializable {
     long idRecipe;
     String recipeName;
-    List<Raw> listOfRecipeRaws;
 
     public Recipe() {
     }
@@ -35,18 +37,4 @@ public class Recipe implements Serializable {
         this.recipeName = recipeName;
     }
 
-    public void addMaterial(Raw addedRaw){
-        listOfRecipeRaws.add(addedRaw);
-    }
-
-    public List<Raw> getListOfRecipeRaws() {
-        return listOfRecipeRaws;
-    }
-
-    public void setListOfRecipeRaws(List<Raw> listOfRecipeRaws) {
-        this.listOfRecipeRaws = listOfRecipeRaws;
-    }
-
-//listOfRecipeRaws.object.rawMass, object.idRaw and idRecipe are all added into sirovina_recept table
-    //recept table contains only idRecipe, recipeName and evaporationCoefficient
 }

@@ -48,6 +48,8 @@
     <string name="calculation_preview">Ispis izračuna</string>
     <string name="document_print_modular">Ispiši dokument</string>
     <string name="document_create_pdf">Kreiraj pdf</string>
+	<string name="raw_ux_holder">U-X broj:</string>
+    <string name="raw_name_holder">Sirovina:</string>
 
     <string name="calculation_made_item_name">Naziv sirovine:</string>
     <string name="calculation_made_item_amount">Količina sirovine:</string>

@@ -20,6 +20,13 @@ public class RecipeRaws implements Serializable{
 
     }
 
+    public RecipeRaws(long recipeId, Recipe rawRecipeId, Raw recipeRawId, double rawAmount) {
+        this.recipeId = recipeId;
+        this.rawRecipeId = rawRecipeId;
+        this.recipeRawId = recipeRawId;
+        this.rawAmount = rawAmount;
+    }
+
     public RecipeRaws(Recipe rawRecipeId, Raw recipeRawId, double rawAmount){
         this.rawRecipeId = rawRecipeId;
         this.recipeRawId = recipeRawId;

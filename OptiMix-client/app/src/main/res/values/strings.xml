@@ -21,8 +21,8 @@
     <string name="material_amount">Postotak</string>
     <string name="material_amount_dots">Količina</string>
     <string name="recipe_name">Ime recepture</string>
-    <string name="shrinkage_coefficient_name">Koeficijent sušenja</string>
     <string name="material_addition">Dodaj novu sirovinu</string>
+    <string name="error_message">Postotak sirovina prelazi 100!</string>
 
     <string name="internet_error">Cannot connect to server, please check your internet connection</string>
     <string name="radio_technician">Tehničar</string>
@@ -54,5 +54,6 @@
     <string name="log_out_yes">Da</string>
     <string name="log_out_no">Ne</string>
     <string name="log_out_question">Želite li se uistinu odjaviti?</string>
+    <string name="error_message_zero">Postotak ne smije biti nula!</string>
 
 </resources>

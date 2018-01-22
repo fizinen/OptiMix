@@ -162,23 +162,31 @@ public class AnalysisFragment extends android.support.v4.app.Fragment {
         @Override
         public void onClick(View v) {
 
-            Long analysisRawAmount = Long.parseLong(analysis_raw_amount_input.getText().toString());
-            Double analysisWater = Double.parseDouble(analysis_water_input.getText().toString());
-            Double analysisFat = Double.parseDouble(analysis_fat_input.getText().toString());
-            Double analysisProteins = Double.parseDouble(analysis_proteins_input.getText().toString());
+            try {
+                Long analysisRawAmount = Long.parseLong(analysis_raw_amount_input.getText().toString());
+                Double analysisWater = Double.parseDouble(analysis_water_input.getText().toString());
+                Double analysisFat = Double.parseDouble(analysis_fat_input.getText().toString());
+                Double analysisProteins = Double.parseDouble(analysis_proteins_input.getText().toString());
 
-            Analysis analysis = new Analysis(analysisWater, analysisFat, analysisProteins, analysisX ,analysisRawAmount , desiredRaw );
-            //Analysis analysis = new Analysis(desiredRaw.getIdRaw(), , analysisRawAmount, analysisWater, analysisFat, analysisProteins);
-            if (!error) {
-                CreateAnalysisHandler createAnalysisHandler = new CreateAnalysisHandler(getActivity(), analysis);
+                if (analysisRawAmount == 0 || analysisWater == 0 || analysisFat == 0 || analysisProteins == 0 || analysisX.equals(null) || desiredRaw.equals(null)) {
+                    error = true;
+                }
 
-                new ServiceAsyncTask(createAnalysisHandler).execute(new ServiceParams(
-                        getString(hr.foi.air.optimix.webservice.R.string.analysis_createanalysis_path),
-                        ServiceCaller.HTTP_POST, analysis));
-            } else {
-                Toast.makeText(getActivity().getApplicationContext(), "Krivo uneseni podaci!", Toast.LENGTH_LONG).show();
+                Analysis analysis = new Analysis(analysisWater, analysisFat, analysisProteins, analysisX, analysisRawAmount, desiredRaw);
+                if (!error) {
+                    CreateAnalysisHandler createAnalysisHandler = new CreateAnalysisHandler(getActivity(), analysis);
 
+                    new ServiceAsyncTask(createAnalysisHandler).execute(new ServiceParams(
+                            getString(hr.foi.air.optimix.webservice.R.string.analysis_createanalysis_path),
+                            ServiceCaller.HTTP_POST, analysis));
+                } else {
+                    Toast.makeText(getActivity().getApplicationContext(), "Krivo uneseni podaci!", Toast.LENGTH_LONG).show();
+
+                }
+            } catch (Exception e) {
+                Toast.makeText(getActivity().getApplicationContext(), e.toString(), Toast.LENGTH_LONG).show();
             }
+
         }
     };
 }

@@ -1,6 +1,7 @@
 package hr.foi.air.optimix.optimix.handlers;
 
 import android.app.Activity;
+import android.app.Fragment;
 import android.content.Intent;
 import android.widget.Toast;
 
@@ -25,8 +26,7 @@ public class CreateCalculationAnalysisHandler extends ResponseHandler{
 
         if (response.getHttpCode() == 200) {
 
-            getActivity().startActivity( (new Intent(getActivity(), MainActivity.class)));
-            getActivity().finish();
+            getFragment();
 
             return true;
         } else {

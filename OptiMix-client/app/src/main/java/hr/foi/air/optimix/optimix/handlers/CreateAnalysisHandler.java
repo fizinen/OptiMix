@@ -23,12 +23,10 @@ public class CreateAnalysisHandler extends ResponseHandler {
 
     @Override
     public boolean handleResponse(ServiceResponse response) {
-        Analysis analysis = (Analysis) getArgs()[0];
 
         if (response.getHttpCode() == 200) {
 
-            getActivity().startActivity( (new Intent(getActivity(), MainActivity.class)));
-            getActivity().finish();
+            getFragment();
 
             return true;
         } else {

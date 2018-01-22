@@ -31,6 +31,13 @@ public abstract class ResponseHandler  implements ServiceResponseHandler {
 
     }
 
+    public ResponseHandler(Activity activity, Fragment fragment, Serializable... args) {
+        this.activity = activity;
+        this.fragment = fragment;
+        this.args = args;
+
+    }
+
     @Override
     public void onPreSend() {
 

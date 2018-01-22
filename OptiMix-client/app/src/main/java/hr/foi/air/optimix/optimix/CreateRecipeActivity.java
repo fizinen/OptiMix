@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
@@ -47,7 +48,8 @@ public class CreateRecipeActivity extends AppCompatActivity {
     ViewGroup recipeDetailsLayout;
     @BindView(R.id.recipe_name)
     EditText recipeName;
-
+    @BindView(R.id.error_text)
+    TextView errorText;
 
     private int rawAddedCounter;
     private int maximalNumberOfAddedSpinners;
@@ -56,6 +58,7 @@ public class CreateRecipeActivity extends AppCompatActivity {
 
     Recipe createdRecipe;
     ArrayList<Raw> rawName;
+    ArrayList<Raw> usedRaws;
     ArrayList<Double> rawAmount;
 
 
@@ -73,17 +76,20 @@ public class CreateRecipeActivity extends AppCompatActivity {
         submitButton.setOnClickListener(onSubmit);
         createdRecipe = new Recipe();
         generatedRawsSpinner = new ArrayList<Spinner>();
-        generatedRawAmount = new ArrayList<EditText>() ;
+        generatedRawAmount = new ArrayList<EditText>();
         rawName = new ArrayList<Raw>();
         rawAmount = new ArrayList<Double>();
+        usedRaws = new ArrayList<>();
 
         setTitle("Dodavanje recepata");
     }
 
-
     View.OnClickListener onRawAdded = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
+            if (rawAddedCounter > 0) {
+                usedRaws.add((Raw) generatedRawsSpinner.get(rawAddedCounter - 1).getSelectedItem());
+            }
             //Addition of spinner elements
             if (rawAddedCounter != (maximalNumberOfAddedSpinners)) {
                 LayoutInflater inflater = (LayoutInflater) getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -95,21 +101,19 @@ public class CreateRecipeActivity extends AppCompatActivity {
                 generatedRawsSpinner.add(spinner);
                 EditText editText = (EditText) view.findViewById(R.id.generated_raw_amount);
                 generatedRawAmount.add(editText);
+                //Data insertion into spinners (lists of materials)
+                ServiceParams params = new ServiceParams(
+                        getString(R.string.all_raw_path),
+                        ServiceCaller.HTTP_GET, null);
+                new ServiceAsyncTask(rawListHandler).execute(params);
 
             } else {
                 Toast.makeText(getApplicationContext(), "No new materials to add to the recipe", Toast.LENGTH_LONG).show();
+
             }
-
-
-            //Data insertion into spinners (lists of materials)
-            ServiceParams params = new ServiceParams(
-                    getString(R.string.all_raw_path),
-                    ServiceCaller.HTTP_GET, null);
-            new ServiceAsyncTask(rawListHandler).execute(params);
 
         }
     };
-
 
     SimpleResponseHandler rawListHandler = new SimpleResponseHandler() {
         @Override
@@ -119,7 +123,21 @@ public class CreateRecipeActivity extends AppCompatActivity {
                 }.getType();
                 ArrayList<Raw> t = new Gson().fromJson(response.getJsonResponse(), listType);
                 maximalNumberOfAddedSpinners = t.size();
-                generatedRawsSpinner.get(rawAddedCounter-1).setAdapter(new RawsAdapter(getApplicationContext(), R.layout.activity_create_recipe, t));
+                ArrayList<Integer> index = new ArrayList<>();
+                for (Raw r : t) {
+                    for (Raw ru: usedRaws) {
+                        if (r.getRawCode().equals(ru.getRawCode())){
+                            index.add(t.indexOf(r));
+                        }
+                    }
+                }
+                int g = 0;
+                for (int i:index) {
+                    t.remove(i-g);
+                    g++;
+                }
+
+                generatedRawsSpinner.get(rawAddedCounter - 1).setAdapter(new RawsAdapter(getApplicationContext(), R.layout.activity_create_recipe, t));
                 return true;
             } else {
                 Toast.makeText(getApplicationContext(), "Failed to fetch the materials", Toast.LENGTH_LONG).show();
@@ -128,35 +146,50 @@ public class CreateRecipeActivity extends AppCompatActivity {
         }
     };
 
-
     View.OnClickListener onSubmit = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            Log.d("klik", "kliknut gumb submit");
 
             String nameValue = recipeName.getText().toString();
-            for (Spinner s:generatedRawsSpinner) {
+            double sum = 0;
+            for (Spinner s : generatedRawsSpinner) {
                 rawName.add((Raw) s.getSelectedItem());
             }
 
-            for (EditText e:generatedRawAmount) {
-                rawAmount.add(Double.parseDouble(e.getText().toString()));
+            for (EditText e : generatedRawAmount) {
+                try {
+                    rawAmount.add(Double.parseDouble(e.getText().toString()));
+                    sum += Double.parseDouble(e.getText().toString());
+                } catch (Exception exception) {
+                    Toast.makeText(getApplicationContext(), exception.toString(), Toast.LENGTH_LONG).show();
+                }
             }
 
-            Recipe recipe = new Recipe(nameValue);
+            if (sum <= 100 && sum != 0) {
 
-            CreateRecipeHandler createRecipeHandler = new CreateRecipeHandler(CreateRecipeActivity.this, recipe);
+                Recipe recipe = new Recipe(nameValue);
 
-            new ServiceAsyncTask(createRecipeHandler).execute(new ServiceParams(
-                    getString(hr.foi.air.optimix.webservice.R.string.recipe_createrecipe_path),
-                    ServiceCaller.HTTP_POST, recipe));
+                CreateRecipeHandler createRecipeHandler = new CreateRecipeHandler(CreateRecipeActivity.this, recipe);
 
-            ServiceParams params = new ServiceParams(
-                    getString(R.string.all_recipes_path),
-                    ServiceCaller.HTTP_GET, null);
-            new ServiceAsyncTask(recipeListHandler).execute(params);
+                new ServiceAsyncTask(createRecipeHandler).execute(new ServiceParams(
+                        getString(hr.foi.air.optimix.webservice.R.string.recipe_createrecipe_path),
+                        ServiceCaller.HTTP_POST, recipe));
 
+                ServiceParams params = new ServiceParams(
+                        getString(R.string.all_recipes_path),
+                        ServiceCaller.HTTP_GET, null);
+                new ServiceAsyncTask(recipeListHandler).execute(params);
+            } else {
+                if (sum > 100) {
+                    errorText.setText(R.string.error_message);
+                }
+                if (sum == 0) {
+                    errorText.setText(R.string.error_message_zero);
+                }
 
+                rawName.clear();
+                rawAmount.clear();
+            }
         }
     };
 
@@ -172,7 +205,7 @@ public class CreateRecipeActivity extends AppCompatActivity {
                     if (r.getRecipeName().equals(recipeName.getText().toString())) {
                         createdRecipe = r;
 
-                        for (int i = 0; i < rawName.size() ; i++) {
+                        for (int i = 0; i < rawName.size(); i++) {
 
                             RecipeRaws recipeRaws = new RecipeRaws(createdRecipe.getIdRecipe(), createdRecipe, rawName.get(i), rawAmount.get(i));
 
@@ -181,9 +214,7 @@ public class CreateRecipeActivity extends AppCompatActivity {
                             new ServiceAsyncTask(createRecipeRawsHandler).execute(new ServiceParams(
                                     getString(hr.foi.air.optimix.webservice.R.string.reciperaws_createreciperaws_path),
                                     ServiceCaller.HTTP_POST, recipeRaws));
-
                         }
-
                         return true;
                     }
                 }
@@ -195,6 +226,4 @@ public class CreateRecipeActivity extends AppCompatActivity {
             }
         }
     };
-
-
 }

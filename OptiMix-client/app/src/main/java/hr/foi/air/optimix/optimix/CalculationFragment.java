@@ -251,6 +251,7 @@ public class CalculationFragment extends android.support.v4.app.Fragment {
                         calculationToDocumentAdapter.getName(),
                         calculationToDocumentAdapter.getContent(),
                         getActivity());
+                Toast.makeText(getActivity().getApplicationContext(), "Datoteka kreirana!", Toast.LENGTH_LONG).show();
             } catch (Exception e) {
                 e.printStackTrace();
             }

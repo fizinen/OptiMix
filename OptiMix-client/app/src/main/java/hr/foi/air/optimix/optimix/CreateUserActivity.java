@@ -14,6 +14,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Toast;
 
 import java.util.Arrays;
 import java.util.List;
@@ -93,41 +94,39 @@ public class CreateUserActivity extends AppCompatActivity{
         public void onClick(View v) {
 
             long authorityLevel;
+            try {
+                String nameValue = personName.getText().toString();
+                String surnameValue = personSurname.getText().toString();
+                UserNameGenerator userNameGenerator = new UserNameGenerator(nameValue, surnameValue);
+                //String usernameValue = username.getText().toString();
+                String usernameValue = userNameGenerator.generateUsername();
+                //String passwordValue = password.getText().toString();
+                String passwordValue = PasswordGenerator.generate(8);
 
-            String nameValue = personName.getText().toString();
-            String surnameValue = personSurname.getText().toString();
-            UserNameGenerator userNameGenerator = new UserNameGenerator(nameValue, surnameValue);
-            //String usernameValue = username.getText().toString();
-            String usernameValue = userNameGenerator.generateUsername();
-            //String passwordValue = password.getText().toString();
-            String passwordValue = PasswordGenerator.generate(8);
+                checkedButton = (RadioButton) findViewById(radioAuthorityLevel.getCheckedRadioButtonId());
 
-            checkedButton = (RadioButton) findViewById(radioAuthorityLevel.getCheckedRadioButtonId());
-
-            if(checkedButton.getTag() == "teh"){
-                authorityLevel = 1;
-            }
-
-            else {
-                authorityLevel = 2;
-            }
+                if (checkedButton.getTag() == "teh") {
+                    authorityLevel = 1;
+                } else {
+                    authorityLevel = 2;
+                }
 
 
-            username.setText(usernameValue);
-            password.setText(passwordValue);
+                username.setText(usernameValue);
+                password.setText(passwordValue);
 
 
+                if (Input.validate(inputs)) {
 
-            if(Input.validate(inputs)){
+                    Person person = new Person(nameValue, surnameValue, usernameValue, passwordValue, authorityLevel);
 
-                Person person = new Person(nameValue, surnameValue, usernameValue  ,passwordValue, authorityLevel);
+                    CreateUserHandler createUserHandler = new CreateUserHandler(CreateUserActivity.this, person);
 
-                CreateUserHandler createUserHandler = new CreateUserHandler( CreateUserActivity.this , person);
-
-                new ServiceAsyncTask(createUserHandler).execute(new ServiceParams(
-                        getString(hr.foi.air.optimix.webservice.R.string.person_createuser_path),
-                        ServiceCaller.HTTP_POST, person));
-            }
+                    new ServiceAsyncTask(createUserHandler).execute(new ServiceParams(
+                            getString(hr.foi.air.optimix.webservice.R.string.person_createuser_path),
+                            ServiceCaller.HTTP_POST, person));
+                }
+            }catch (Exception e1){ Toast.makeText(getApplicationContext(), "Nešto ste ostavili prazno", Toast.LENGTH_LONG).show();}
         }
     };
 

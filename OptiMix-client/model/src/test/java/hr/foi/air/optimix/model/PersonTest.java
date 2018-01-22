@@ -7,6 +7,13 @@ import static org.junit.Assert.*;
 /**
  * Created by Lenovo on 22.1.2018..
  */
+
+/**
+ * Test for person authority level.
+ * Sets strings to different authority levels.
+ * After creating person, it returns authority level in string.
+ * Test is passed if strings are equal.
+ */
 public class PersonTest {
 
     private String expectedA = "Admin";

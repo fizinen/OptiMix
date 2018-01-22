@@ -19,6 +19,10 @@ import hr.foi.air.optimix.optimix.R;
  * Created by Lenovo on 20.1.2018..
  */
 
+/**
+ * Extends Base adapeter.
+ * Makes view for xml of fragment/activity to show RecipesRaws (all raws of recipe) app uses.
+ */
 public class RecipeRawsAdapter extends hr.foi.air.optimix.optimix.adapters.BaseAdapter<RecipeRaws>{
     Context context;
     ArrayList<RecipeRaws> recipeRawsArrayList;

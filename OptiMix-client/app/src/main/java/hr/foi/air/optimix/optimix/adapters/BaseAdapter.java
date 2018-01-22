@@ -11,6 +11,12 @@ import java.util.ArrayList;
  * Created by Gloria Babić on 4.12.2017..
  */
 
+
+/**
+ * Abstract class that makes basic functions for all adapters in appliacation.
+ * Makes constructor, gets count, gets item(s), gets position, gets itemId, gets Inflater and items in list.
+ * @param <T>
+ */
 public abstract class BaseAdapter<T extends Serializable> extends ArrayAdapter<T> {
 
     private LayoutInflater inflater;

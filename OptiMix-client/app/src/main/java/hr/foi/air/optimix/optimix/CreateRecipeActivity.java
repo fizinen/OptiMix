@@ -38,6 +38,9 @@ import hr.foi.air.optimix.webservice.SimpleResponseHandler;
  * Created by erdel on 27.11.2017..
  */
 
+/**
+ * Create recipe activity extends AppCompatActivity for creating recipes.
+ */
 public class CreateRecipeActivity extends AppCompatActivity {
 
     @BindView(R.id.submit_recipe_button)

@@ -42,6 +42,10 @@ import hr.foi.air.optimix.webservice.SimpleResponseHandler;
  * Created by Lenovo on 20.1.2018..
  */
 
+
+/**
+ * Calculation fragmet extends fragment for showing and adding calculations.
+ */
 public class CalculationFragment extends android.support.v4.app.Fragment {
 
     @BindView(R.id.recipe_spinner)

@@ -9,6 +9,9 @@ import java.io.FileNotFoundException;
  * Created by erdel on 17.1.2018..
  */
 
+/**
+ * Manipulates with elements of document list.
+ */
 public interface DocumentListElement {
     public String getElementName();
     public int GetPositionInList();

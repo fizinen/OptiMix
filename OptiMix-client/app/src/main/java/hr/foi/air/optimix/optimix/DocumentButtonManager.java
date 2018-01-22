@@ -10,6 +10,9 @@ import com.example.pdfgenerator.Generator;
  * Created by erdel on 22.1.2018..
  */
 
+/**
+ * Chooses which button for document is pressed.
+ */
 public class DocumentButtonManager {
     FilePrinter filePrinter;
     Generator pdfGenerator;

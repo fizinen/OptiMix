@@ -7,6 +7,12 @@ import static org.junit.Assert.*;
 /**
  * Created by Lenovo on 22.1.2018..
  */
+
+/**
+ * Test for username.
+ * Set string to usernameGenerator that returns generated username.
+ * If returned string is expected, test is passed.
+ */
 public class UserNameGeneratorTest {
 
     UserNameGenerator novi = new UserNameGenerator ("Jura","Baksa");

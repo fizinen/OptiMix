@@ -18,6 +18,11 @@ import hr.foi.air.optimix.optimix.R;
  * Created by Lenovo on 20.1.2018..
  */
 
+/**
+ * Extends Base adapeter.
+ * Makes view for xml of fragment/activity to show first Spinner for Recipes app uses.
+ * Makes dropdown view for xml of fragment/activity to show all remaining Spinner(s) for Recipes app uses
+ */
 public class SpinnerRecipeAdapter extends hr.foi.air.optimix.optimix.adapters.BaseAdapter<Recipe> {
     Context context;
     ArrayList<Recipe> recipeArrayList;

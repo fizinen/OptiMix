@@ -6,6 +6,9 @@ import java.util.List;
 /**
  * Created by Lenovo on 20.1.2018..
  */
+/**
+ * Class for raws.
+ */
 public class Raw implements Serializable{
     long idRaw;
     String rawCode;

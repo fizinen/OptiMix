@@ -7,6 +7,9 @@ import java.util.List;
  * Created by erdel on 5.12.2017..
  */
 
+/**
+ * Class for recipes.
+ */
 public class Recipe implements Serializable {
     long idRecipe;
     String recipeName;

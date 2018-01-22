@@ -33,6 +33,9 @@ import hr.foi.air.optimix.webservice.ServiceParams;
  * Created by Bogdan Erdelji on 31/10/2017.
  */
 
+/**
+ * Create user activity extends AppCompatActivity for creating users.
+ */
 public class CreateUserActivity extends AppCompatActivity{
 
 

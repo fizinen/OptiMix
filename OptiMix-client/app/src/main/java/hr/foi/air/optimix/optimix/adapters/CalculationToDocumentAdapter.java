@@ -10,6 +10,10 @@ import hr.foi.air.optimix.model.Recipe;
  * Created by erdel on 22.1.2018..
  */
 
+/**
+ * Extends Base adapeter.
+ * Uses CalculationAnalysis app got and gets name and content for document.
+ */
 public class CalculationToDocumentAdapter implements DocumentCreationData {
     List<CalculationAnalysis> listOfAnalysis;
     Recipe temporaryRecipe;

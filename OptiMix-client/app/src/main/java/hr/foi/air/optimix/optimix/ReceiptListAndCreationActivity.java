@@ -34,6 +34,10 @@ import hr.foi.air.optimix.webservice.SimpleResponseHandler;
  * Created by erdel on 27.11.2017..
  */
 
+/**
+ * ReceiptListAndCreation activity that extends Fragment and implements View.OnClickListener
+ * Shows list of recipes and gives options to click on buttom and open activity for creating recipes.
+ */
 public class ReceiptListAndCreationActivity extends Fragment implements View.OnClickListener {
 
     FloatingActionButton buttonAddNewRecipes;

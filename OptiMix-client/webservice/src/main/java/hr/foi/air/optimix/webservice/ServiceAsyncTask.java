@@ -12,6 +12,11 @@ import java.net.URL;
  * Created by Gloria Babić on 31.10.2017..
  */
 
+/**
+ * Class ServiceAsyncTask extends Androids AsyncTask
+ * Class for making async tasks to webservice.
+ * Overrides all functions from AsyncTask that are already documented.
+ */
 public class ServiceAsyncTask extends AsyncTask<ServiceParams, Void, ServiceResponse> {
 
 

@@ -4,6 +4,11 @@ package hr.foi.air.optimix.webservice;
  * Created by Gloria Babić on 31.10.2017..
  */
 
+/**
+ * Class ServiceResponse
+ * Class operates with all parameters of Service response and every interaction with webservice in that direction.
+ * Deals with int of httpCode (response), strings for cookie and jsonResponse.
+ */
 public class ServiceResponse {
 
     int httpCode;

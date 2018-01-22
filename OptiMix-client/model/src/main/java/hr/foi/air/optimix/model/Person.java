@@ -6,6 +6,9 @@ import java.io.Serializable;
  * Created by Gloria Babić on 31.10.2017..
  */
 
+/**
+ * Class for Person (User).
+ */
 public class Person implements Serializable {
 
     long idPerson;
@@ -41,6 +44,10 @@ public class Person implements Serializable {
         return authority;
     }
 
+    /**
+     * Sets authority string.
+     * @return {@code String} of authority level.
+     */
     public String getAuthorityString(){
         if (authority == 0){
             return "Admin";

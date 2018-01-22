@@ -1,18 +1,13 @@
 package hr.foi.air.optimix.optimix;
 
-import android.content.Context;
 import android.os.Bundle;
-import android.os.Handler;
-import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -26,15 +21,13 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import hr.foi.air.optimix.core.Input;
 import hr.foi.air.optimix.model.Analysis;
 import hr.foi.air.optimix.model.Calculation;
 import hr.foi.air.optimix.model.CalculationAnalysis;
 import hr.foi.air.optimix.model.Recipe;
 import hr.foi.air.optimix.model.RecipeRaws;
-import hr.foi.air.optimix.optimix.adapters.CalculationAdapter;
 import hr.foi.air.optimix.optimix.adapters.CalculationAnalysisAdapter;
-import hr.foi.air.optimix.optimix.adapters.RecipeRawsAdapter;
+import hr.foi.air.optimix.optimix.adapters.CalculationToDocumentAdapter;
 import hr.foi.air.optimix.optimix.adapters.SpinnerRecipeAdapter;
 import hr.foi.air.optimix.optimix.handlers.CreateCalculationAnalysisHandler;
 import hr.foi.air.optimix.optimix.handlers.CreateCalculationHandler;
@@ -63,6 +56,10 @@ public class CalculationFragment extends android.support.v4.app.Fragment {
     TextView calculationFullAmount;
     @BindView(R.id.layout_recipe_calculation_view)
     LinearLayout layoutRecipeCalculationView;
+    @BindView(R.id.document_create_pdf)
+    Button documentCreatePdf;
+    @BindView(R.id.document_print_modular)
+    Button documentPrint;
 
     boolean error = false;
     boolean uneseno = false;
@@ -73,8 +70,13 @@ public class CalculationFragment extends android.support.v4.app.Fragment {
     Calculation calculation;
     Recipe recipe;
     CalculationAnalysis calculationAnalysis;
+    List<CalculationAnalysis> listOfAnalysis;
     View view;
     ListView listViewForPreview;
+    DocumentButtonManager documentButtonManager;
+
+    ArrayList<CalculationAnalysis> documentCalculationAnalysisList;
+
 
     public CalculationFragment() {
 
@@ -92,7 +94,7 @@ public class CalculationFragment extends android.support.v4.app.Fragment {
         view = inflater.inflate(R.layout.fragment_calculation, container, false);
 
         ButterKnife.bind(this, view);
-
+        documentButtonManager = new DocumentButtonManager();
         listViewForPreview = (ListView) view.findViewById(R.id.listViewRecipes);
 
         ServiceParams params = new ServiceParams(
@@ -100,6 +102,8 @@ public class CalculationFragment extends android.support.v4.app.Fragment {
                 ServiceCaller.HTTP_GET, null);
         new ServiceAsyncTask(recipeListHandler).execute(params);
         calculationPreview.setOnClickListener(onCalculationPreview);
+        documentPrint.setOnClickListener(onCreateDocumentDemand);
+        documentCreatePdf.setOnClickListener(onCreateDocumentDemand);
 
         return view;
     }
@@ -233,6 +237,22 @@ public class CalculationFragment extends android.support.v4.app.Fragment {
         }
     };
 
+    View.OnClickListener onCreateDocumentDemand = new View.OnClickListener(){
+        @Override
+        public void onClick(View v) {
+                Button buttonTemporaryPressed = (Button) v;
+            try {
+                CalculationToDocumentAdapter calculationToDocumentAdapter = new CalculationToDocumentAdapter(documentCalculationAnalysisList);
+                documentButtonManager.StartModule(buttonTemporaryPressed,
+                        calculationToDocumentAdapter.getName(),
+                        calculationToDocumentAdapter.getContent(),
+                        getActivity());
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    };
+
     SimpleResponseHandler calculationAnalysisHandler = new SimpleResponseHandler() {
         @Override
         public boolean handleResponse(ServiceResponse response) {
@@ -254,12 +274,19 @@ public class CalculationFragment extends android.support.v4.app.Fragment {
                     }
                 }
 
-                if (t.size() > 0) {
+
+                if(t.size() > 0){
+                    documentCalculationAnalysisList = t;
+
                     calculationRecipeMadeName.setText(recipe.getRecipeName());
                     calculationFullAmount.setText(String.valueOf(calcAmount));
-
+                    //Ovo je dodano
+                    listOfAnalysis = t;
+                    //
                     listViewForPreview.setAdapter(new CalculationAnalysisAdapter(getActivity().getApplicationContext(),
                             R.layout.fragment_calculation, t));
+
+
 
                     return true;
                 } else {

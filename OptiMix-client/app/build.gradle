@@ -37,4 +37,6 @@ dependencies {
     compile project(path: ':webservice')
     compile project(path: ':webservice')
 
+    compile project(path: ':fileprinter')
+    compile project(path: ':pdfgenerator')
 }

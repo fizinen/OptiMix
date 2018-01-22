@@ -17,6 +17,7 @@
     <string name="analysis_createanalysis_path">/analysis/addanalysis/</string>
     <string name="calculation_analysis_create_path">/calculationanalysis/addcalculationanalysis</string>
     <string name="all_calculation_path">/calculation/all/</string>
+    <string name="all_calculationanalysis_path">/calculationanalysis/all/</string>
 
 
 

@@ -44,6 +44,11 @@
     <string name="percentage_sign">%</string>
     <string name="amount_sign">kg</string>
     <string name="calculation_make">Napravi izračun</string>
+    <string name="calculation_made_name">Izračun za recept:</string>
+    <string name="calculation_preview">Ispis izračuna</string>
+
+    <string name="calculation_made_item_name">Naziv sirovine:</string>
+    <string name="calculation_made_item_amount">Količina sirovine:</string>
 
     <string name="log_out">Odjava</string>
     <string name="log_out_yes">Da</string>

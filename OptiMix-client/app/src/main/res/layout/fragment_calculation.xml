@@ -72,6 +72,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:padding="15dp"
+            android:background="@drawable/buttonstyle_calculation"
+            android:textColor="@color/white"
             android:text="@string/calculation_preview" />
 
         <LinearLayout

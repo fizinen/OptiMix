@@ -10,137 +10,151 @@
     android:padding="@dimen/activity_margin"
     tools:context="hr.foi.air.optimix.optimix.MainActivity">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <EditText
-            android:id="@+id/analysisUInput"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:ems="4"
-            android:hint="UX"
-            android:imeOptions="actionNext"
-            android:inputType="number"
-            android:maxLength="4" />
-
-        <TextView
-            android:id="@+id/analysisUXInput"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text=" - " />
-
-        <EditText
-            android:id="@+id/analysisXInput"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:ems="8"
-            android:inputType="number"
-            android:maxLength="8" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <TextView
-            android:id="@+id/analysisRawName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-
-        <TextView
-            android:id="@+id/analysisXMessage"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/layout_space" />
-
-
-    </LinearLayout>
-
-    <android.support.design.widget.TextInputLayout
-        android:id="@+id/TextRawAmountLayout"
+    <ScrollView
+        android:id="@+id/recipe_creation_scrollView"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:gravity="left">
+        android:layout_height="fill_parent">
 
-        <EditText
-            android:id="@+id/analysis_raw_amount_input"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:gravity="left"
-            android:hint="@string/analysis_quantity_input"
-            android:imeOptions="actionNext"
-            android:inputType="number" />
+            android:orientation="vertical">
 
-    </android.support.design.widget.TextInputLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
 
-    <android.support.design.widget.TextInputLayout
-        android:id="@+id/TextWaterLayout"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:gravity="left">
+                <EditText
+                    android:id="@+id/analysisUInput"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ems="4"
+                    android:hint="UX"
+                    android:imeOptions="actionNext"
+                    android:inputType="number"
+                    android:maxLength="4" />
 
-        <EditText
-            android:id="@+id/analysis_water_input"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:gravity="left"
-            android:hint="@string/analysis_water_input"
-            android:imeOptions="actionNext"
-            android:inputType="number" />
+                <TextView
+                    android:id="@+id/analysisUXInput"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=" - " />
 
-    </android.support.design.widget.TextInputLayout>
+                <EditText
+                    android:id="@+id/analysisXInput"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ems="8"
+                    android:inputType="number"
+                    android:maxLength="8" />
 
-    <android.support.design.widget.TextInputLayout
-        android:id="@+id/TextFatLayout"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:gravity="left">
+            </LinearLayout>
 
-        <EditText
-            android:id="@+id/analysis_fat_input"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:gravity="left"
-            android:hint="@string/analysis_fat_input"
-            android:imeOptions="actionNext"
-            android:inputType="number" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
 
-    </android.support.design.widget.TextInputLayout>
+                <TextView
+                    android:id="@+id/analysisRawName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
 
-    <android.support.design.widget.TextInputLayout
-        android:id="@+id/TextProteinsLayout"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:gravity="left">
-
-        <EditText
-            android:id="@+id/analysis_proteins_input"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:gravity="left"
-            android:hint="@string/analysis_proteins_input"
-            android:imeOptions="actionNext"
-            android:inputType="number" />
-
-    </android.support.design.widget.TextInputLayout>
+                <TextView
+                    android:id="@+id/analysisXMessage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/layout_space" />
 
 
-    <!-- Submit -->
-    <Button
-        android:id="@+id/submitAnalysisButton"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        android:background="@drawable/buttonstyle"
-        android:text="@string/create_user"
-        android:textColor="@color/white" />
+            </LinearLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/TextRawAmountLayout"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="left">
+
+                <EditText
+                    android:id="@+id/analysis_raw_amount_input"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:gravity="left"
+                    android:hint="@string/analysis_quantity_input"
+                    android:imeOptions="actionNext"
+                    android:inputType="number" />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/TextWaterLayout"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="left">
+
+                <EditText
+                    android:id="@+id/analysis_water_input"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:gravity="left"
+                    android:hint="@string/analysis_water_input"
+                    android:imeOptions="actionNext"
+                    android:inputType="number" />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/TextFatLayout"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="left">
+
+                <EditText
+                    android:id="@+id/analysis_fat_input"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:gravity="left"
+                    android:hint="@string/analysis_fat_input"
+                    android:imeOptions="actionNext"
+                    android:inputType="number" />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/TextProteinsLayout"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="left">
+
+                <EditText
+                    android:id="@+id/analysis_proteins_input"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:gravity="left"
+                    android:hint="@string/analysis_proteins_input"
+                    android:imeOptions="actionNext"
+                    android:inputType="number" />
+
+            </android.support.design.widget.TextInputLayout>
+
+
+            <!-- Submit -->
+            <Button
+                android:id="@+id/submitAnalysisButton"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:background="@drawable/buttonstyle"
+                android:text="@string/create_user"
+                android:textColor="@color/white" />
+
+        </LinearLayout>
+
+    </ScrollView>
 
 </LinearLayout>

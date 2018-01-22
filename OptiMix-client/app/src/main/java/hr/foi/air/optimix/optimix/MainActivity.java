@@ -28,10 +28,11 @@ public class MainActivity extends AppCompatActivity implements FragmentIntentInt
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
 
         adapter.addFragment(new StorageFragment());
+        adapter.addFragment(new CalculationFragment());
 		if(personInSession.getAuthority() == 0 || personInSession.getAuthority() == 2){
             adapter.addFragment(new AnalysisFragment());
         }
-        adapter.addFragment(new CalculationFragment());
+
 
 
         viewPager.setAdapter(adapter);
@@ -40,12 +41,13 @@ public class MainActivity extends AppCompatActivity implements FragmentIntentInt
         tabLayout.setupWithViewPager(viewPager);
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
         tabLayout.setTabMode(TabLayout.MODE_FIXED);
-        tabLayout.getTabAt(0).setText("Skladište");
 
+        tabLayout.getTabAt(0).setText("Skladište");
+        tabLayout.getTabAt(1).setText("Izračun");
         if(personInSession.getAuthority() == 0 || personInSession.getAuthority() == 2){
-            tabLayout.getTabAt(1).setText("Analiza");
+            tabLayout.getTabAt(2).setText("Analiza");
         }
-		tabLayout.getTabAt(2).setText("Izračun");
+
 		
         if (personInSession.getAuthority() != 0){
             FloatingActionButton settingButton = (FloatingActionButton) this.findViewById(R.id.floatingSettingsButton);

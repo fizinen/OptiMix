@@ -18,7 +18,8 @@ public class CalculationAnalysis implements Serializable {
 
     }
 
-    public CalculationAnalysis(Calculation calculation, Analysis analysis, double amountForCalculation){
+    public CalculationAnalysis(long calculationId, Calculation calculation, Analysis analysis, double amountForCalculation){
+        this.calculationId = calculationId;
         this.calculationAnalysisId = calculation;
         this.analysisCalculationId = analysis;
         this.amountForCalculation = amountForCalculation;
@@ -37,16 +38,13 @@ public class CalculationAnalysis implements Serializable {
         return calculationId;
     }
 
-    public void setCalculationId(long calculationId) {
-        this.calculationId = calculationId;
-    }
-
     public Calculation getCalculationAnalysisId() {
         return calculationAnalysisId;
     }
 
     public void setCalculationAnalysisId(Calculation calculationAnalysisId) {
         this.calculationAnalysisId = calculationAnalysisId;
+        this.calculationId = calculationAnalysisId.getIdCalculation();
     }
 
     public Analysis getAnalysisCalculationId() {

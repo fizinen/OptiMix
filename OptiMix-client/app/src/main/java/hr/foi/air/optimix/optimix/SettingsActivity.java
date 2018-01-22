@@ -17,16 +17,16 @@ public class SettingsActivity extends AppCompatActivity implements FragmentInten
         ViewPager viewPager = (ViewPager) findViewById(R.id.activity_settings_view_pager);
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
 
-        adapter.addFragment(new UserListFragment());
         adapter.addFragment(new ReceiptListAndCreationActivity());
+        adapter.addFragment(new UserListFragment());
         viewPager.setAdapter(adapter);
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_layout);
         tabLayout.setupWithViewPager(viewPager);
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
         tabLayout.setTabMode(TabLayout.MODE_FIXED);
-        tabLayout.getTabAt(0).setText("Zaposlenici");
-        tabLayout.getTabAt(1).setText("Recepti");
+        tabLayout.getTabAt(0).setText("Recepti");
+        tabLayout.getTabAt(1).setText("Zaposlenici");
     }
 
     @Override

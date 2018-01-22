@@ -6,35 +6,30 @@ import android.widget.Toast;
 
 import java.io.Serializable;
 
-
-import hr.foi.air.optimix.model.Calculation;
-
-import hr.foi.air.optimix.optimix.CalculationFragment;
-import hr.foi.air.optimix.optimix.MainActivity;
+import hr.foi.air.optimix.optimix.CreateRecipeActivity;
 import hr.foi.air.optimix.webservice.ServiceResponse;
 
 /**
- * Created by Lenovo on 21.1.2018..
+ * Created by Gloria Babić on 21.1.2018..
  */
 
-public class CreateCalculationHandler extends ResponseHandler {
+public class CreateRecipeRawsHandler extends ResponseHandler {
 
-    public CreateCalculationHandler(Activity activity, Serializable... args) {
+    public CreateRecipeRawsHandler(Activity activity, Serializable... args) {
         super(activity, args);
     }
 
     @Override
     public boolean handleResponse(ServiceResponse response) {
 
-        if (response.getHttpCode() == 200) {
+        if(response.getHttpCode() == 200) {
 
-            getFragment();
 
             return true;
         } else {
             // show fail
             Toast.makeText(getActivity(),
-                    "Calculation creation failed, please try again (" + response.getHttpCode() + ")",
+                    "RecipeRaws creation failed, please try again (" + response.getHttpCode() + ")",
                     Toast.LENGTH_LONG).show();
             return false;
         }

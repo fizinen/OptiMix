@@ -65,6 +65,7 @@ public class CalculationFragment extends android.support.v4.app.Fragment {
     LinearLayout layoutRecipeCalculationView;
 
     boolean error = false;
+    boolean uneseno = false;
     ArrayList<RecipeRaws> listOfRecipeRaws;
     ArrayList<Analysis> listOfAllAnalysis;
     ArrayList<CalculationAnalysis> listOfCalculationAnalysis;
@@ -75,7 +76,7 @@ public class CalculationFragment extends android.support.v4.app.Fragment {
     View view;
     ListView listViewForPreview;
 
-    public CalculationFragment(){
+    public CalculationFragment() {
 
     }
 
@@ -126,12 +127,12 @@ public class CalculationFragment extends android.support.v4.app.Fragment {
     };
 
 
-
     SimpleResponseHandler recipeRawsListHandler = new SimpleResponseHandler() {
         @Override
         public boolean handleResponse(ServiceResponse response) {
             if (response.getHttpCode() == 200) {
-                List<RecipeRaws> listar = new Gson().fromJson(response.getJsonResponse(), new TypeToken<List<RecipeRaws>>(){}.getType());
+                List<RecipeRaws> listar = new Gson().fromJson(response.getJsonResponse(), new TypeToken<List<RecipeRaws>>() {
+                }.getType());
 
                 listOfRecipeRaws = new ArrayList<>(listar);
 
@@ -180,26 +181,22 @@ public class CalculationFragment extends android.support.v4.app.Fragment {
                 }.getType();
                 ArrayList<Calculation> t = new Gson().fromJson(response.getJsonResponse(), listType);
 
-                for(Calculation c : t){
-                    if(c.getCalculationFullAmount() == (calculation.getCalculationFullAmount()) && c.getRecipeId().getIdRecipe() == (calculation.getRecipeId().getIdRecipe())){
-                        for (RecipeRaws rr : listOfRecipeRaws){
-                            for (Analysis a : listOfAllAnalysis){
-                                if (rr.getRecipeRawId().getIdRaw() == a.getRawId().getIdRaw()){
-                                    double amountForCalculation = (rr.getRawAmount()/100)*calcAmount;
-                                    if(amountForCalculation < a.getAnalysisRawMass()){
-
+                for (Calculation c : t) {
+                    if (c.getCalculationFullAmount() == (calculation.getCalculationFullAmount()) && c.getRecipeId().getIdRecipe() == (calculation.getRecipeId().getIdRecipe())) {
+                        for (RecipeRaws rr : listOfRecipeRaws) {
+                            uneseno = false;
+                            for (Analysis a : listOfAllAnalysis) {
+                                if (rr.getRecipeRawId().getIdRaw() == a.getRawId().getIdRaw() && rr.getRawAmount() > 0 && uneseno == false) {
+                                    double amountForCalculation = (rr.getRawAmount() / 100) * calcAmount;
+                                    if (amountForCalculation < a.getAnalysisRawMass()) {
+                                        uneseno = true;
                                         calculationAnalysis = new CalculationAnalysis(c.getRecipeId().getIdRecipe(), c, a, amountForCalculation);
 
                                         CreateCalculationAnalysisHandler createCalculationAnalysisHandler = new CreateCalculationAnalysisHandler(getActivity(), calculationAnalysis);
 
                                         new ServiceAsyncTask(createCalculationAnalysisHandler).execute(new ServiceParams(getString(hr.foi.air.optimix.webservice.R.string.calculation_analysis_create_path),
                                                 ServiceCaller.HTTP_POST, calculationAnalysis));
-
-
-                                        Toast.makeText(getActivity().getApplicationContext(), "Izračun gotov", Toast.LENGTH_LONG).show();
-
-                                    }
-                                    else{
+                                    } else {
                                         Toast.makeText(getActivity().getApplicationContext(), "Premalo analizirane sirovine za recept", Toast.LENGTH_LONG).show();
                                         return true;
                                     }
@@ -209,6 +206,7 @@ public class CalculationFragment extends android.support.v4.app.Fragment {
                     }
                 }
                 calculationPreview.performClick();
+                Toast.makeText(getActivity().getApplicationContext(), "Izračun gotov", Toast.LENGTH_LONG).show();
                 return true;
             } else {
                 Toast.makeText(getActivity().getApplicationContext(), "Failed to fetch calculation", Toast.LENGTH_LONG).show();
@@ -218,12 +216,11 @@ public class CalculationFragment extends android.support.v4.app.Fragment {
         }
     };
 
-    View.OnClickListener onCalculationPreview  = new View.OnClickListener() {
+    View.OnClickListener onCalculationPreview = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
 
             recipe = (Recipe) chooseRecipe.getSelectedItem();
-
             layoutRecipeCalculationView.setVisibility(View.VISIBLE);
 
             if (recipe.getIdRecipe() != -1) {
@@ -244,19 +241,20 @@ public class CalculationFragment extends android.support.v4.app.Fragment {
                 recipe = (Recipe) chooseRecipe.getSelectedItem();
                 calcAmount = Double.parseDouble(calculationAmount.getText().toString());
 
-                List<CalculationAnalysis> calculationAnalysises = new Gson().fromJson(response.getJsonResponse(), new TypeToken<List<CalculationAnalysis>>(){}.getType());
+                List<CalculationAnalysis> calculationAnalysises = new Gson().fromJson(response.getJsonResponse(), new TypeToken<List<CalculationAnalysis>>() {
+                }.getType());
 
                 listOfCalculationAnalysis = new ArrayList<>(calculationAnalysises);
 
                 ArrayList<CalculationAnalysis> t = new ArrayList<>();
 
-                for(CalculationAnalysis c :listOfCalculationAnalysis){
-                    if(c.getCalculationId() == recipe.getIdRecipe() && c.getCalculationAnalysisId().getCalculationFullAmount() == calcAmount){
+                for (CalculationAnalysis c : listOfCalculationAnalysis) {
+                    if (c.getCalculationId() == recipe.getIdRecipe() && c.getCalculationAnalysisId().getCalculationFullAmount() == calcAmount) {
                         t.add(c);
                     }
                 }
 
-                if(t.size() > 0){
+                if (t.size() > 0) {
                     calculationRecipeMadeName.setText(recipe.getRecipeName());
                     calculationFullAmount.setText(String.valueOf(calcAmount));
 
@@ -264,8 +262,7 @@ public class CalculationFragment extends android.support.v4.app.Fragment {
                             R.layout.fragment_calculation, t));
 
                     return true;
-                }
-                else{
+                } else {
                     recipe = (Recipe) chooseRecipe.getSelectedItem();
                     calcAmount = Double.parseDouble(calculationAmount.getText().toString());
 
